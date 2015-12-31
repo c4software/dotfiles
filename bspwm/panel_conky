@@ -1,0 +1,18 @@
+out_to_x no
+own_window no
+out_to_console yes
+double_buffer no
+background no
+max_text_width 0
+
+# Update interval in seconds; I prefer 30 for laptops
+update_interval 3.0
+
+total_run_times 0
+short_units yes
+override_utf8_locale no
+cpu_avg_samples 2
+if_up_strictness address
+
+TEXT
+S [Net] ${upspeed eth0} / ${downspeed eth0} | [Load] ${loadavg 1} | [Mem] $mem / $memmax | [Vol] ${exec amixer get Master | awk -F'[]%[]' '/%/ {if ($7 == "off") { print "Mute" } else { print $2"%%" }}' | uniq | head -1} | ${time %H:%M}
