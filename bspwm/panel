@@ -11,6 +11,8 @@ fi
 
 trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
 
+trayer --edge top --align right --widthtype pixel --width 50 --heighttype pixel --height $BARHEIGHT --tint 0x$BLACK --transparent true --alpha 0 &
+
 [ -e "$PANEL_FIFO" ] && rm "$PANEL_FIFO"
 mkfifo "$PANEL_FIFO"
 
