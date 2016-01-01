@@ -15,4 +15,4 @@ cpu_avg_samples 2
 if_up_strictness address
 
 TEXT
-S [Net] ${upspeed eth0} / ${downspeed eth0} | [Load] ${loadavg 1} | [Mem] $mem / $memmax | [Vol] ${exec amixer get Master | awk -F'[]%[]' '/%/ {if ($7 == "off") { print "Mute" } else { print $2"%%" }}' | uniq | head -1} | ${time %H:%M}
+S [Load] ${loadavg 1} | [Mem] $mem / $memmax | [Vol] ${exec amixer get Master | awk -F'[]%[]' '/%/ {if ($7 == "off") { print "Mute" } else { print $2"%%" }}' | uniq | head -1} | ${time %H:%M} |        
