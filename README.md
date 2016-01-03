@@ -11,3 +11,4 @@ All my *important* dotfiles.
 - xtitle
 - trayer
 - conky
+- ttf-font-awesome
