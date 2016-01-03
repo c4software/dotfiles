@@ -1,5 +1,7 @@
 # Valentin's dotfiles
 
+![My configuration](preview.jpg)
+
 All my *important* dotfiles.
 
 ## Requirements 
