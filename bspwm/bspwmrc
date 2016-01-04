@@ -37,7 +37,7 @@ xsetroot -cursor_name left_ptr
 setxkbmap fr
 wmname LG3D
 xcompmgr -f -D2 &
-feh --randomize --bg-scale ~/Images/OSX/* &
+feh --randomize --bg-scale ~/Images/wallpapers/* &
 xset -b
 # compton -cCGf --vsync opengl --shadow-exclude '!focused' &
 #conky &
