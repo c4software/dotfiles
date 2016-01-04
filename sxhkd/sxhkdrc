@@ -8,6 +8,9 @@ super + shift + q
 super + shift + c
 	bspc window -c
 
+ctrl + q
+	bspc window -c
+
 ## CYCLE LAYOUT
 super + n
 	bspc desktop -l next
@@ -114,7 +117,7 @@ super + shift + s
 	xfce4-screenshooter
 
 super + d
-	dmenu_run
+	j4-dmenu-desktop
 
 Scroll-Lock
   dbus-send --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
