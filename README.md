@@ -8,7 +8,7 @@ All my *important* dotfiles.
 - bspwm
 - j4-dmenu-desktop
 - feh
-- lemonbar-xft
+- lemonbar-xft-git
 - sxhkd
 - xtitle
 - trayer
