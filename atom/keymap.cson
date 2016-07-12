@@ -1,6 +1,11 @@
 'atom-workspace':
   'alt-t': 'native!'
   'alt-d': 'native!'
+  'alt-b': 'native!'
 
-'.platform-darwin atom-text-editor:not([mini])':
+'atom-text-editor':
   'alt-d': 'native!'
+  'alt-b': 'native!'
+
+".platform-darwin atom-text-editor:not([mini])":
+  'alt-d': 'unset!'
