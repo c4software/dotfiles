@@ -11,31 +11,30 @@ cmd + alt + ctrl - q     :    kwmc quit
 cmd - return             :    open -na /Applications/Utilities/Terminal.app
 
 ## Resize
-lalt - up       		:   kwmc window -c expand 0.05 north
-lalt - right        	:   kwmc window -c reduce 0.05 west
-lalt - down         	:   kwmc window -c reduce 0.05 north
-lalt - left         	:   kwmc window -c expand 0.05 west
+ralt - up       		:   kwmc window -c expand 0.05 north
+ralt - right        	:   kwmc window -c reduce 0.05 west
+ralt - down         	:   kwmc window -c reduce 0.05 north
+ralt - left         	:   kwmc window -c expand 0.05 west
 
 ## Swap position
-lalt + shift - up   	:   kwmc window -s north
-lalt + shift - right    :   kwmc window -s east
-lalt + shift - down     :   kwmc window -s south
-lalt + shift - left     :   kwmc window -s west
+ralt + shift - up   	:   kwmc window -s north
+ralt + shift - right    :   kwmc window -s east
+ralt + shift - down     :   kwmc window -s south
+ralt + shift - left     :   kwmc window -s west
 
 ## Move window
-lalt + lctrl - up   	:   kwmc window -m north
-lalt + lctrl - right    :   kwmc window -m east
-lalt + lctrl - down 	:   kwmc window -m south
-lalt + lctrl - left 	:   kwmc window -m west
+ralt + lctrl - up   	:   kwmc window -m north
+ralt + lctrl - right    :   kwmc window -m east
+ralt + lctrl - down 	:   kwmc window -m south
+ralt + lctrl - left 	:   kwmc window -m west
 
 ## toggle split mode
-lalt - s : kwmc window -c split-mode toggle
+ralt - s : kwmc window -c split-mode toggle
 
 ## toggle fullscreen
-lalt - f : kwmc window -z fullscreen
+ralt - f : kwmc window -z fullscreen
 
 # Rotate
-lalt - r  :  kwmc tree rotate 90
+ralt - r  :  kwmc tree rotate 90
 
-# Send text
-lalt - w : khd -w "c4sofware@gmail.com"
+ralt - w : khd -w "c4sofware@gmail.com"
