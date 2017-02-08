@@ -1,0 +1,41 @@
+# Enable kwm compatibility mode
+khd kwm on
+
+# set color of default mode
+khd mode default color 0xFFD5C4A1
+
+# Quit Kwm
+cmd + alt + ctrl - q     :    kwmc quit
+
+# Launch iTerm2
+cmd - return             :    open -na /Applications/Utilities/Terminal.app
+
+## Resize
+lalt - up       		:   kwmc window -c expand 0.05 north
+lalt - right        	:   kwmc window -c reduce 0.05 west
+lalt - down         	:   kwmc window -c reduce 0.05 north
+lalt - left         	:   kwmc window -c expand 0.05 west
+
+## Swap position
+lalt + shift - up   	:   kwmc window -s north
+lalt + shift - right    :   kwmc window -s east
+lalt + shift - down     :   kwmc window -s south
+lalt + shift - left     :   kwmc window -s west
+
+## Move window
+lalt + lctrl - up   	:   kwmc window -m north
+lalt + lctrl - right    :   kwmc window -m east
+lalt + lctrl - down 	:   kwmc window -m south
+lalt + lctrl - left 	:   kwmc window -m west
+
+## toggle split mode
+lalt - s : kwmc window -c split-mode toggle
+
+## toggle fullscreen
+lalt - f : kwmc window -z fullscreen
+
+# Rotate
+lalt - r  :  kwmc tree rotate 90
+
+# Send text
+lalt - w : khd -w "c4sofware@gmail.com"
