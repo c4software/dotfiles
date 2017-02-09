@@ -23,16 +23,7 @@ kwmc config cycle-focus on
 
 kwmc config optimal-ratio 1.605
 
-# Enable border for focused window
-kwmc config border focused on
-kwmc config border focused size 1
-kwmc config border focused color 0xDDD5C4A1
-kwmc config border focused radius 6
-
-# Enable border for marked window
-kwmc config border marked on
-kwmc config border marked size 1
-kwmc config border marked color 0xDD7f7f7f
-kwmc config border marked radius 6
+kwmc config border focused off
+kwmc config border marked off
 
 include rules
