@@ -17,16 +17,10 @@ ralt - down         	:   kwmc window -c reduce 0.05 north
 ralt - left         	:   kwmc window -c expand 0.05 west
 
 ## Swap position
-ralt + shift - up   	:   kwmc window -s north
-ralt + shift - right    :   kwmc window -s east
-ralt + shift - down     :   kwmc window -s south
-ralt + shift - left     :   kwmc window -s west
-
-## Move window
-ralt + lctrl - up   	:   kwmc window -m north
-ralt + lctrl - right    :   kwmc window -m east
-ralt + lctrl - down 	:   kwmc window -m south
-ralt + lctrl - left 	:   kwmc window -m west
+rcmd - up   	:   kwmc window -s north
+rcmd - right  :   kwmc window -s east
+rcmd - down   :   kwmc window -s south
+rcmd - left   :   kwmc window -s west
 
 ## toggle split mode
 ralt - s : kwmc window -c split-mode toggle
