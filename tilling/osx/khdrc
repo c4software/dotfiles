@@ -7,7 +7,7 @@ khd mode default color 0xFFD5C4A1
 # Quit Kwm
 cmd + alt + ctrl - q     :    kwmc quit
 
-# Launch iTerm2
+# Launch Terminal
 cmd - return             :    open -na /Applications/Utilities/Terminal.app
 
 ## Resize
