@@ -21,10 +21,7 @@ kwmc config mouse-drag mod cmd
 
 kwmc config cycle-focus on
 
-
 kwmc config optimal-ratio 1.605
-
-kwmc rule owner="iTerm2" properties={role="AXDialog"}
 
 # Enable border for focused window
 kwmc config border focused on
