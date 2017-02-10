@@ -8,7 +8,7 @@ khd mode default color 0xFFD5C4A1
 cmd + alt + ctrl - q     :    kwmc quit
 
 # Launch Terminal
-cmd - return             :    open -na /Applications/Utilities/Terminal.app
+cmd - return             :    open -na /Applications/iTerm.app 
 
 ## Resize
 ralt - up       		:   kwmc window -c expand 0.05 north
@@ -36,4 +36,5 @@ ralt - h : kwmc space -t float
 # Rotate
 ralt - r  :  kwmc tree rotate 90
 
-ralt - w : khd -w "c4sofware@gmail.com"
+lalt - w : khd -w "c4sofware@gmail.com"
+lalt - m : khd -w "echo '<pre>';print_r();echo '</pre>';"
