@@ -1,17 +1,7 @@
 # Valentin's dotfiles
 
-![My configuration](preview.jpg)
+![Linux configuration](tilling/linux/preview.jpg)
+![OSX configuration](tilling/osx/capture.png)
 
 All my *important* dotfiles.
 
-## Requirements 
-- bspwm
-- j4-dmenu-desktop
-- feh
-- lemonbar-xft-git
-- sxhkd
-- xtitle
-- trayer
-- conky
-- ttf-font-awesome
-- ttf-roboto

@@ -1,4 +1,4 @@
-![My configuration](../../preview.jpg)
+![My configuration](preview.jpg)
 
 ## Requirements
 - bspwm
