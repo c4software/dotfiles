@@ -8,13 +8,13 @@ khd mode default color 0xFFD5C4A1
 cmd + alt + ctrl - q     :    kwmc quit
 
 # Launch Terminal
-cmd - return             :    open -na /Applications/iTerm.app 
+cmd - return             :    open -na /Applications/iTerm.app
 
 ## Resize
-ralt - up       		:   kwmc window -c expand 0.05 north
-ralt - right        	:   kwmc window -c reduce 0.05 west
-ralt - down         	:   kwmc window -c reduce 0.05 north
-ralt - left         	:   kwmc window -c expand 0.05 west
+ralt - up  		:   kwmc window -c expand 0.05 north
+ralt - right 	:   kwmc window -c reduce 0.05 west
+ralt - down  	:   kwmc window -c reduce 0.05 north
+ralt - left  	:   kwmc window -c expand 0.05 west
 
 ## Swap position
 rcmd - up   	:   kwmc window -s north
@@ -27,6 +27,9 @@ ralt - s : kwmc window -c split-mode toggle
 
 ## toggle fullscreen
 ralt - f : kwmc window -z fullscreen
+
+# Toggle Float
+ralt + shift - f : kwmc window -t focused
 
 # Mode
 ralt - q : kwmc space -t bsp
