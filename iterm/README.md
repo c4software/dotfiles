@@ -1,1 +1,1 @@
-![Darkside iTerm](tilling/linux/preview.png)
+![Darkside iTerm](capture.png)
