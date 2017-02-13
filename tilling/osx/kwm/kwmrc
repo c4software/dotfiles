@@ -16,8 +16,8 @@ kwmc config standby-on-float on
 
 kwmc config center-on-float off
 
-kwmc config mouse-drag on
-kwmc config mouse-drag mod cmd
+#kwmc config mouse-drag on
+#kwmc config mouse-drag mod cmd
 
 kwmc config cycle-focus on
 
