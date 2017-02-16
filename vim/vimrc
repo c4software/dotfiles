@@ -1,29 +1,22 @@
 """""""""""""""""""" PLUGINS
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-Bundle 'gmarik/vundle'
-Bundle 'matchit.zip'
-"Bundle 'The-NERD-Commenter'
-Bundle 'git://github.com/Lokaltog/vim-powerline.git'
-"Bundle 'jistr/vim-nerdtree-tabs'
-"Bundle 'The-NERD-tree'
-Bundle 'Gundo'
-"Bundle "git://git.wincent.com/command-t.git'"
-"Bundle 'PIV'
-Bundle 'kien/ctrlp.vim'
-Bundle 'Shougo/neocomplcache'
-Bundle 'Shougo/neosnippet'
-Bundle 'ervandew/supertab'
-Bundle 'ZenCoding.vim'
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'matchit.zip'
+Plugin 'Gundo'
+Plugin 'kien/ctrlp.vim'
+Plugin 'Shougo/neocomplcache'
+Plugin 'Shougo/neosnippet'
+Plugin 'ervandew/supertab'
 
 """""""""""""""""""" GLOBAL
 let mapleader=","
 colorscheme molokai
-set gfn=terminus
-set go=
+let g:molokai_original = 1
 
 syntax enable
 syntax on
@@ -45,19 +38,15 @@ set history=1000
 set undolevels=1000
 set wildignore=*.swp,*.bak
 set title
-"set visualbell
 set noerrorbells
-"set list
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
 set ttyfast
 set mouse=a
 set nocompatible
 set backup
-set backupdir=~/.vim_backup
 set noswapfile
 set fileformats=unix,dos,mac
 set laststatus=2
-"set expandtab
 set softtabstop=2 tabstop=2 shiftwidth=2
 set ruler
 set t_Co=256
@@ -69,17 +58,10 @@ map  # {v}! par 72<CR>
 map  & {v}! par 72j<CR>
 map  <F6> :setlocal spell! spelllang=fr<CR>
 map  <F12> :set invhls<CR>
-map  <F5> :GundoToggle<CR>
 cmap <C-g> <C-u><ESC>
 command! -bang W w<bang>
 
 """""""""""""""""""" PLUGINS
-
-let g:Powerline_symbols = 'unicode'
-"map <C-f> :NERDTreeTabsToggle<CR>
-map <C-e> :call zencoding#expandAbbr(3,"")<CR>
-imap <C-e> <ESC>:call zencoding#expandAbbr(3,"")<CR>a
-
 let g:ctrlp_working_path_mode = 'ra'
 set wildignore+=*.pyc
 
