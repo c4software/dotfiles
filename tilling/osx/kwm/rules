@@ -11,7 +11,12 @@ kwmc rule owner="Telegram" properties={float="true"}
 # PHP Storm rules
 kwmc rule owner="PhpStorm" name="New File" properties={float="true"}
 kwmc rule owner="PhpStorm" name="Rename" properties={float="true"}
+kwmc rule owner="PhpStorm" name="Commit Changes" properties={float="true"}
+kwmc rule owner="PhpStorm" name="Push commits" properties={float="true"}
+kwmc rule owner="PhpStorm" name=".*Create New.*" properties={float="true"}
+kwmc rule owner="PhpStorm" name=".*Add File.*" properties={float="true"}
 
+# Chrome
 kwmc rule owner="Google Chrome" name=".*Centile.*" properties={float="true"}
 kwmc rule owner="Google Chrome" name=".*Twitter.*" properties={float="true"}
 
