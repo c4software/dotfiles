@@ -9,7 +9,7 @@ kwmc config float-non-resizable on
 
 kwmc config lock-to-container on
 
-kwmc config focus-follows-mouse on
+kwmc config focus-follows-mouse off
 kwmc config mouse-follows-focus on
 
 kwmc config standby-on-float on
