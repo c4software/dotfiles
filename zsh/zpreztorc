@@ -46,7 +46,7 @@ zstyle ':prezto:load' pmodule \
   'git' \
   'prompt' \
   'syntax-highlighting' \
-  'history-substring-search' 
+  'history-substring-search'
 
 #
 # Autosuggestions
@@ -176,4 +176,4 @@ zstyle ':prezto:module:prompt' theme 'smiley'
 # zstyle ':prezto:module:tmux:auto-start' remote 'yes'
 
 # Integrate with iTerm2.
-# zstyle ':prezto:module:tmux:iterm' integrate 'yes'
+zstyle ':prezto:module:tmux:iterm' integrate 'yes'
