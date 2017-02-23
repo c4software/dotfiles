@@ -1,6 +1,6 @@
 #! /bin/sh
 
-bspc config border_width        2
+bspc config border_width       1
 bspc config window_gap         10
 bspc config top_padding        15
 bspc config left_padding       0
@@ -19,11 +19,11 @@ bspc config focused_locked_border_color "#9a875f"
 bspc config normal_frame_opacity 0.0
 bspc config focused_frame_opacity 0.1
 
-bspc monitor HDMI1 -d 1 2 3 4 5 
-bspc monitor VGA1  -d 6 7 
+bspc monitor HDMI1 -d 1 2 3 4
+bspc monitor VGA1  -d 5 6
 
 # Rules
-bspc rule -a Gimp desktop=^1 follow=on
+bspc rule -a Gimp desktop=^1
 bspc rule -a Firefox desktop=^2
 bspc rule -a Spotify pseudo_tiled=on
 bspc rule -a Nautilus pseudo_tiled=on
@@ -39,9 +39,5 @@ wmname LG3D
 xcompmgr -f -D2 &
 feh --randomize --bg-scale ~/Images/wallpapers/* &
 xset -b
-# compton -cCGf --vsync opengl --shadow-exclude '!focused' &
-#conky &
-#run_once xfce4-power-manager &
-#run_once gnome-screensaver &
-~/.config/bspwm/panel &
 
+~/.config/bspwm/panel &
