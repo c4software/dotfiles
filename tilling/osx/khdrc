@@ -1,9 +1,6 @@
 # Enable kwm compatibility mode
 khd kwm on
 
-# set color of default mode
-khd mode default color 0xFFD5C4A1
-
 # Quit Kwm
 cmd + alt + ctrl - q     :    kwmc quit
 
@@ -11,9 +8,9 @@ cmd + alt + ctrl - q     :    kwmc quit
 cmd - return    :    open -na /Applications/iTerm.app
 
 ## Resize
-ralt - up  	:   kwmc window -c expand 0.05 north 
+ralt - up  	  :   kwmc window -c expand 0.05 north
 ralt - right 	:   kwmc window -c expand 0.05 focused
-ralt - down  	:   kwmc window -c reduce 0.05 north 
+ralt - down  	:   kwmc window -c reduce 0.05 north
 ralt - left  	:   kwmc window -c reduce 0.05 focused
 
 ## Swap position
