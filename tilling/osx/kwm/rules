@@ -9,7 +9,7 @@ kwmc rule owner="System Preferences" properties={float="true"}
 kwmc rule owner="Telegram" properties={float="true"}
 kwmc rule owner="BetterZip" properties={float="true"}
 
-# PHP Storm rules
+# PHPStorm rules
 kwmc rule owner="PhpStorm" name="New File" properties={float="true"}
 kwmc rule owner="PhpStorm" name="Rename" properties={float="true"}
 kwmc rule owner="PhpStorm" name="Move" properties={float="true"}
@@ -22,3 +22,6 @@ kwmc rule owner="PhpStorm" name=".*Add File.*" properties={float="true"}
 # Chrome
 kwmc rule owner="Google Chrome" name=".*Centile.*" properties={float="true"}
 kwmc rule owner="Google Chrome" name=".*Twitter.*" properties={float="true"}
+
+# Firefox
+kwmc rule owner="FirefoxDeveloperEdition" name=".*DownThemAll!.*" properties={float="true"}
