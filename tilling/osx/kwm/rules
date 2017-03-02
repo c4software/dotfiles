@@ -23,6 +23,7 @@ kwmc rule owner="PhpStorm" name=".*Add File.*" properties={float="true"}
 
 # Chrome
 kwmc rule owner="Google Chrome" name=".*Centile.*" properties={float="true"}
+kwmc rule owner="Google Chrome" properties={space="1"}
 kwmc rule owner="Google Chrome" name=".*Twitter.*" properties={float="true"}
 
 # Firefox
