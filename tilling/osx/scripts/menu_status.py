@@ -1,6 +1,6 @@
+# -*- coding: utf-8 -*-
 import subprocess
-import json
-import signal
+import sys
 
 from Foundation import *
 from AppKit import *
@@ -24,9 +24,13 @@ class MyApplicationAppDelegate(NSObject):
         self.timer.fire()
 
     def refresh_(self, notifications):
-        command = "kwmc query space active mode".split(" ")
-        mode = subprocess.Popen(command, stdout=subprocess.PIPE).communicate()[0].rstrip()
-        self.statusItem.setTitle_(mode)
+        try:
+            command = "kwmc query space active mode".split(" ")
+            mode = subprocess.Popen(command, stdout=subprocess.PIPE).communicate()[0].rstrip()
+            self.statusItem.setTitle_(mode)
+        except:
+            # En cas d’erreur on quit l’app
+            sys.exit(255)
 
 def hide_dock_icon():
     NSApplicationActivationPolicyRegular = 0
