@@ -1,3 +1,7 @@
+import subprocess
+import json
+import signal
+
 from Foundation import *
 from AppKit import *
 from PyObjCTools import AppHelper
@@ -5,7 +9,7 @@ from PyObjCTools import AppHelper
 class MyApplicationAppDelegate(NSObject):
     def applicationDidFinishLaunching_(self, sender):
         self.statusItem = NSStatusBar.systemStatusBar().statusItemWithLength_(NSVariableStatusItemLength)
-        self.statusItem.setTitle_("Float") # TODO Monitor Mode KWM
+        self.statusItem.setTitle_("Activation") # TODO Monitor Mode KWM
         self.statusItem.setHighlightMode_(FALSE)
         self.statusItem.setEnabled_(TRUE)
 
@@ -14,6 +18,15 @@ class MyApplicationAppDelegate(NSObject):
         menuitem = NSMenuItem.alloc().initWithTitle_action_keyEquivalent_('Quit', 'terminate:', '')
         self.menu.addItem_(menuitem)
         self.statusItem.setMenu_(self.menu)
+
+        self.timer = NSTimer.alloc().initWithFireDate_interval_target_selector_userInfo_repeats_(NSDate.date(), 3.0, self, 'refresh:', None, True)
+        NSRunLoop.currentRunLoop().addTimer_forMode_(self.timer, NSDefaultRunLoopMode)
+        self.timer.fire()
+
+    def refresh_(self, notifications):
+        command = "kwmc query space active mode".split(" ")
+        mode = subprocess.Popen(command, stdout=subprocess.PIPE).communicate()[0].rstrip()
+        self.statusItem.setTitle_(mode)
 
 def hide_dock_icon():
     NSApplicationActivationPolicyRegular = 0
