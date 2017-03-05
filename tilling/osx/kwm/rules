@@ -12,6 +12,7 @@ kwmc rule owner="Terminal" properties={float="true"}
 kwmc rule owner="Gimp" properties={float="true"}
 
 # PHPStorm rules
+kwmc rule owner="PhpStorm" properties={space="2"}
 kwmc rule owner="PhpStorm" name="New File" properties={float="true"}
 kwmc rule owner="PhpStorm" name="Rename" properties={float="true"}
 kwmc rule owner="PhpStorm" name="Move" properties={float="true"}
