@@ -9,9 +9,24 @@ from PyObjCTools import AppHelper
 class MyApplicationAppDelegate(NSObject):
     def applicationDidFinishLaunching_(self, sender):
         self.statusItem = NSStatusBar.systemStatusBar().statusItemWithLength_(NSVariableStatusItemLength)
-        self.statusItem.setTitle_("Activation")
+        self.statusItem.setTitle_("[init]")
         self.statusItem.setHighlightMode_(FALSE)
         self.statusItem.setEnabled_(TRUE)
+
+        # Notificatinos events
+        nc = NSWorkspace.sharedWorkspace().notificationCenter()
+        nc.addObserver_selector_name_object_(self, self.observerEvent_, 'NSWorkspaceActiveSpaceDidChangeNotification', None)
+
+        nc.addObserver_selector_name_object_(self, self.observerEvent_, 'NSWorkspaceDidLaunchApplicationNotification', None)
+        nc.addObserver_selector_name_object_(self, self.observerEvent_, 'NSWorkspaceDidTerminateApplicationNotification', None)
+
+        nc.addObserver_selector_name_object_(self, self.observerEvent_, 'NSWorkspaceDidHideApplicationNotification', None)
+        nc.addObserver_selector_name_object_(self, self.observerEvent_, 'NSWorkspaceDidUnhideApplicationNotification', None)
+
+        nc.addObserver_selector_name_object_(self, self.observerEvent_, 'NSWorkspaceDidActivateApplicationNotification', None)
+
+        nc.addObserver_selector_name_object_(self, self.observerEvent_, 'NSAccessibilityWindowCreatedNotification', None)
+        nc.addObserver_selector_name_object_(self, self.observerEvent_, 'NSAccessibilityFocusedWindowChangedNotification', None)
 
         # menu
         self.menu = NSMenu.alloc().init()
@@ -19,18 +34,26 @@ class MyApplicationAppDelegate(NSObject):
         self.menu.addItem_(menuitem)
         self.statusItem.setMenu_(self.menu)
 
-        self.timer = NSTimer.alloc().initWithFireDate_interval_target_selector_userInfo_repeats_(NSDate.date(), 2.0, self, 'refresh:', None, True)
-        NSRunLoop.currentRunLoop().addTimer_forMode_(self.timer, NSDefaultRunLoopMode)
-        self.timer.fire()
+        # Timer de refresh
+        # self.timer = NSTimer.alloc().initWithFireDate_interval_target_selector_userInfo_repeats_(NSDate.date(), 2.0, self, 'refresh:', None, True)
+        # NSRunLoop.currentRunLoop().addTimer_forMode_(self.timer, NSDefaultRunLoopMode)
+        # self.timer.fire()
+        
+        self.get_mode()
+
+    def observerEvent_(self, notifications):
+        self.get_mode()
 
     def refresh_(self, notifications):
+        self.get_mode()
+
+    def get_mode(self):
         try:
             command = "kwmc query space active mode".split(" ")
             mode = subprocess.Popen(command, stdout=subprocess.PIPE).communicate()[0].rstrip()
             self.statusItem.setTitle_(mode)
         except:
-            # En cas d’erreur on quit l’app
-            sys.exit(255)
+            print ("Erreur")
 
 def hide_dock_icon():
     NSApplicationActivationPolicyRegular = 0
