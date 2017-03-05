@@ -14,19 +14,10 @@ class MyApplicationAppDelegate(NSObject):
         self.statusItem.setEnabled_(TRUE)
 
         # Notificatinos events
+        events = ["NSWorkspaceActiveSpaceDidChangeNotification", "NSWorkspaceDidLaunchApplicationNotification", "NSWorkspaceDidTerminateApplicationNotification", "NSWorkspaceDidHideApplicationNotification", "NSWorkspaceDidUnhideApplicationNotification", "NSWorkspaceDidActivateApplicationNotification", "NSAccessibilityWindowCreatedNotification", "NSAccessibilityFocusedWindowChangedNotification"]
         nc = NSWorkspace.sharedWorkspace().notificationCenter()
-        nc.addObserver_selector_name_object_(self, self.observerEvent_, 'NSWorkspaceActiveSpaceDidChangeNotification', None)
-
-        nc.addObserver_selector_name_object_(self, self.observerEvent_, 'NSWorkspaceDidLaunchApplicationNotification', None)
-        nc.addObserver_selector_name_object_(self, self.observerEvent_, 'NSWorkspaceDidTerminateApplicationNotification', None)
-
-        nc.addObserver_selector_name_object_(self, self.observerEvent_, 'NSWorkspaceDidHideApplicationNotification', None)
-        nc.addObserver_selector_name_object_(self, self.observerEvent_, 'NSWorkspaceDidUnhideApplicationNotification', None)
-
-        nc.addObserver_selector_name_object_(self, self.observerEvent_, 'NSWorkspaceDidActivateApplicationNotification', None)
-
-        nc.addObserver_selector_name_object_(self, self.observerEvent_, 'NSAccessibilityWindowCreatedNotification', None)
-        nc.addObserver_selector_name_object_(self, self.observerEvent_, 'NSAccessibilityFocusedWindowChangedNotification', None)
+        for event in events:
+            nc.addObserver_selector_name_object_(self, self.observerEvent_, event, None)
 
         # menu
         self.menu = NSMenu.alloc().init()
@@ -38,7 +29,7 @@ class MyApplicationAppDelegate(NSObject):
         # self.timer = NSTimer.alloc().initWithFireDate_interval_target_selector_userInfo_repeats_(NSDate.date(), 2.0, self, 'refresh:', None, True)
         # NSRunLoop.currentRunLoop().addTimer_forMode_(self.timer, NSDefaultRunLoopMode)
         # self.timer.fire()
-        
+
         self.get_mode()
 
     def observerEvent_(self, notifications):
