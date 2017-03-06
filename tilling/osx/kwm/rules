@@ -10,6 +10,7 @@ kwmc rule owner="Telegram" properties={float="true"; space="3"}
 kwmc rule owner="BetterZip" properties={float="true"}
 kwmc rule owner="Terminal" properties={float="true"}
 kwmc rule owner="Gimp" properties={float="true"}
+kwmc rule owner="Ukelele" properties={float="true"}
 
 # PHPStorm rules
 kwmc rule owner="PhpStorm" properties={space="2"}
