@@ -14,7 +14,7 @@ class MyApplicationAppDelegate(NSObject):
         self.statusItem.setEnabled_(TRUE)
 
         # Notificatinos events
-        events = ["NSWorkspaceActiveSpaceDidChangeNotification", "NSWorkspaceDidLaunchApplicationNotification", "NSWorkspaceDidTerminateApplicationNotification", "NSWorkspaceDidHideApplicationNotification", "NSWorkspaceDidUnhideApplicationNotification", "NSWorkspaceDidActivateApplicationNotification", "NSAccessibilityWindowCreatedNotification", "NSAccessibilityFocusedWindowChangedNotification"]
+        events = ["NSWorkspaceActiveSpaceDidChangeNotification", "NSWorkspaceDidLaunchApplicationNotification", "NSWorkspaceDidTerminateApplicationNotification", "NSWorkspaceDidHideApplicationNotification", "NSWorkspaceDidUnhideApplicationNotification", "NSWorkspaceDidActivateApplicationNotification", "NSAccessibilityWindowCreatedNotification", "NSAccessibilityFocusedWindowChangedNotification", "NSWorkspaceDidDeactivateApplicationNotification"]
         nc = NSWorkspace.sharedWorkspace().notificationCenter()
         for event in events:
             nc.addObserver_selector_name_object_(self, self.observerEvent_, event, None)
