@@ -37,4 +37,3 @@ ralt - h : kwmc space -t float
 ralt - r  :  kwmc tree rotate 90
 
 lalt - w : khd -w "c4sofware@gmail.com"
-lalt - m : khd -w "echo '<pre>';print_r();echo '</pre>';"
