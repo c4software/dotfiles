@@ -43,7 +43,7 @@ set listchars=tab:>.,trail:.,extends:#,nbsp:.
 set ttyfast
 set mouse=a
 set nocompatible
-set backup
+"set backup
 set noswapfile
 set fileformats=unix,dos,mac
 set laststatus=2
