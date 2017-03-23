@@ -1,2 +1,0 @@
-# Menu status
-Requiert pyobjc
