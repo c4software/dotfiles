@@ -6,14 +6,14 @@ kwmc rule owner="Terminal" properties={role="AXDialog"}
 kwmc rule owner="App Store" properties={float="true"}
 kwmc rule owner="Finder" properties={float="true"}
 kwmc rule owner="System Preferences" properties={float="true"}
-kwmc rule owner="Telegram" properties={float="true"; space="3"}
+# kwmc rule owner="Telegram" properties={float="true"; space="3"}
 kwmc rule owner="BetterZip" properties={float="true"}
 kwmc rule owner="Terminal" properties={float="true"}
 kwmc rule owner="Gimp" properties={float="true"}
 kwmc rule owner="Ukelele" properties={float="true"}
 
 # PHPStorm rules
-kwmc rule owner="PhpStorm" properties={space="2"}
+# kwmc rule owner="PhpStorm" properties={space="2"}
 kwmc rule owner="PhpStorm" name="New File" properties={float="true"}
 kwmc rule owner="PhpStorm" name="Rename" properties={float="true"}
 kwmc rule owner="PhpStorm" name="Move" properties={float="true"}
@@ -25,7 +25,7 @@ kwmc rule owner="PhpStorm" name=".*Add File.*" properties={float="true"}
 
 # Chrome
 kwmc rule owner="Google Chrome" name=".*Centile.*" properties={float="true"}
-kwmc rule owner="Google Chrome" properties={space="1"}
+# kwmc rule owner="Google Chrome" properties={space="1"}
 kwmc rule owner="Google Chrome" name=".*Twitter.*" properties={float="true"}
 
 # Firefox
