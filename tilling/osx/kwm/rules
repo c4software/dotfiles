@@ -16,14 +16,14 @@ kwmc rule owner="Activity Monitor" properties={float="true"}
 
 # PHPStorm rules
 # kwmc rule owner="PhpStorm" properties={space="2"}
-kwmc rule owner="phpstorm" name="New File" properties={float="true"}
-kwmc rule owner="phpstorm" name="Rename" properties={float="true"}
-kwmc rule owner="phpstorm" name="Move" properties={float="true"}
-kwmc rule owner="phpstorm" name="Open Project" properties={float="true"}
-kwmc rule owner="phpstorm" name="Commit Changes" properties={float="true"}
-kwmc rule owner="phpstorm" name="Push commits" properties={float="true"}
-kwmc rule owner="phpstorm" name=".*Create New.*" properties={float="true"}
-kwmc rule owner="phpstorm" name=".*Add File.*" properties={float="true"}
+kwmc rule owner="PhpStorm" name="New File" properties={float="true"}
+kwmc rule owner="PhpStorm" name="Rename" properties={float="true"}
+kwmc rule owner="PhpStorm" name="Move" properties={float="true"}
+kwmc rule owner="PhpStorm" name="Open Project" properties={float="true"}
+kwmc rule owner="PhpStorm" name="Commit Changes" properties={float="true"}
+kwmc rule owner="PhpStorm" name="Push commits" properties={float="true"}
+kwmc rule owner="PhpStorm" name=".*Create New.*" properties={float="true"}
+kwmc rule owner="PhpStorm" name=".*Add File.*" properties={float="true"}
 
 # Chrome
 kwmc rule owner="Google Chrome" name=".*Centile.*" properties={float="true"}
