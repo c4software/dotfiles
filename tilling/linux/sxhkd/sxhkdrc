@@ -8,9 +8,6 @@ super + shift + q
 super + shift + c
 	bspc window -c
 
-ctrl + q
-	bspc window -c
-
 ## CYCLE LAYOUT
 super + n
 	bspc desktop -l next
@@ -26,30 +23,11 @@ super + {s,f,t}
 super + {grave,Tab}
 	bspc {window,desktop} -f last
 
-##SWAP DESKTOPS WITH LAST
-## super + apostrophe
-## 	bspc window -s last
-
-super + {o,i}
-	bspc control --record-history off; \
-	bspc window {older,newer} -f; \
-	bspc control --record-history on
-
-super + y
-	bspc window -w last.manual
-
-##SWAP CURRENT WINDOW WITH THE BIGGEST ON SCREEN
-super + m
-	bspc window -s biggest
-
-super + {_,shift + }{j,k,i,l}
-	bspc window -{f,s} {left,down,up,right}
-
-##super + {_,shift + }x
-##	bspc window -f {next,prev}
+alt + {Left,Down,Up,Right}
+	bspc node -z {right -20 0,bottom 0 20,top 0 -20,left 20 0}
 
 alt + Tab
-	bspc window -f next	
+	bspc node -f next	
 
 ##ROTATE TREE
 super + shift + r  
@@ -62,28 +40,6 @@ super + {comma,period}
 ##SWITCH BETWEEN DESKTOPS
 super + {Left,Right}
 	bspc desktop -f {prev,next}
-
-##SELECT WHERE TO SPLIT 
-super + ctrl + {Left,Down,Up,Right}
-	bspc window -p {left,down,up,right}
-
-##CANCEL PRESELECT SPLIT
-super + ctrl + {_,shift + }space
-	bspc {window -p cancel,desktop -c}
-
-super + alt + {Left,Down,Up,Right}
-	bspc window -e {left -10,down +10,down -10,left +10}
-
-super + alt + shift + {Left,Down,Up,Right}
-	bspc window -e {right -10,up +10,up -10,right +10}
-
-##PRESELECT RATIO SPLIT
-super + ctrl + {ampersand,eacute,quotedbl,apostrophe,parenleft,minus,egrave,underscore,ccedilla,agrave}
-	bspc window -r 0.{1-9}
-
-##SEND WINDOW TO DESKTOP
-super + {_,shift + }{ampersand,eacute,quotedbl,apostrophe,parenleft,minus,egrave,underscore,ccedilla,agrave}
-	bspc {desktop -f,window -d} ^{1-9,10}
 
 ~button1
 	bspc pointer -g focus
@@ -107,9 +63,6 @@ super + Return
 super + c
 	firefox
 
-super + r
-	{urxvt -e mc}
-
 control + alt + l
 	{sh $HOME/.config/bspwm/lock.sh}
 
@@ -117,23 +70,10 @@ super + shift + s
 	xfce4-screenshooter
 
 super + d
-	j4-dmenu-desktop
+	dmenu_run
 
-Scroll-Lock
-  dbus-send --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
-
-ctrl + {Home,End}
-  dbus-send --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.{Previous,Next}
-
-ctrl + {Next,Prior}
-  {amixer sset Master playback 5%-,amixer sset Master playback 5%+}
-
-#super + {XF86AudioRaiseVolume, XF86AudioLowerVolume}
-#  {amixer sset Master playback 5%+,amixer sset Master playback 5%-}
-#{XF86AudioRaiseVolume, XF86AudioLowerVolume}
-#  {amixer sset Master playback 1%+,amixer sset Master playback 1%-}
-#XF86AudioMute
-#  amixer sset Master toggle
+ctrl + {Up,Down}
+  amixer sset Master playback 5%{+,-}
 
 # make sxhkd reload its configuration files:
 super + Escape
