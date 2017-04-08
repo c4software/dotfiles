@@ -41,7 +41,7 @@ set title
 set noerrorbells
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
 set ttyfast
-set mouse=a
+"set mouse=a
 set nocompatible
 "set backup
 set noswapfile
