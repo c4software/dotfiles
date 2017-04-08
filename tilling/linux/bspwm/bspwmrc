@@ -34,7 +34,7 @@ bspc monitor -f primary
 
 ## autostart
 xsetroot -cursor_name left_ptr
-setxkbmap fr
+setxkbmap fr bepo
 wmname LG3D
 xcompmgr -f -D2 &
 feh --randomize --bg-scale ~/Images/wallpapers/* &
