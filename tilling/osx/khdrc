@@ -23,10 +23,7 @@ rcmd - left   	:   kwmc window -s west
 ralt - s 	: kwmc window -c split-mode toggle
 
 ## toggle fullscreen
-ralt - f 	: kwmc window -z fullscreen
-
-# Toggle Float de la fenetre en cours
-ralt + shift - f : kwmc window -t focused
+cmd + shift - f : kwmc window -z fullscreen
 
 # Mode
 ralt - q : kwmc space -t bsp
@@ -34,6 +31,6 @@ ralt - g : kwmc space -t monocle
 ralt - h : kwmc space -t float
 
 # Rotate
-ralt - r  :  kwmc tree rotate 90
+cmd + shift - r :  kwmc tree rotate 90
 
 lalt - w : khd -w "c4sofware@gmail.com"
