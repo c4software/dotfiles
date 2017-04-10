@@ -25,12 +25,15 @@ ralt - s 	: kwmc window -c split-mode toggle
 ## toggle fullscreen
 cmd + shift - f : kwmc window -z fullscreen
 
-# Mode
+## Spaces
+lalt - tab : kwmc space -fExperimental previous
+
+## Mode
 ralt - q : kwmc space -t bsp
 ralt - g : kwmc space -t monocle
 ralt - h : kwmc space -t float
 
-# Rotate
+## Rotate
 cmd + shift - r :  kwmc tree rotate 90
 
 lalt - w : khd -w "c4sofware@gmail.com"
