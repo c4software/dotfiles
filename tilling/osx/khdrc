@@ -29,11 +29,11 @@ cmd + shift - f : kwmc window -z fullscreen
 lalt - tab : kwmc space -fExperimental previous
 
 ## Mode
-cmd + shift - v : kwmc space -t bsp
-cmd + shift - d : kwmc space -t monocle
-cmd + shift - l : kwmc space -t float
+lalt + shift - v : kwmc space -t bsp
+lalt + shift - d : kwmc space -t monocle
+lalt + shift - l : kwmc space -t float
 
 ## Rotate
-cmd + shift - r :  kwmc tree rotate 90
+lalt + shift - r :  kwmc tree rotate 90
 
 lalt - w : khd -w "c4sofware@gmail.com"
