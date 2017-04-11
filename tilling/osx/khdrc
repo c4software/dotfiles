@@ -1,9 +1,6 @@
 # Enable kwm compatibility mode
 khd kwm on
 
-# Quit Kwm
-cmd + alt + ctrl - q     :    kwmc quit
-
 # Launch Terminal
 cmd - return    :    open -na /Applications/iTerm.app
 
