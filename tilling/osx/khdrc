@@ -19,8 +19,8 @@ cmd + cmd + shift - left   	:   kwmc window -s west
 ## toggle split mode
 cmd + shift - s 	: kwmc window -c split-mode toggle
 
-## toggle fullscreen
-cmd + shift - f : kwmc window -z fullscreen
+## Toggle Float
+cmd + shift - f : kwmc window -t focused
 
 ## Spaces
 lalt - tab : kwmc space -fExperimental previous
@@ -29,6 +29,7 @@ lalt - tab : kwmc space -fExperimental previous
 cmd + shift - v : kwmc space -t bsp
 cmd + shift - d : kwmc space -t monocle
 cmd + shift - l : kwmc space -t float
+cmd + shift - j : kwmc window -z fullscreen
 
 ## Rotate
 cmd + shift - r :  kwmc tree rotate 90
