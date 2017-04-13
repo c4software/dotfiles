@@ -7,7 +7,7 @@ kwmc config gap 10 19
 
 kwmc config float-non-resizable on
 
-kwmc config lock-to-container on
+kwmc config lock-to-container off
 
 kwmc config focus-follows-mouse off
 kwmc config mouse-follows-focus off
@@ -20,8 +20,6 @@ kwmc config mouse-drag off
 #kwmc config mouse-drag mod cmd
 
 kwmc config cycle-focus on
-
-kwmc config optimal-ratio 1.618
 
 kwmc config border focused off
 kwmc config border marked off
