@@ -8,11 +8,11 @@ super + shift + q
 
 # Ferme la fenetre courante
 super + shift + c
-	bspc window -c
+	bspc node -c
 
 ## Mode
 super + {q,g,h}
-	bspc window -t {tiled,fullscreen,floating}
+	bspc node -t {tiled,fullscreen,floating}
 
 ## Précédent bureau
 super + Tab
