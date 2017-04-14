@@ -36,10 +36,6 @@ super + {Left,Right}
 
 
 ## Gestion de la souris
-## Donne le focus
-~button1
-	bspc pointer --grab focus
-
 ## Redimensionnement et déplacement en fonction du bouton de la souris
 super + button{1-3}
 	bspc pointer --grab {move,resize_side,resize_corner}
