@@ -38,11 +38,11 @@ super + {Left,Right}
 ## Gestion de la souris
 ## Donne le focus
 ~button1
-	bspc pointer -g focus
+	bspc pointer --grab focus
 
 ## Redimensionnement et déplacement en fonction du bouton de la souris
 super + button{1-3}
-	bspc pointer -g {move,resize_side,resize_corner}
+	bspc pointer --grab {move,resize_side,resize_corner}
 
 ## Lancement d’un terminal
 super + Return
