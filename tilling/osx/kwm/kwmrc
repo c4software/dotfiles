@@ -7,7 +7,7 @@ kwmc config gap 10 19
 
 kwmc config float-non-resizable on
 
-kwmc config lock-to-container off
+kwmc config lock-to-container on
 
 kwmc config focus-follows-mouse off
 kwmc config mouse-follows-focus off
