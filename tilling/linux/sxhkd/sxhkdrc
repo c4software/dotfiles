@@ -34,7 +34,6 @@ super + shift + r
 super + {Left,Right}
 	bspc desktop -f {prev,next}
 
-
 ## Gestion de la souris
 ## Redimensionnement et déplacement en fonction du bouton de la souris
 super + button{1-3}
@@ -50,7 +49,7 @@ control + alt + l
 
 ## Lancement de dmenu
 super + d
-	dmenu_run
+  j4-dmenu-desktop
 
 ## Gestion du volume sonore
 ctrl + {Up,Down}
