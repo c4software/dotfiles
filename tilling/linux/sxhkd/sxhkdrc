@@ -2,9 +2,9 @@
 # BSPWM HOTKEYS
 #
 
-# Termine Le Panel et Bspwm
+# Termine Bspwm
 alt + super + Escape
-	pkill -x panel; bspc quit
+	bspc quit
 
 # Ferme la fenetre courante
 super + shift + c
