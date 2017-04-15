@@ -1,0 +1,151 @@
+;======================
+;   Valentin Polybar
+;======================
+
+[colors]
+background = #222
+background-alt = #444
+foreground = #dfdfdf
+foreground-alt = #555
+primary = #ffb52a
+secondary = #e60053
+alert = #bd2c40
+
+[bar/valentin]
+width = 100%
+height = 27
+radius = 0
+
+offset-x = 0
+offset-y = 0
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 0
+; line-color = #f00
+
+border-size = 0
+; border-color = #00000000
+
+padding-left = 2
+padding-right = 2
+
+module-margin-left = 2
+module-margin-right = 2
+
+font-0 = fixed:pixelsize=10;1
+
+modules-left = xwindow
+modules-center =  bspwm
+modules-right = volume memory date powermenu
+
+tray-position = right
+tray-padding = 2
+
+wm-restack = bspwm
+
+scroll-up = bspwm-desknext
+scroll-down = bspwm-deskprev
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:120:...%
+
+[module/bspwm]
+type = internal/bspwm
+
+label-focused = %index%
+label-focused-background = ${colors.background-alt}
+label-focused-underline= ${colors.primary}
+label-focused-padding = 2
+
+label-occupied = %index%
+label-occupied-padding = 2
+
+label-urgent = %index%!
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+label-empty = %index%
+label-empty-foreground = ${colors.foreground-alt}
+label-empty-padding = 2
+
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = "Mem "
+format-prefix-foreground = ${colors.foreground-alt}
+; format-underline = #4bffdc
+label = %percentage_used%%
+
+
+[module/date]
+type = internal/date
+interval = 5
+
+date = " %d-%m-%Y"
+date-alt = "S%V %d-%m-%Y"
+
+time = %H:%M
+time-alt = %H:%M
+label = %date% %time%
+
+; format-prefix =
+; format-prefix-foreground = ${colors.foreground-alt}
+; format-underline = #0a6cf5
+
+[module/volume]
+type = internal/volume
+
+format-volume = <label-volume>
+format-muted = <label-muted>
+
+format-volume-prefix = "Vol "
+format-volume-prefix-foreground = ${colors.foreground-alt}
+label-volume = %percentage%%
+label-muted = Muted
+label-muted-foreground = #aaa
+;format-volume-padding = 3
+;format-muted-padding = 3
+
+[module/powermenu]
+type = custom/menu
+
+format-spacing = 1
+
+label-open = Power
+label-open-foreground = ${colors.secondary}
+label-close = cancel
+label-close-foreground = ${colors.secondary}
+label-separator = |
+label-separator-foreground = ${colors.foreground-alt}
+
+menu-0-0 = reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 = power off
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = reboot
+menu-1-1-exec = sudo reboot
+
+menu-2-0 = power off
+menu-2-0-exec = sudo poweroff
+menu-2-1 = cancel
+menu-2-1-exec = menu-open-0
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+
+[global/wm]
+margin-top = 0
+margin-bottom = 5
+
+; vim:ft=dosini
