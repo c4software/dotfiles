@@ -21,8 +21,8 @@ bspc config focused_frame_opacity 0.1
 
 bspc config click_to_focus true
 
-bspc monitor HDMI1 -d 1 2 3 4
-bspc monitor VGA1  -d 5 6
+bspc monitor -d 1 2 3 4
+# bspc monitor VGA1  -d 5 6
 
 # Rules
 bspc rule -a Gimp desktop=^1
