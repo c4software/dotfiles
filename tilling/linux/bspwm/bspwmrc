@@ -35,6 +35,7 @@ bspc rule -a feh floating=on manage=off
 bspc monitor -f primary
 
 ## autostart
+XDG_CONFIG_HOME="$HOME/.config"
 xsetroot -cursor_name left_ptr
 setxkbmap fr bepo
 wmname LG3D
@@ -42,3 +43,4 @@ xcompmgr -f -D2 &
 feh --randomize --bg-scale ~/Images/wallpapers/* &
 xset -b
 polybar valentin &
+sxhkd -m -1 &
