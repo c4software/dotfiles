@@ -1,5 +1,11 @@
 ![My configuration](preview.jpg)
 
+## Install
+
+```
+$ ./setup.sh
+```
+
 ## Requirements
 - bspwm
 - j4-dmenu-desktop
