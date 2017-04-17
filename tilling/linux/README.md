@@ -8,7 +8,7 @@
 - xtitle
 - ttf-font-awesome
 - ttf-roboto
-- Polybar
+- polybar
 - urxvt
 
 ## .xinitrc
