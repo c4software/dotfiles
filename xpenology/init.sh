@@ -21,5 +21,7 @@ VBoxManage modifyvm "xpenology" --natpf1 "app,tcp,,5000,,5000"
 # Start
 VBoxManage startvm "xpenology" --type headless
 
+echo "You can open http://localhost:5000"
+
 # Stop
 # vboxmanage controlvm xpenology poweroff
