@@ -23,5 +23,10 @@ VBoxManage startvm "xpenology" --type headless
 
 echo "You can open http://localhost:5000"
 
+# Save State
+echo "To save the current state of your VM (for a restore later)"
+echo "vboxmanage controlvm xpenology savestate"
+
 # Stop
-# vboxmanage controlvm xpenology poweroff
+echo "To stop the VM (Hard off)"
+echo "vboxmanage controlvm xpenology poweroff"
