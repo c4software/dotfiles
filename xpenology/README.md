@@ -26,3 +26,5 @@ VBoxManage startvm "xpenology" --type headless
 ```
 vboxmanage controlvm xpenology poweroff
 ```
+
+⚠️  Attention c’est un arrêt brutal de la machine.
