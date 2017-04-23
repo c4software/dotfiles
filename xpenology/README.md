@@ -13,6 +13,19 @@ sudo apt install virtualbox
 $ sh init.sh
 ```
 
+## « Forwarder » les ports < 1024
+
+VirtualBox n’autorise pas le forward des ports < 1024, le seul moyen (autre que de faire tourner virtualBox en root) est de jouer avec
+les iptables. Exemple avec le port 25 :
+
+```
+# Mapper le port 25 de la VM sur par exemple le port 2525
+VBoxManage modifyvm xpenology --natpf1 "mailserver,tcp,,2525,,25"
+
+# Forwarder les paquets arrivant sur le port 25 vers le port 2525 (donc la VM)
+iptables -A PREROUTING -t nat -p tcp --dport 25 -j REDIRECT --to-port 2525
+```
+
 ## Démarrer la VM
 
 ```
