@@ -4,7 +4,7 @@
 VBoxManage createvm --name xpenology --register
 
 # Basic config
-VBoxManage modifyvm xpenology --memory 1024 --ostype "debian_64" --nictype1 82540EM --audio none --usb off --nic1 nat --nataliasmode1 proxyonly
+VBoxManage modifyvm xpenology --memory 1024 --ostype "debian_64" --nictype1 82540EM --audio none --usb off --nic1 nat --nataliasmode1 proxyonly --uart1 0x3F8 4 --uartmode1 server /tmp/xpenology
 
 # Add IDE « Boot Drive »
 VBoxManage storagectl xpenology --name "IDE Controller" --add ide
@@ -27,6 +27,10 @@ echo "You can open http://localhost:5000"
 # Save State
 echo "To save the current state of your VM (for a restore later)"
 echo "vboxmanage controlvm xpenology savestate"
+
+# Connect to serial console
+echo "Connect to the Serial Console"
+echo "socat - UNIX-CONNECT:/tmp/xpenology"
 
 # Stop
 echo "To stop the VM (Hard off)"
