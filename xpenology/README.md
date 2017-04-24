@@ -26,6 +26,12 @@ VBoxManage modifyvm xpenology --natpf1 "mailserver,tcp,,2525,,25"
 iptables -A PREROUTING -t nat -p tcp --dport 25 -j REDIRECT --to-port 2525
 ```
 
+## Connexion au port série
+
+```
+socat - UNIX-CONNECT:/tmp/xpenology
+```
+
 ## Démarrer la VM
 
 ```
