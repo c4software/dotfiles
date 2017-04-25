@@ -13,6 +13,8 @@ kwmc rule owner="Gimp" properties={float="true"}
 kwmc rule owner="Ukelele" properties={float="true"}
 kwmc rule owner="Screen Sharing" properties={float="true"}
 kwmc rule owner="Activity Monitor" properties={float="true"}
+kwmc rule owner="TextEdit" properties={float="true"}
+kwmc rule owner="Calculator" properties={float="true"}
 
 # PHPStorm rule
 kwmc rule owner="PhpStorm" properties={float="true"} except=".* - \[.*"
