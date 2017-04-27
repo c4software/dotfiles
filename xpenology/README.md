@@ -26,6 +26,16 @@ VBoxManage modifyvm xpenology --natpf1 "mailserver,tcp,,2525,,25"
 iptables -A PREROUTING -t nat -p tcp --dport 25 -j REDIRECT --to-port 2525
 ```
 
+## Ajouter (temporairement) un port forward
+
+Pour tester un service, il faut ouvrir le port vers la machine hote, il est possible de le faire sans redémarrer la VM via la commande :
+
+```
+VBoxManage controlvm "xpenology" natpf1 "myApp,tcp,,8080,,8080"
+```
+
+⚠️  Attention, la règle est temporaire elle sera automatiquement supprimée lors du prochain reboot de la VM.
+
 ## Connexion au port série
 
 L’accès au « shell » de xpenology se fait via le port « serie / uart » de la VM. Un pipe est déclaré dans le ```/tmp/xpenology```, le srcipt console permet de s’y connecter.
