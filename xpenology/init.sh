@@ -30,7 +30,7 @@ echo "vboxmanage controlvm xpenology savestate"
 
 # Connect to serial console
 echo "Connect to the Serial Console"
-echo "socat - UNIX-CONNECT:/tmp/xpenology"
+echo "./console.sh"
 
 # Stop
 echo "To stop the VM (Hard off)"
