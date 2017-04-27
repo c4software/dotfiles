@@ -9,7 +9,7 @@ Script qui initialise une VM pour pouvoir installer xpenology (Version 6.0.2 ou 
 - Continuer avec le bon PAT (pour le modèle DS3615xs)
 
 ```
-sudo apt install virtualbox
+sudo apt install virtualbox socat
 $ sh init.sh
 ```
 
@@ -28,9 +28,13 @@ iptables -A PREROUTING -t nat -p tcp --dport 25 -j REDIRECT --to-port 2525
 
 ## Connexion au port série
 
+L’accès au « shell » de xpenology se fait via le port « serie / uart » de la VM. Un pipe est déclaré dans le ```/tmp/xpenology```, le srcipt console permet de s’y connecter.
+
 ```
-socat - UNIX-CONNECT:/tmp/xpenology
+./console.sh
 ```
+
+⚠️  Attention, Socat est requis.
 
 ## Démarrer la VM
 
