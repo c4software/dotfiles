@@ -2,7 +2,7 @@
 
 type VBoxManage >/dev/null 2>&1 || { echo >&2 "VirtualBox is required. Aborting."; exit 1; }
 
-case "$C" in
+case "$1" in
 "start")
     VBoxManage startvm xpenology --type headless
     ;;
@@ -16,6 +16,6 @@ case "$C" in
    ./console.sh
    ;;
 *)
-    echo "control.sh start|stop|console"
+    echo "$0 start|stop|console"
     ;;
 esac
