@@ -7,6 +7,9 @@ case "$C" in
 "stop")
     VBoxManage controlvm xpenology poweroff
     ;;
+"pause")
+    VBoxManage controlvm xpenology savestate
+    ;;
 "console")
    ./console.sh
    ;;
