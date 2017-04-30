@@ -17,7 +17,7 @@ case "$1" in
     ;;
 "console")
    type socat >/dev/null 2>&1 || { echo >&2 "Socat is required. Aborting."; exit 1; }
-   socat - UNIX-CONNECT:/tmp/xpenology
+   socat - UNIX-CONNECT:xpenology-serial
    ;;
 *)
     echo "$0 start|stop|console"

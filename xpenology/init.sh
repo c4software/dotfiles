@@ -4,7 +4,7 @@
 VBoxManage createvm --name xpenology --register
 
 # Basic config
-VBoxManage modifyvm xpenology --memory 1024 --ostype "debian_64" --nictype1 82540EM --audio none --usb off --nic1 nat --nataliasmode1 proxyonly --uart1 0x3F8 4 --uartmode1 server /tmp/xpenology
+VBoxManage modifyvm xpenology --memory 1024 --ostype "debian_64" --nictype1 82540EM --audio none --usb off --nic1 nat --nataliasmode1 proxyonly --uart1 0x3F8 4 --uartmode1 server xpenology-serial
 
 # Add IDE « Boot Drive »
 VBoxManage storagectl xpenology --name "IDE Controller" --add ide
