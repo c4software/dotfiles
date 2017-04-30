@@ -16,7 +16,8 @@ case "$1" in
     VBoxManage controlvm xpenology savestate
     ;;
 "console")
-   ./console.sh
+   type socat >/dev/null 2>&1 || { echo >&2 "Socat is required. Aborting."; exit 1; }
+   socat - UNIX-CONNECT:/tmp/xpenology
    ;;
 *)
     echo "$0 start|stop|console"
