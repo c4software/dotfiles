@@ -31,7 +31,7 @@ iptables -A PREROUTING -t nat -p tcp --dport 25 -j REDIRECT --to-port 2525
 Pour tester un service, il faut ouvrir le port vers la machine hote, il est possible de le faire sans redémarrer la VM via la commande :
 
 ```
-VBoxManage controlvm "xpenology" natpf1 "myApp,tcp,,8080,,8080"
+./controle.sh tmpnat myApp 8080 8080
 ```
 
 ⚠️  Attention, la règle est temporaire elle sera automatiquement supprimée lors du prochain reboot de la VM.
