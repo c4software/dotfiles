@@ -22,16 +22,16 @@ VBoxManage modifyvm xpenology --natpf1 "app,tcp,,5000,,5000"
 # Start
 VBoxManage startvm xpenology --type headless
 
-echo "You can open http://localhost:5000"
+echo "In 1 or 2 minutes your VM should be accessible : http://localhost:5000"
 
 # Save State
 echo "To save the current state of your VM (for a restore later)"
-echo "vboxmanage controlvm xpenology savestate"
+echo "./control.sh save"
 
 # Connect to serial console
 echo "Connect to the Serial Console"
-echo "./console.sh"
+echo "./control.sh init"
 
 # Stop
 echo "To stop the VM (Hard off)"
-echo "vboxmanage controlvm xpenology poweroff"
+echo "./control.sh stop"
