@@ -30,6 +30,9 @@ cmd + shift - v : kwmc space -t bsp
 cmd + shift - d : kwmc space -t monocle
 cmd + shift - l : kwmc window -z fullscreen
 
+## Layout
+cmd + shift - j : kwmc tree restore 80
+
 ## Rotate
 cmd + shift - r :  kwmc tree rotate 90
 
