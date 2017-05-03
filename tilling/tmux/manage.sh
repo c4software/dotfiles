@@ -17,7 +17,7 @@ cmd_rotate(){
 cmd_split_pan(){
   if [ $SESSION_COUNT -gt 0 ]
   then
-    if [ $PANE_COUNT -ge 2 ]
+    if [ $((PANE_COUNT%2)) -eq 0 ]
     then
       tmux split-window -v
     else
