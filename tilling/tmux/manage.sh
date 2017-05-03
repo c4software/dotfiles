@@ -24,7 +24,7 @@ cmd_split_pan(){
       tmux split-window -h
     fi
   else
-    tmux
+   tmux attach || tmux new 
   fi
 }
 
