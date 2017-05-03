@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SESSION_COUNT=`tmux ls | wc -l`
-PANE_COUNT=`tmux list-panes | wc -l`
+SESSION_COUNT=`tmux ls 2> /dev/null | wc -l`
+PANE_COUNT=`tmux list-panes 2> /dev/null | wc -l`
 
 cmd_help() {
   echo "Tmux Tilling Client V 0.1"
@@ -24,7 +24,7 @@ cmd_split_pan(){
       tmux split-window -h
     fi
   else
-   tmux attach || tmux new 
+   tmux attach 2> /dev/null || tmux new
   fi
 }
 
