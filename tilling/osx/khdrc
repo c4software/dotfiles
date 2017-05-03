@@ -4,6 +4,9 @@ khd kwm on
 # Launch Terminal
 cmd - return    :    open -na /Applications/iTerm.app
 
+# Manage tmux as tilling manager
+cmd + shift - return : open -na /Applications/ttc.app
+
 ## Resize
 cmd + shift - up  	  :   kwmc window -c expand 0.05 north
 cmd + shift - right 	:   kwmc window -c expand 0.05 focused
@@ -34,6 +37,6 @@ cmd + shift - l : kwmc window -z fullscreen
 cmd + shift - j : kwmc tree restore 75
 
 ## Rotate
-cmd + shift - r :  kwmc tree rotate 90
+cmd + shift - r : kwmc tree rotate 90
 
 lalt - w : khd -w "c4sofware@gmail.com"
