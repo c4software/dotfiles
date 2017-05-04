@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SESSION_NAME="dev"
-PANE_COUNT=`tmux list-panes 2> /dev/null | wc -l`
+PANE_COUNT=`tmux list-panes -t $SESSION_NAME 2> /dev/null | wc -l`
 
 function session_exist {
     tmux has-session -t $SESSION_NAME 2>/dev/null
@@ -12,10 +12,7 @@ cmd_help() {
 }
 
 cmd_rotate(){
-  if [ $SESSION_COUNT -gt 0 ]
-  then
-    tmux rotate-window
-  fi
+    tmux rotate-window -t $SESSION_NAME
 }
 
 cmd_create_or_attach(){
@@ -27,9 +24,9 @@ cmd_split_pan(){
   then
     if [ $((PANE_COUNT%2)) -eq 0 ]
     then
-      tmux split-window -v
+      tmux split-window -t $SESSION_NAME -v
     else
-      tmux split-window -h
+      tmux split-window -t $SESSION_NAME -h
     fi
   else
    cmd_create_or_attach
