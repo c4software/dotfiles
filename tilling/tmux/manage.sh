@@ -5,7 +5,7 @@ SESSION_NAME="dev"
 PANE_COUNT=`tmux list-panes -t $SESSION_NAME 2> /dev/null | wc -l`
 
 session_exist() {
-    cmd_do "has-session"
+  cmd_do "has-session"
 }
 
 cmd_do(){
