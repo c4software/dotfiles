@@ -1,6 +1,6 @@
 # Script création VM pour xpenology
 
-Script qui initialise une VM pour pouvoir installer xpenology (Version 6.0.2 ou plus en fonction du loader)
+Script qui initialise une VM pour pouvoir installer xpenology (Version 6.0.2 ou plus en **fonction du loader**)
 
 - Requiert le Loader (http://xpenology.com/forum/viewtopic.php?f=2&t=20216)
 - Dans l’archive du loader extraire les fichiers synoboot.vmdk et synoboot.img à coté du init.sh
@@ -10,7 +10,7 @@ Script qui initialise une VM pour pouvoir installer xpenology (Version 6.0.2 ou 
 
 ```
 sudo apt install virtualbox socat
-$ sh init.sh
+$ ./init.sh
 ```
 
 ## « Forwarder » les ports < 1024
@@ -41,7 +41,7 @@ Pour tester un service, il faut ouvrir le port vers la machine hote, il est poss
 L’accès au « shell » de xpenology se fait via le port « serie / uart » de la VM. Un pipe est déclaré dans le ```/tmp/xpenology```, le srcipt console permet de s’y connecter.
 
 ```
-./console.sh
+./control.sh console
 ```
 
 ⚠️  Attention, Socat est requis.
@@ -49,7 +49,7 @@ L’accès au « shell » de xpenology se fait via le port « serie / uart » de
 ## Démarrer la VM
 
 ```
-VBoxManage startvm "xpenology" --type headless
+./control.sh start
 ```
 
 ⚠️  Attention, le premier boot peut être un peu long avant que le port 5000 soit accessible.
@@ -57,7 +57,7 @@ VBoxManage startvm "xpenology" --type headless
 ## Arrêter la VM
 
 ```
-vboxmanage controlvm xpenology poweroff
+./control.sh stop
 ```
 
 ⚠️  Attention c’est un arrêt brutal de la machine.
