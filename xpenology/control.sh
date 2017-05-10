@@ -40,6 +40,6 @@ case "$1" in
    socat - UNIX-CONNECT:xpenology-serial
    ;;
 *)
-    echo "$0 init|start|stop|pause|tmpnat|console"
+    echo "$0 init|start|stop|pause|tmpnat|console|snapshot"
     ;;
 esac
