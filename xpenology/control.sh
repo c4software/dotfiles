@@ -1,20 +1,25 @@
 #!/bin/bash
 
 type VBoxManage >/dev/null 2>&1 || { echo >&2 "VirtualBox is required. Aborting."; exit 1; }
+VMNAME="xpenology"
 
 case "$1" in
 "init")
-    ./init.sh
+    ./init.sh $VMNAME
     ;;
 "start")
-    VBoxManage startvm xpenology --type headless
+    VBoxManage startvm $VMNAME --type headless
     ;;
 "stop")
-    VBoxManage controlvm xpenology poweroff
+    VBoxManage controlvm $VMNAME poweroff
     ;;
 "pause")
-    VBoxManage controlvm xpenology savestate
+    VBoxManage controlvm $VMNAME savestate
     ;;
+"snapshot")
+	  DATE=`date +%Y-%m-%d:%H:%M:%S`
+		VBoxManage snapshot $VMNAME take $DATE --live
+		;;
 "tmpnat")
     if [ -z $2 ];then
        echo "Usage: $0 $1 AppName PortOnHost [PortOnVM]"
@@ -28,7 +33,7 @@ case "$1" in
     if [ -z $vmport ];then
       vmport=$3
     fi
-    VBoxManage controlvm "xpenology" natpf1 "$2,tcp,,$3,,$vmport"
+    VBoxManage controlvm $VMNAME natpf1 "$2,tcp,,$3,,$vmport"
     ;;
 "console")
    type socat >/dev/null 2>&1 || { echo >&2 "Socat is required. Aborting."; exit 1; }
