@@ -25,4 +25,4 @@ kwmc rule owner="Google Chrome" name=".*Centile.*" properties={float="true"}
 kwmc rule owner="Google Chrome" name=".*Twitter.*" properties={float="true"}
 
 # Firefox
-kwmc rule owner="FirefoxDeveloperEdition" name=".*DownThemAll!.*" properties={float="true"}
+kwmc rule owner="Firefox.*" name=".*DownThemAll!.*" properties={float="true"}
