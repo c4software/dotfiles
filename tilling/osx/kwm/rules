@@ -19,6 +19,9 @@ kwmc rule owner="Calculator" properties={float="true"}
 # PHPStorm rule
 kwmc rule owner="PhpStorm" properties={float="true"} except=".* - \[.*"
 
+# Android Studio
+kwmc rule owner="Android Studio" properties={float="true"} except=".* - \[.*"
+
 # Chrome
 kwmc rule owner="Google Chrome" name=".*Centile.*" properties={float="true"}
 # kwmc rule owner="Google Chrome" properties={space="1"}
