@@ -41,9 +41,7 @@ set title
 set noerrorbells
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
 set ttyfast
-"set mouse=a
 set nocompatible
-"set backup
 set noswapfile
 set fileformats=unix,dos,mac
 set laststatus=2
@@ -56,10 +54,7 @@ set t_Co=256
 map cc <leader>c<space>
 map  # {v}! par 72<CR>
 map  & {v}! par 72j<CR>
-map  <F6> :setlocal spell! spelllang=fr<CR>
-map  <F12> :set invhls<CR>
 cmap <C-g> <C-u><ESC>
-command! -bang W w<bang>
 
 """""""""""""""""""" PLUGINS
 let g:ctrlp_working_path_mode = 'ra'
@@ -70,8 +65,6 @@ set wildignore+=*.pyc
 " NeoComplCache
 let g:neocomplcache_enable_at_startup=1
 let g:neoComplcache_disableautocomplete=1
-"let g:neocomplcache_enable_underbar_completion = 1
-""let g:neocomplcache_enable_camel_case_completion = 1
 let g:neocomplcache_enable_smart_case=1
 let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
@@ -86,4 +79,3 @@ autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType c setlocal omnifunc=ccomplete#Complete
