@@ -15,9 +15,9 @@ cmd_do(){
 cmd_help() {
   echo "Tmux Tilling Control V 0.1"
   echo "usage: $PROG_NAME [-i|--init] [-r|--rotate] [-s|--split]"
-  echo "  -i|--init     Init or Attach the session"
-  echo "  -r|--rotate   Rotate the tree"
-  echo "  -s|--split    Split the $SESSION_NAME screen"
+  echo "  i|--init     Init or Attach the session"
+  echo "  r|--rotate   Rotate the tree"
+  echo "  s|--split    Split the $SESSION_NAME screen"
   exit 1
 }
 
@@ -44,11 +44,11 @@ cmd_split_pan(){
 }
 
 case "$1" in
-  -i|--init)
+  i|--init)
       cmd_create_or_attach ;;
-  -r|--rotate)
+  r|--rotate)
       cmd_rotate ;;
-  -s|--split)
+  s|--split)
       cmd_split_pan ;;
   *)
       cmd_help ;;
