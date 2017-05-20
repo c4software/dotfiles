@@ -50,6 +50,8 @@ case "$1" in
       cmd_rotate ;;
   s|--split)
       cmd_split_pan ;;
+  "")
+			cmd_split_pan ;;
   *)
       cmd_help ;;
 esac
