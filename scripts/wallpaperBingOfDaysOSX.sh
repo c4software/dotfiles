@@ -38,10 +38,10 @@ picExt=".jpg"
 # URL for the pic of the day, and store it in $picURL
 
 # Form the URL for the desired pic resolution
-desiredPicURL=$bing$(echo $(curl -s $xmlURL) | grep -oP "<urlBase>(.*)</urlBase>" | cut -d ">" -f 2 | cut -d "<" -f 1)$desiredPicRes$picExt
+desiredPicURL=$bing$(echo $(curl -s $xmlURL) | egrep -o "<urlBase>(.*)</urlBase>" | cut -d ">" -f 2 | cut -d "<" -f 1)$desiredPicRes$picExt
 
 # Form the URL for the default pic resolution
-defaultPicURL=$bing$(echo $(curl -s $xmlURL) | grep -oP "<url>(.*)</url>" | cut -d ">" -f 2 | cut -d "<" -f 1)
+defaultPicURL=$bing$(echo $(curl -s $xmlURL) | egrep -o "<url>(.*)</url>" | cut -d ">" -f 2 | cut -d "<" -f 1)
 
 # $picName contains the filename of the Bing pic of the day
 
@@ -61,11 +61,9 @@ else
     curl -s -o $saveDir$picName $defaultPicURL
 fi
 
-# Set the GNOME3 wallpaper
-gsettings set org.gnome.desktop.background picture-uri "file://$saveDir$picName"
+echo $saveDir$picName;
 
-# Set the GNOME 3 wallpaper picture options
-gsettings set org.gnome.desktop.background picture-options $picOpts
+osascript -e "tell application \"Finder\" to set desktop picture to POSIX file \"$saveDir$picName\" "
 
 # Remove pictures older than 30 days
 #find $saveDir -atime 30 -delete
