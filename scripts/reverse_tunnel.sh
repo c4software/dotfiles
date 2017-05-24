@@ -15,7 +15,7 @@ if [ -z "$2" ]; then
 	exit
 fi
 
-if [ -z "$3"]; then
+if [ -z "$3" ]; then
 	REMOTEPORT=$2
 else
 	REMOTEPORT=$3
