@@ -5,12 +5,12 @@ if [ $# -eq 0 ]; then
   exit
 fi
 
-if [ -z $1 ]; then
+if [ -z "$1" ]; then
 	echo "Remote server is mandatory"
 	exit
 fi
 
-if [ -z $2 ]; then
+if [ -z "$2" ]; then
 	echo "Port is mandatory"
 	exit
 fi
