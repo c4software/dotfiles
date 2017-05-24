@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ $# -eq 0 ]; then
-  echo "Usage: $0 host port"
+  echo "Usage: $0 host port [remote-port]"
   exit
 fi
 
@@ -15,9 +15,15 @@ if [ -z "$2" ]; then
 	exit
 fi
 
+if [ -z "$3"]; then
+	REMOTEPORT=$2
+else
+	REMOTEPORT=$3
+fi
+
 while : 
 do	
 echo "Starting Reverse tunnel : $2:localhost:$2 => $1"
-ssh -NR 0.0.0.0:$2:0.0.0.0:$2 $1
+ssh -NR 0.0.0.0:$2:0.0.0.0:$REMOTEPORT $1
 sleep 10
 done
