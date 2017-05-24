@@ -23,7 +23,7 @@ fi
 
 while : 
 do	
-echo "Starting Reverse tunnel : $2:localhost:$2 => $1"
-ssh -NR 0.0.0.0:$2:0.0.0.0:$REMOTEPORT $1
+echo "Starting Reverse tunnel : $REMOTEPORT:localhost:$2 => $1"
+ssh -NR 0.0.0.0:$REMOTEPORT:0.0.0.0:$2 $1
 sleep 10
 done
