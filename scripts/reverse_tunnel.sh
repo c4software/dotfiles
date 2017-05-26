@@ -23,7 +23,7 @@ fi
 
 while : 
 do	
-echo "Starting Reverse tunnel : $REMOTEPORT:localhost:$2 => $1"
+echo "$(date "+%Y-%m-%d %H:%M:%S") : $REMOTEPORT:localhost:$2 => $1"
 ssh -NR 0.0.0.0:$REMOTEPORT:0.0.0.0:$2 $1
 sleep 10
 done
