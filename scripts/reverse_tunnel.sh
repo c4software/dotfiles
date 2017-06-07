@@ -47,7 +47,7 @@ fi
 
 while :
 do
-	echo "$(date "+%Y-%m-%d %H:%M:%S") : $REMOTEPORT:localhost:$2 => $1"
-	echo "ssh -N $SSH_REMOTE_ARGS $HOST"
+	echo "$(date "+%Y-%m-%d %H:%M:%S") : $SSH_REMOTE_ARGS"
+	ssh -N $SSH_REMOTE_ARGS $HOST
 	sleep 10
 done
