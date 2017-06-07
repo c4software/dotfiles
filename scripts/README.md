@@ -12,3 +12,9 @@ Port local : 5900 exposé sur le port 192.168.0.3:5900
 ```
 $ ./reverse_tunnel.sh -h 192.168.0.3 -p 22:2200 -p 5900
 ```
+
+Tips: Le paramétre « -h » peut-être défini avec le host et le port (voir le compte) Ex: 
+
+```
+$ ./reverse_tunnel.sh -h "compte@machine -p 2222" -p…
+```
