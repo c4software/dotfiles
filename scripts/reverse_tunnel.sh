@@ -44,7 +44,7 @@ if [ -z "$SSH_REMOTE_ARGS" ]; then
 	show_help
 fi
 
-
+trap "exit" SIGHUP SIGINT SIGTERM
 while :
 do
 	echo "$(date "+%Y-%m-%d %H:%M:%S") : $SSH_REMOTE_ARGS"
