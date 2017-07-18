@@ -1,4 +1,4 @@
-wmc rule owner="Airmail" name="Nouveau message" properties={float="true"}
+kwmc rule owner="Airmail" name="Nouveau message" properties={float="true"}
 kwmc rule owner="MySQLWorkbench" properties={float="true"}
 kwmc rule owner="Instruments" properties={float="true"}
 kwmc rule owner="iTerm2" properties={role="AXDialog"}
