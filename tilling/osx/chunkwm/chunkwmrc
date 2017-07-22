@@ -70,8 +70,8 @@ chunkc core::load ffm.so
 #       to pass value containing a whitespace.
 #
 
-chunkc tiling::rule --owner \"System Preferences\" --state tile
-chunkc tiling::rule --owner Finder --name Copy --state float
+chunkc tiling::rule --owner \"Firefox.*\" --name \".*DownThemAll!.*\" --state float
+
 
 chunkc tiling::rule --owner \"MySQLWorkbench\" --state float
 chunkc tiling::rule --owner \"Instruments\" --state float
