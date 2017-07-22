@@ -1,7 +1,7 @@
 # Tilling OSX
 
 ## Requirements
-- KWM
+- KWM (or ChunkWM)
 - KHD
 
 ![OSX configuration](capture.png)
