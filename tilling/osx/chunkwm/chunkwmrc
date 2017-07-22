@@ -72,3 +72,20 @@ chunkc core::load ffm.so
 
 chunkc tiling::rule --owner \"System Preferences\" --state tile
 chunkc tiling::rule --owner Finder --name Copy --state float
+
+chunkc tiling::rule --owner \"MySQLWorkbench\" --state float
+chunkc tiling::rule --owner \"Instruments\" --state float
+chunkc tiling::rule --owner \"iTerm2\" --state tile
+chunkc tiling::rule --owner \"Terminal\" --state float
+chunkc tiling::rule --owner \"App Store\" --state float
+chunkc tiling::rule --owner \"Finder\" --state float
+chunkc tiling::rule --owner \"System Preferences\" --state float
+chunkc tiling::rule --owner \"Telegram\" --state float
+chunkc tiling::rule --owner \"BetterZip\" --state float
+chunkc tiling::rule --owner \"Terminal\" --state float
+chunkc tiling::rule --owner \"Gimp\" --state float
+chunkc tiling::rule --owner \"Ukelele\" --state float
+chunkc tiling::rule --owner \"Screen Sharing\" --state float
+chunkc tiling::rule --owner \"Activity Monitor\" --state float
+chunkc tiling::rule --owner \"TextEdit\" --state float
+chunkc tiling::rule --owner \"Calculator\" --state float
