@@ -1,0 +1,38 @@
+# Enable kwm compatibility mode
+khd kwm on
+
+# Launch Terminal
+cmd - return    :    open -na /Applications/iTerm.app
+
+
+## Resize
+cmd + shift - up  	  :   chunkc tiling::window --use-temporary-ratio 0.05 --adjust-window-edge north
+cmd + shift - right 	:   chunkc tiling::window --use-temporary-ratio 0.05 --adjust-window-edge next
+cmd + shift - down  	:   chunkc tiling::window --use-temporary-ratio -0.05 --adjust-window-edge north
+cmd + shift - left  	:   chunkc tiling::window --use-temporary-ratio -0.05 --adjust-window-edge next
+
+## Swap position
+cmd + lalt + shift - up     	:   chunkc tiling::window --swap north
+cmd + lalt + shift - right  	:   chunkc tiling::window --swap east
+cmd + lalt + shift - down   	:   chunkc tiling::window --swap south
+cmd + lalt + shift - left   	:   chunkc tiling::window --swap west
+
+## toggle split mode
+cmd + shift - s 	: chunkc tiling::window --toggle toggle
+
+## Toggle Float
+cmd + shift - f 	: chunkc tiling::window --toggle native-fullscreen
+
+## Spaces
+lalt - tab : kwmc space -fExperimental previous
+
+## Mode
+cmd + shift - v : chunkc tiling::desktop --layout bsp
+cmd + shift - d : chunkc tiling::desktop --layout monocle
+cmd + shift - f : chunkc tiling::window --toggle sticky;\
+                  chunkc tiling::window --warp-floating pip-right
+
+## Rotate
+cmd + shift - r : chunkc tiling::desktop --rotate 90
+
+lalt - w : khd -w "c4sofware@gmail.com"
