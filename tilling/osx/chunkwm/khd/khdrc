@@ -23,9 +23,6 @@ cmd + shift - s 	: chunkc tiling::window --toggle toggle
 ## Toggle Float
 cmd + shift - f 	: chunkc tiling::window --toggle native-fullscreen
 
-## Spaces
-lalt - tab : kwmc space -fExperimental previous
-
 ## Mode
 cmd + shift - v : chunkc tiling::desktop --layout bsp
 cmd + shift - d : chunkc tiling::desktop --layout monocle

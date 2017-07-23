@@ -8,3 +8,9 @@ brew install chunkwm
 cp chunkwmrc ~/.chunkwmrc
 ln -sf /usr/local/opt/chunkwm/share/chunkwm_plugins ~/.chunkwm_plugins
 ```
+
+## Start
+
+```
+brew services start crisidev/chunkwm/chunkwm
+```
