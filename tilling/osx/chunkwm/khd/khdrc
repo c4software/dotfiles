@@ -1,12 +1,8 @@
-# Enable kwm compatibility mode
-khd kwm on
-
 # Launch Terminal
-cmd - return    :    open -na /Applications/iTerm.app
-
+cmd - return                        :   open -na /Applications/iTerm.app
 
 ## Resize
-cmd + shift - up  	  :   chunkc tiling::window --use-temporary-ratio 0.05 --adjust-window-edge north
+cmd + shift - up  	:   chunkc tiling::window --use-temporary-ratio 0.05 --adjust-window-edge north
 cmd + shift - right 	:   chunkc tiling::window --use-temporary-ratio 0.05 --adjust-window-edge next
 cmd + shift - down  	:   chunkc tiling::window --use-temporary-ratio -0.05 --adjust-window-edge north
 cmd + shift - left  	:   chunkc tiling::window --use-temporary-ratio -0.05 --adjust-window-edge next

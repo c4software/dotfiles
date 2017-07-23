@@ -12,5 +12,5 @@ ln -sf /usr/local/opt/chunkwm/share/chunkwm_plugins ~/.chunkwm_plugins
 ## Start
 
 ```
-brew services start crisidev/chunkwm/chunkwm
+brew services start chunkwm
 ```
