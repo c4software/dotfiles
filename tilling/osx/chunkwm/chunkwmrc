@@ -1,22 +1,9 @@
 #!/bin/bash
 
-#
-# NOTE: specify the absolutepath to the directory to use when
-#       loading a plugin. '~' expansion is supported.
-#
-
 chunkc core::plugin_dir ~/.chunkwm_plugins
-
-#
-# NOTE: if enabled, chunkwm will monitor the specified plugin_dir
-#       and automatically reload any '.so' file that is changed.
-#
-
 chunkc core::hotload 1
 
-#
-# NOTE: the following are config variables for the chunkwm-tiling plugin.
-#
+chunkc core::load tiling.so
 
 chunkc set global_desktop_mode           bsp
 
@@ -47,23 +34,11 @@ chunkc set window_region_locked          1
 # chunkc set mouse_modifier              \"cmd shift\"
 chunkc set mouse_modifier                fn
 
-#
-# NOTE: these settings require chwm-sa.
-#       (https://github.com/koekeishiya/chwm-sa)
-#
-
 chunkc set window_float_topmost          0
 chunkc set window_fade_inactive          0
 chunkc set window_fade_alpha             0.85
 chunkc set window_fade_duration          0.5
 
-#
-# NOTE: specify plugins to load when chunkwm starts.
-#       if chunkc plugin_dir is not set, the absolutepath is necessary.
-#
-
-chunkc core::load tiling.so
-chunkc core::load ffm.so
 
 # PhpStorm
 chunkc tiling::rule --owner \"PhpStorm\" --except \".* - \[.*\" --state float
