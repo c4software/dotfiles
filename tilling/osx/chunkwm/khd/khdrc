@@ -22,8 +22,6 @@ cmd + shift - f 	: chunkc tiling::window --toggle native-fullscreen
 ## Mode
 cmd + shift - v : chunkc tiling::desktop --layout bsp
 cmd + shift - d : chunkc tiling::desktop --layout monocle
-cmd + shift - p : chunkc tiling::window --toggle sticky;\
-                  chunkc tiling::window --warp-floating pip-right
 
 ## Rotate
 cmd + shift - r : chunkc tiling::desktop --rotate 90
