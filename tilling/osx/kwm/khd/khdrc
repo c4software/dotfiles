@@ -1,11 +1,5 @@
-# Enable kwm compatibility mode
-khd kwm on
-
 # Launch Terminal
 cmd - return    :    open -na /Applications/iTerm.app
-
-# Manage tmux as tilling manager
-cmd + shift - return : open -na /Applications/ttc.app
 
 ## Resize
 cmd + shift - up  	  :   kwmc window -c expand 0.05 north
