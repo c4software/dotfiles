@@ -65,4 +65,4 @@ chunkc tiling::rule --owner \"Ukelele\" --state float
 chunkc tiling::rule --owner \"Screen Sharing\" --state float
 chunkc tiling::rule --owner \"Activity Monitor\" --state float
 chunkc tiling::rule --owner \"TextEdit\" --state float
-chunkc tiling::rule --owner \"Calculator\" --state float
+chunkc tiling::rule --owner \"Calculette\" --state float
