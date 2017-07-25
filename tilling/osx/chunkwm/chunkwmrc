@@ -41,10 +41,10 @@ chunkc set window_fade_duration          0.5
 
 
 # PhpStorm
-chunkc tiling::rule --owner \"PhpStorm\" --except \".* - \[.*\" --state float
+# chunkc tiling::rule --owner PhpStorm --except==".*\[.*" --state float 
 
 # Android Studio
-chunkc tiling::rule --owner \"Android Studio\" --except=\".* - \[.*\" --state float
+# chunkc tiling::rule --owner \"Android Studio\" --state float
 
 # Firefox
 chunkc tiling::rule --owner \"Firefox.*\" --name \".*DownThemAll!.*\" --state float
