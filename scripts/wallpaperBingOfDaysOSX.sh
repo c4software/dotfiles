@@ -22,10 +22,6 @@ saveDir="$HOME/Images/BingDesktopImages/"
 # Create saveDir if it does not already exist
 mkdir -p $saveDir
 
-# Set picture options
-# Valid options are: none,wallpaper,centered,scaled,stretched,zoom,spanned
-picOpts="zoom"
-
 # The desired Bing picture resolution to download
 # Valid options: "_1024x768" "_1280x720" "_1366x768" "_1920x1200"
 desiredPicRes="_1920x1200"
