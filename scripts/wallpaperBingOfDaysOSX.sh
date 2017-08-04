@@ -63,7 +63,7 @@ fi
 
 echo $saveDir$picName;
 
-osascript -e "tell application \"Finder\" to set desktop picture to POSIX file \"$saveDir$picName\" "
+osascript -e "tell application \"System Events\" to tell every desktop to set picture to POSIX file \"$saveDir$picName\" "
 
 # Remove pictures older than 30 days
 #find $saveDir -atime 30 -delete
