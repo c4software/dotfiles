@@ -18,3 +18,13 @@ Tips: Le paramétre « -h » peut-être défini avec le host et le port (voir le
 ```
 $ ./reverse_tunnel.sh -h "compte@machine -p 2222" -p…
 ```
+
+## wallpaperBingOfDaysOSX.sh
+
+Script permettant de mettre l’image actuelle de Bing en fond d’écran des écrans actif (attention ne change pas les différents spaces)
+
+### Usage
+
+```
+$ sh ./wallpaperBingOfDaysOSX.sh
+```
