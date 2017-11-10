@@ -8,7 +8,7 @@ createType="vmfs"
 # Extent description
 RW 102400 VMFS "synoboot.img" 0
 
-# The Disk Data Base 
+# The Disk Data Base
 #DDB
 
 ddb.adapterType = "lsilogic"
@@ -18,13 +18,3 @@ ddb.longContentID = "7e24a756b77e33e24ac940cc6ccf51e5"
 ddb.thinProvisioned = "1"
 ddb.uuid = "60 00 C2 9a ee da ca 33-df 5e 04 3f 80 55 f9 62"
 ddb.virtualHWVersion = "10"
-ddb.uuid.image="4950a03b-4884-4d5f-a150-95143a6eb201"
-ddb.uuid.modification="3cc9b573-3e89-433f-9aa8-ee948a7923b1"
-ddb.uuid.parent="00000000-0000-0000-0000-000000000000"
-ddb.uuid.parentmodification="00000000-0000-0000-0000-000000000000"
-ddb.geometry.cylinders="101"
-ddb.geometry.heads="16"
-ddb.geometry.sectors="63"
-ddb.geometry.biosCylinders="101"
-ddb.geometry.biosHeads="16"
-ddb.geometry.biosSectors="63"
