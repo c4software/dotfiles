@@ -1,15 +1,15 @@
 # Script création VM pour xpenology
 
-Script qui initialise une VM pour pouvoir installer xpenology (Version 6.0.2 ou plus en **fonction du loader**)
+Script qui initialise une VM pour pouvoir installer xpenology (Version 6.1.X ou plus en **fonction du loader**)
 
-- Requiert le Loader (http://xpenology.com/forum/viewtopic.php?f=2&t=20216)
-- Dans l’archive du loader extraire les fichiers synoboot.vmdk et synoboot.img à coté du init.sh
+- Requiert le Loader (http://xpenology.com/forum/viewtopic.php?f=2&t=20216) (Le DS3615xs)
+- Dans l’archive du loader extraire le fichier synoboot.img à coté du init.sh
 - Lancer le init.sh
-- ouvrir le http://locahost:5000
+- Ouvrir le http://locahost:5000
 - Continuer avec le bon PAT (pour le modèle DS3615xs)
 
-```
-sudo apt install virtualbox socat
+```shell
+$ sudo apt install virtualbox socat
 $ ./init.sh
 ```
 
@@ -20,18 +20,18 @@ les iptables. Exemple avec le port 25 :
 
 ```
 # Mapper le port 25 de la VM sur par exemple le port 2525
-VBoxManage modifyvm xpenology --natpf1 "mailserver,tcp,,2525,,25"
+$ VBoxManage modifyvm xpenology --natpf1 "mailserver,tcp,,2525,,25"
 
 # Forwarder les paquets arrivant sur le port 25 vers le port 2525 (donc la VM)
-iptables -A PREROUTING -t nat -p tcp --dport 25 -j REDIRECT --to-port 2525
+$ iptables -A PREROUTING -t nat -p tcp --dport 25 -j REDIRECT --to-port 2525
 ```
 
 ## Ajouter (temporairement) un port forward
 
 Pour tester un service, il faut ouvrir le port vers la machine hote, il est possible de le faire sans redémarrer la VM via la commande :
 
-```
-./controle.sh tmpnat myApp 8080 8080
+```shell
+$ ./controle.sh tmpnat myApp 8080 8080
 ```
 
 ⚠️  Attention, la règle est temporaire elle sera automatiquement supprimée lors du prochain reboot de la VM.
@@ -40,7 +40,7 @@ Pour tester un service, il faut ouvrir le port vers la machine hote, il est poss
 
 L’accès au « shell » de xpenology se fait via le port « serie / uart » de la VM. Un pipe est déclaré dans le ```/tmp/xpenology```, le srcipt console permet de s’y connecter.
 
-```
+```shell
 ./control.sh console
 ```
 
@@ -48,7 +48,7 @@ L’accès au « shell » de xpenology se fait via le port « serie / uart » de
 
 ## Démarrer la VM
 
-```
+```shell
 ./control.sh start
 ```
 
@@ -56,7 +56,7 @@ L’accès au « shell » de xpenology se fait via le port « serie / uart » de
 
 ## Arrêter la VM
 
-```
+```shell
 ./control.sh stop
 ```
 
