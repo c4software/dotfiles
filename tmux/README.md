@@ -10,7 +10,16 @@ alias tmux="Dropbox/Linux/dotfiles/tmux/tools/manage.sh i"
 
 ## Shortcuts
 
-```Ctrl``` + ```Space``` : Prefix Mode
+| Raccourcis                 | Actions                  |
+| --------------------------:| ------------------------:|
+| ```Ctrl``` + ```Space```   | Prefix Mode              |
+|              ```Space```   | choose-session           |
+|              ```a```       | Reload Config            |
+|              ```Enter```   | Split (current tree)     |
+|              ```r```       | Rotate the tree          |
+|              ```Up```      | Split window verticaly   |
+|              ```Right```   | Split wimdow horizontaly |
+|              ```Left```    | Sync pane                |
 
 ## Vidéo
 
