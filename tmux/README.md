@@ -23,4 +23,4 @@ alias tmux="Dropbox/Linux/dotfiles/tmux/tools/manage.sh i"
 
 ## Vidéo
 
-[![Alt text](https://img.youtube.com/vi/sZCFN9YKAlM/0.jpg)](https://www.youtube.com/watch?v=sZCFN9YKAlM)
+[![Alt text](https://img.youtube.com/vi/nCUb_wJllS8/0.jpg)](https://www.youtube.com/watch?v=nCUb_wJllS8)
