@@ -20,7 +20,9 @@ alias tmux="~/Dropbox/Linux/dotfiles/tmux/tools/manage.sh i"
 |              ```r```       | Rotate the tree          |
 |              ```Up```      | Split window verticaly   |
 |              ```Right```   | Split wimdow horizontaly |
-|              ```Left```    | Sync pane                |
+|              ```s```       | Sync pane                |
+|              ```q```       | Close the current window |
+|              ```w```       | Close the current pane   |
 
 ## Vidéo
 
