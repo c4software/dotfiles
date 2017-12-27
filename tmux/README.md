@@ -13,6 +13,7 @@ alias tmux="Dropbox/Linux/dotfiles/tmux/tools/manage.sh i"
 | Raccourcis                 | Actions                  |
 | --------------------------:| ------------------------:|
 | ```Ctrl``` + ```Space```   | Prefix Mode              |
+|              ```d```       | Detach                   |
 |              ```Space```   | choose-session           |
 |              ```a```       | Reload Config            |
 |              ```Enter```   | Split (current tree)     |
