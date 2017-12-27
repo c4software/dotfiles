@@ -24,6 +24,11 @@ alias tmux="~/Dropbox/Linux/dotfiles/tmux/tools/manage.sh i"
 |              ```q```       | Close the current window |
 |              ```w```       | Close the current pane   |
 
+
+## TODO
+
+- Resize pane with keyboard
+
 ## Vidéo
 
 [![Alt text](https://img.youtube.com/vi/nCUb_wJllS8/0.jpg)](https://www.youtube.com/watch?v=nCUb_wJllS8)
