@@ -5,7 +5,7 @@ Tmux with tilling flavor.
 ## Alias
 
 ```sh
-alias tmux="Dropbox/Linux/dotfiles/tmux/tools/manage.sh i"
+alias tmux="~/Dropbox/Linux/dotfiles/tmux/tools/manage.sh i"
 ```
 
 ## Shortcuts
