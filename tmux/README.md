@@ -23,6 +23,7 @@ alias tmux="~/Dropbox/Linux/dotfiles/tmux/tools/manage.sh i"
 |              ```s```       | Sync pane                |
 |              ```q```       | Close the current window |
 |              ```w```       | Close the current pane   |
+|              ```Tab```     | Next Window              |
 
 
 ## TODO
