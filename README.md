@@ -7,7 +7,7 @@
 ![OSX configuration](tilling/osx/capture.png)
 
 ## Tmux (Cross système)
-![Tmux configuration](tilling/tmux/capture.png)
+![Tmux configuration](tmux/capture.png)
 
 All my *important* dotfiles.
 
