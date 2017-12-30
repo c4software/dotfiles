@@ -28,9 +28,11 @@ alias tmux="~/Dropbox/Linux/dotfiles/tmux/tools/manage.sh i"
 | ```Shift``` + ```Down```   | resize-pane -D 15        |
 | ```Shift``` + ```Left```   | resize-pane -L 25        |
 | ```Shift``` + ```Right```  | resize-pane -R 25        |
-| ```Alt```   + ```Enter```  | Split (current tree)     |
-| ```Alt```   + ```Left```   | Swap the current pane    |
-| ```Alt```   + ```Right```  | Swap the current pane    |
+| ```Meta```   + ```Enter```  | Split (current tree)     |
+| ```Meta```   + ```Left```   | Swap the current pane    |
+| ```Meta```   + ```Right```  | Swap the current pane    |
+
+Note: By default with Mac Os, Meta Key is Esc.
 
 ## Vidéo
 
