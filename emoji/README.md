@@ -1,11 +1,10 @@
 # Activer les Emoji’s sur Archilnux
 
+Installation de la font Google, et création de la configuration pour charger la font.
+
 ```sh
 yaourt -S noto-fonts-emoji
 mkdir -p ~/.config/fontconfig/conf.d/
-```
-
-```sh
 vim ~/.config/fontconfig/conf.d/01-emoji.conf
 ```
 
