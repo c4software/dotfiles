@@ -3,9 +3,9 @@
 # Put this file in /usr/local/etc/rc.d/
 #
 
-GITEA_ROOT="/your/gitea/folder/bin/gitea"
+GITEA_ROOT="/your/gitea/bin/folder/of/gitea" # You can download the Gitea release from https://github.com/go-gitea/gitea/releases
 GITEA_PID="cat $GITEA_ROOT/run.pid"
-GITEA_USER="REPLACE_BY_YOUR_GITEA_USER"
+GITEA_USER="REPLACE_BY_YOUR_GITEA_USER" # Must be an existant user
 
 if [ "$EUID" -ne 0 ]
 then echo "The su « user » is only available for root in synology system. Please run as root"
