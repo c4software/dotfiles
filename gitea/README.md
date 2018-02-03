@@ -1,8 +1,10 @@
 # Gitea Synology
 
-Script de démarrage pour Gitea sur mon Nas Synology. Le paquet ne fonctionne pas correctement chez moi… J’ai donc pris la release classique, et j’execute une « tâche » planifé au démarrage de mon Synology.
+Script de démarrage pour Gitea sur mon Nas Synology. Le paquet ne fonctionne pas correctement chez moi… J’ai donc fait un « petit script de démarrage » pour qu’il soit lancer au démarrage du système.
 
-![Création](./images/creation.png)
-![Paramétrage](./images/parametres.png)
+Pour l’installer copier le fichier ```startup_gitea.sh``` dans ```/usr/local/etc/rc.d/```:
 
-Le script nécéssite tmux (disponible dans sur le repo [SynoCommunity](https://synocommunity.com/))
+```sh
+cp startup_gitea.sh /usr/local/etc/rc.d/
+chmod 755 /usr/local/etc/rc.d/startup_gitea.sh
+```
