@@ -13,6 +13,8 @@ chmod 755 /usr/local/etc/rc.d/startup_gitea.sh
 
 Si comme moi votre script de démarrage ne démarre pas automatiquement. Vous pouvez passer par « le planificateur de tâche » intégré au système :
 
+⚠️ Le script doit être lancé en root.
+
 ![creation](./images/creation.png)
 ![creation2](./images/creation2.png)
 ![creation3](./images/creation3.png)
