@@ -19,7 +19,7 @@ stop)
 	kill $(ps -o pid= --ppid "`$GITEA_PID`")
 	;;
 start)	
-	su $GITEA_USER -c "cd $GITEA_ROOT && nohup ./gitea-1.3.2-linux-amd64 web > /dev/null 2>&1 & echo \$! > run.pid"
+	su $GITEA_USER -c "cd $GITEA_ROOT && nohup ./gitea web > /dev/null 2>&1 & echo \$! > run.pid"
 	;;
 restart)
 	$0 stop
