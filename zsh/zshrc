@@ -1,0 +1,23 @@
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
+alias irssi='ssh server -t "tmux attach"'
+alias tmux="~/Dropbox/Linux/dotfiles/tmux/tools/manage.sh i"
+
+function serve() {
+  echo "Scan open port 8888…8899"
+  for (( PORTNUMBER = 8888; PORTNUMBER < 8899; PORTNUMBER++ )); do
+    # Test si port dispo
+    PDISPO=`ss -an | grep $PORTNUMBER | grep -i listen | wc -l | awk '{print $1}'`
+    if [ $PDISPO -eq 0 ]
+      then
+        echo "Open port found : $PORTNUMBER"
+        python3 -m http.server $PORTNUMBER
+        break
+    fi
+  done
+}
+
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.ssh"
