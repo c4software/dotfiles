@@ -6,7 +6,6 @@ La structure doit être :
 
 ![structure](./images/structure.png)
 
-
 ## Lancer Gitea au démarrage
 
 ⚠️ Éditer les 3 variables en haut du script
