@@ -23,9 +23,4 @@ kwmc rule owner="PhpStorm" properties={float="true"} except=".* - \[.*"
 kwmc rule owner="Android Studio" properties={float="true"} except=".* - \[.*"
 
 # Chrome
-kwmc rule owner="Google Chrome" name=".*Centile.*" properties={float="true"}
-# kwmc rule owner="Google Chrome" properties={space="1"}
 kwmc rule owner="Google Chrome" name=".*Twitter.*" properties={float="true"}
-
-# Firefox
-kwmc rule owner="Firefox.*" name=".*DownThemAll!.*" properties={float="true"}
