@@ -18,7 +18,8 @@ stop)
 	echo "Stop Gitea..."
 	kill $(ps -o pid= --ppid "`$GITEA_PID`")
 	;;
-start)	
+start)
+	echo "Start Gitea"
 	su $GITEA_USER -c "cd $GITEA_ROOT && nohup ./gitea web > /dev/null 2>&1 & echo \$! > run.pid"
 	;;
 restart)
