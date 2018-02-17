@@ -3,15 +3,9 @@ cmd - return    :    open -na /Applications/iTerm.app
 
 ## Resize
 lalt - left 	: chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge west
-lalt - down 	: chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge south
+lalt - down 	: chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge north
 lalt - up 	    : chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge north
-lalt - right 	: chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge east
-
-ctrl + lalt - left 	: chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge east
-ctrl + lalt - down 	: chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge north
-ctrl + lalt - up 	: chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge south
-ctrl + lalt - right : chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge west
-
+lalt - right 	: chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge west
 
 ## Swap position
 cmd + lalt + shift - up     :   chunkc tiling::window --swap north
@@ -20,10 +14,9 @@ cmd + lalt + shift - down   :   chunkc tiling::window --swap south
 cmd + lalt + shift - left   :   chunkc tiling::window --swap west
 
 ## Toggle Float
-cmd + shift - f 	: chunkc tiling::window --toggle parent
+cmd + shift - f : chunkc tiling::window --toggle parent
 
 ## Pip Mode
-
 cmd + shift - p : chunkc tiling::window --toggle sticky; chunkc tiling::window --grid-layout 5:5:4:0:1:1
 
 ## Mode
