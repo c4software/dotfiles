@@ -2,10 +2,10 @@
 cmd - return    :    open -na /Applications/iTerm.app
 
 ## Resize
-lalt - left 	: chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge west
-lalt - down 	: chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge north
-lalt - up 	    : chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge north
-lalt - right 	: chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge west
+cmd + shift - left 	: chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge west
+cmd + shift - down 	: chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge north
+cmd + shift - up 	    : chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge north
+cmd + shift - right 	: chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge west
 
 ## Swap position
 cmd + lalt + shift - up     :   chunkc tiling::window --swap north
