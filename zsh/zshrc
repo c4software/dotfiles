@@ -5,6 +5,7 @@ fi
 
 alias irssi='ssh server -t "tmux attach"'
 alias tmux="~/Dropbox/Linux/dotfiles/tmux/tools/manage.sh i"
+alias ss="netstat"
 
 function serve() {
   echo "Scan open port 8888…8899"
