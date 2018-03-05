@@ -6,11 +6,6 @@ fi
 alias irssi='ssh server -t "tmux attach"'
 alias tmux="~/Dropbox/Linux/dotfiles/tmux/tools/manage.sh i"
 
-if [[ `uname` == 'Darwin' ]]
-then
-	alias ss="netstat"
-fi
-
 function serve() {
   echo "Scan open port 8888…8899"
   for (( PORTNUMBER = 8888; PORTNUMBER < 8899; PORTNUMBER++ )); do
@@ -26,3 +21,15 @@ function serve() {
 }
 
 export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
+export VISUAL=vim
+export EDITOR="$VISUAL"
+
+if [[ `uname` == 'Darwin' ]]
+then
+	alias ss="netstat"
+	export ANDROID_HOME=$HOME/Library/Android/sdk/
+	export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/JDK/Contents/Home/"
+	export PATH=${PATH}:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/tools
+
+	export PATH="/usr/local/opt/python@2/bin:$PATH"
+fi
