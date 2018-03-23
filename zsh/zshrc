@@ -31,5 +31,7 @@ then
 	export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/JDK/Contents/Home/"
 	export PATH=${PATH}:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/tools
 
+	export PATH="$PATH:$HOME/.composer/vendor/bin"
+
 	export PATH="/usr/local/opt/python@2/bin:$PATH"
 fi
