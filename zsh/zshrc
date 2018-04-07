@@ -6,6 +6,8 @@ fi
 alias irssi='ssh server -t "tmux attach"'
 alias tmux="~/Dropbox/Linux/dotfiles/tmux/tools/manage.sh i"
 alias passtype="PASSWORD_STORE_ENABLE_EXTENSIONS=true pass type"
+alias apk="adb install -r"
+alias logcat="adb logcat"
 
 function serve() {
   echo "Scan open port 8888…8899"
