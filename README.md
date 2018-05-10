@@ -6,6 +6,11 @@
 ## OSX
 ![OSX configuration](tilling/osx/capture.png)
 
+- ranger
+- zsh
+- z
+- prezto
+
 ## Tmux (Cross système)
 ![Tmux configuration](tmux/capture.png)
 
