@@ -37,4 +37,5 @@ then
 	export PATH="$PATH:$HOME/.composer/vendor/bin"
 
 	export PATH="/usr/local/opt/python@2/bin:$PATH"
+	. /usr/local/etc/profile.d/z.sh
 fi
