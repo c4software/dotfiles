@@ -46,4 +46,37 @@ sudo nano /etc/systemd/system/rtlsdr.service
 
 Paste the following content :
 
+```systemd
+[Unit]
+Description=RTL-SDR Server
+After=network.target
 
+[Service]
+ExecStart=/bin/sh -c "/usr/bin/rtl_tcp -a $(hostname -I)"
+WorkingDirectory=/home/pi
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Save and quit
+
+```sh
+$ sudo systemctl daemon-reload
+$ sudo systemctl start rtlsdr
+$ sudo systemctl status rtlsdr # Everything should be green
+$ sudo systemctl enable rtlsdr
+```
+
+Almost done
+
+## Reboot and test
+
+```sh
+sudo reboot
+```
+
+Your SDR Server is ready to accept connection on port ```raspberrypi.local:1234```
