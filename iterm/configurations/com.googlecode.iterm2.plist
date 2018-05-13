@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>AllowClipboardAccess</key>
+	<true/>
 	<key>AlternateMouseScroll</key>
 	<true/>
 	<key>AppleAntiAliasingThreshold</key>
@@ -277,9 +279,9 @@
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>650 499 620 392 0 0 1920 1058 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>428 314 796 473 0 0 1440 878 </string>
+	<string>428 197 796 473 0 0 1440 878 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 1440 900 0 0 1440 878 </string>
+	<string>0 449 1440 429 0 0 1440 878 </string>
 	<key>NeverWarnAboutShortLivedSessions_461B23FC-337C-4C2F-AF8A-C9A853B12D1F</key>
 	<true/>
 	<key>NeverWarnAboutShortLivedSessions_461B23FC-337C-4C2F-AF8A-C9A853B12D1F_selection</key>
