@@ -10,10 +10,11 @@ alias tmux="~/Dropbox/Linux/dotfiles/tmux/tools/manage.sh i"
 
 ## Shortcuts
 
-| Raccourcis                 | Actions                             |
-| --------------------------:| -----------------------------------:|
-| <kbd>Ctrl</kbd> +  <kbd>Space</kbd>   | Prefix Mode              |
-| Then compose with                                                |
+### Prefix
+
+| Shortcuts                             | Actions                  |
+| -------------------------------------:| ------------------------:|
+| <kbd>Ctrl</kbd> +  <kbd>Space</kbd>   | Enter In Prefix Mode     |
 |                    <kbd>d</kbd>       | Detach                   |
 |                    <kbd>Space</kbd>   | choose-session           |
 |                    <kbd>a</kbd>       | Reload Config            |
@@ -25,7 +26,11 @@ alias tmux="~/Dropbox/Linux/dotfiles/tmux/tools/manage.sh i"
 |                    <kbd>q</kbd>       | Close the current window |
 |                    <kbd>w</kbd>       | Close the current pane   |
 |                    <kbd>⇥ Tab<</kbd>  | Next Window              |
-|-----------------------------------------------------------------:|
+
+### Without Prefix
+
+| Shortcuts                             | Actions                  |
+| -------------------------------------:| ------------------------:|
 | <kbd>Shift</kbd> + <kbd>↑</kbd>       | resize-pane -U 15        |
 | <kbd>Shift</kbd> + <kbd>↓</kbd>       | resize-pane -D 15        |
 | <kbd>Shift</kbd> + <kbd>←</kbd>       | resize-pane -L 25        |
@@ -34,7 +39,7 @@ alias tmux="~/Dropbox/Linux/dotfiles/tmux/tools/manage.sh i"
 | <kbd>Meta</kbd>  + <kbd>Left</kbd>    | Swap the current pane    |
 | <kbd>Meta</kbd>  + <kbd>Right</kbd>   | Swap the current pane    |
 
-Note: By default with Mac Os, Meta Key is Esc.
+Note about Meta: By default with Mac Os, Meta Key is Esc.
 
 ## Vidéo
 
