@@ -12,9 +12,16 @@ alias tmux="~/Dropbox/Linux/dotfiles/tmux/tools/manage.sh i"
 
 ### Prefix
 
+Toggle Prefix :
+
 | Shortcuts                             | Actions                  |
 | -------------------------------------:| ------------------------:|
-| <kbd>Ctrl</kbd> +  <kbd>Space</kbd>   | Enter In Prefix Mode     |
+|<kbd>Ctrl</kbd> +  <kbd>Space</kbd>    | Enable Prefix Mode     |
+
+In Prefix :
+
+| Shortcuts                             | Actions                  |
+| -------------------------------------:| ------------------------:|
 |                    <kbd>d</kbd>       | Detach                   |
 |                    <kbd>Space</kbd>   | choose-session           |
 |                    <kbd>a</kbd>       | Reload Config            |
