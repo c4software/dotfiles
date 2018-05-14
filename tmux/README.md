@@ -10,27 +10,27 @@ alias tmux="~/Dropbox/Linux/dotfiles/tmux/tools/manage.sh i"
 
 ## Shortcuts
 
-| Raccourcis                 | Actions                  |
-| --------------------------:| ------------------------:|
-| ```Ctrl``` + ```Space```   | Prefix Mode              |
-|              ```d```       | Detach                   |
-|              ```Space```   | choose-session           |
-|              ```a```       | Reload Config            |
-|              ```Enter```   | Split (current tree)     |
-|              ```r```       | Rotate the tree          |
-|              ```Up```      | Split window verticaly   |
-|              ```Right```   | Split wimdow horizontaly |
-|              ```s```       | Sync pane                |
-|              ```q```       | Close the current window |
-|              ```w```       | Close the current pane   |
-|              ```Tab```     | Next Window              |
-| ```Shift``` + ```Up```     | resize-pane -U 15        |
-| ```Shift``` + ```Down```   | resize-pane -D 15        |
-| ```Shift``` + ```Left```   | resize-pane -L 25        |
-| ```Shift``` + ```Right```  | resize-pane -R 25        |
-| ```Meta```   + ```Enter```  | Split (current tree)     |
-| ```Meta```   + ```Left```   | Swap the current pane    |
-| ```Meta```   + ```Right```  | Swap the current pane    |
+| Raccourcis                 | Actions                             |
+| --------------------------:| -----------------------------------:|
+| <kbd>Ctrl</kbd> +  <kbd>Space</kbd>   | Prefix Mode              |
+|                    <kbd>d</kbd>       | Detach                   |
+|                    <kbd>Space</kbd>   | choose-session           |
+|                    <kbd>a</kbd>       | Reload Config            |
+|                    <kbd>Enter</kbd>   | Split (current tree)     |
+|                    <kbd>r</kbd>       | Rotate the tree          |
+|                    <kbd>Up</kbd>      | Split window verticaly   |
+|                    <kbd>Right</kbd>   | Split wimdow horizontaly |
+|                    <kbd>s</kbd>       | Sync pane                |
+|                    <kbd>q</kbd>       | Close the current window |
+|                    <kbd>w</kbd>       | Close the current pane   |
+|                    <kbd>Tab</kbd>     | Next Window              |
+| <kbd>Shift</kbd> + <kbd>Up</kbd>      | resize-pane -U 15        |
+| <kbd>Shift</kbd> + <kbd>Down</kbd>    | resize-pane -D 15        |
+| <kbd>Shift</kbd> + <kbd>Left</kbd>    | resize-pane -L 25        |
+| <kbd>Shift</kbd> + <kbd>Right</kbd>   | resize-pane -R 25        |
+| <kbd>Meta</kbd>  + <kbd>Enter</kbd>   | Split (current tree)     |
+| <kbd>Meta</kbd>  + <kbd>Left</kbd>    | Swap the current pane    |
+| <kbd>Meta</kbd>  + <kbd>Right</kbd>   | Swap the current pane    |
 
 Note: By default with Mac Os, Meta Key is Esc.
 
