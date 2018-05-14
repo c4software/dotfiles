@@ -30,7 +30,9 @@ In 2018 no need to compile rtl-sdr package, everything is already available in r
 $ sudo apt-get install rtl-sdr
 ```
 
-Done ! Everything is installed. You can test your setup with :
+Plug your TNT/DVB Dongle.
+
+Done ?! Everything is installed. You can test your setup with :
 
 ```sh
 $ rtl_tcp
