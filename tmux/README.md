@@ -13,6 +13,7 @@ alias tmux="~/Dropbox/Linux/dotfiles/tmux/tools/manage.sh i"
 | Raccourcis                 | Actions                             |
 | --------------------------:| -----------------------------------:|
 | <kbd>Ctrl</kbd> +  <kbd>Space</kbd>   | Prefix Mode              |
+| Then compose with                                                |
 |                    <kbd>d</kbd>       | Detach                   |
 |                    <kbd>Space</kbd>   | choose-session           |
 |                    <kbd>a</kbd>       | Reload Config            |
@@ -23,11 +24,12 @@ alias tmux="~/Dropbox/Linux/dotfiles/tmux/tools/manage.sh i"
 |                    <kbd>s</kbd>       | Sync pane                |
 |                    <kbd>q</kbd>       | Close the current window |
 |                    <kbd>w</kbd>       | Close the current pane   |
-|                    <kbd>Tab</kbd>     | Next Window              |
-| <kbd>Shift</kbd> + <kbd>Up</kbd>      | resize-pane -U 15        |
-| <kbd>Shift</kbd> + <kbd>Down</kbd>    | resize-pane -D 15        |
-| <kbd>Shift</kbd> + <kbd>Left</kbd>    | resize-pane -L 25        |
-| <kbd>Shift</kbd> + <kbd>Right</kbd>   | resize-pane -R 25        |
+|                    <kbd>⇥ Tab<</kbd>  | Next Window              |
+|-----------------------------------------------------------------:|
+| <kbd>Shift</kbd> + <kbd>↑</kbd>       | resize-pane -U 15        |
+| <kbd>Shift</kbd> + <kbd>↓</kbd>       | resize-pane -D 15        |
+| <kbd>Shift</kbd> + <kbd>←</kbd>       | resize-pane -L 25        |
+| <kbd>Shift</kbd> + <kbd>→</kbd>       | resize-pane -R 25        |
 | <kbd>Meta</kbd>  + <kbd>Enter</kbd>   | Split (current tree)     |
 | <kbd>Meta</kbd>  + <kbd>Left</kbd>    | Swap the current pane    |
 | <kbd>Meta</kbd>  + <kbd>Right</kbd>   | Swap the current pane    |
