@@ -53,6 +53,8 @@ case "$1" in
       cmd_split_pan ;;
   "")
       cmd_split_pan ;;
-  h|--help|*)
+  h|--help)
       cmd_help ;;
+  *)
+      tmux $@ ;;
 esac
