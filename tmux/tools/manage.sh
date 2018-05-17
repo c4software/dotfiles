@@ -52,7 +52,7 @@ case "$1" in
   s|--split)
       cmd_split_pan ;;
   "")
-      cmd_split_pan ;;
+      cmd_create_or_attach ;;
   h|--help)
       cmd_help ;;
   *)
