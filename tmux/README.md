@@ -36,15 +36,17 @@ In Prefix :
 
 ### Without Prefix
 
-| Shortcuts                             | Actions                  |
-| -------------------------------------:| ------------------------:|
-| <kbd>Shift</kbd> + <kbd>↑</kbd>       | resize-pane -U 15        |
-| <kbd>Shift</kbd> + <kbd>↓</kbd>       | resize-pane -D 15        |
-| <kbd>Shift</kbd> + <kbd>←</kbd>       | resize-pane -L 25        |
-| <kbd>Shift</kbd> + <kbd>→</kbd>       | resize-pane -R 25        |
-| <kbd>Meta</kbd>  + <kbd>Enter</kbd>   | Split (current tree)     |
-| <kbd>Meta</kbd>  + <kbd>Left</kbd>    | Swap the current pane    |
-| <kbd>Meta</kbd>  + <kbd>Right</kbd>   | Swap the current pane    |
+| Shortcuts                                           | Actions                  |
+| ---------------------------------------------------:| ------------------------:|
+| <kbd>Shift</kbd> + <kbd>↑</kbd>                     | resize-pane -U 15        |
+| <kbd>Shift</kbd> + <kbd>↓</kbd>                     | resize-pane -D 15        |
+| <kbd>Shift</kbd> + <kbd>←</kbd>                     | resize-pane -L 25        |
+| <kbd>Shift</kbd> + <kbd>→</kbd>                     | resize-pane -R 25        |
+| <kbd>Meta</kbd> + <kbd>Enter</kbd>                  | Split (current tree)     |
+| <kbd>Meta</kbd> + <kbd>←</kbd>                      | Swap previous pane       |
+| <kbd>Meta</kbd> + <kbd>→</kbd>                      | Swap next pane           |
+| <kbd>Meta</kbd> + <kbd>Shift</kbd> + <kbd>←</kbd>   | Previous Window          |
+| <kbd>Meta</kbd> + <kbd>Shift</kbd> + <kbd>→</kbd>   | Next Window              |
 
 Note about Meta: By default with Mac Os, Meta Key is Esc.
 
