@@ -234,7 +234,7 @@
 	<key>EnableRendezvous</key>
 	<false/>
 	<key>HideFromDockAndAppSwitcher</key>
-	<true/>
+	<false/>
 	<key>HideTab</key>
 	<true/>
 	<key>HotkeyMigratedFromSingleToMulti</key>
@@ -253,6 +253,8 @@
 	<false/>
 	<key>NSScrollViewShouldScrollUnderTitlebar</key>
 	<false/>
+	<key>NSStatusItem Preferred Position Item-0</key>
+	<real>427</real>
 	<key>NSTableView Columns v2 KeyBingingTable</key>
 	<data>
 	YnBsaXN0MDDUAQIDBAUGNjdYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
@@ -276,12 +278,17 @@
 	</data>
 	<key>NSTableView Supports v2 KeyBingingTable</key>
 	<true/>
+	<key>NSToolbar Configuration com.apple.NSColorPanel</key>
+	<dict>
+		<key>TB Is Shown</key>
+		<integer>1</integer>
+	</dict>
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>650 499 620 392 0 0 1920 1058 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>428 197 796 473 0 0 1440 878 </string>
+	<string>209 342 796 473 0 0 1440 878 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 449 1440 429 0 0 1440 878 </string>
+	<string>0 0 570 452 0 0 1440 878 </string>
 	<key>NeverWarnAboutShortLivedSessions_461B23FC-337C-4C2F-AF8A-C9A853B12D1F</key>
 	<true/>
 	<key>NeverWarnAboutShortLivedSessions_461B23FC-337C-4C2F-AF8A-C9A853B12D1F_selection</key>
@@ -1695,9 +1702,11 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2018-05-12T16:34:27Z</date>
+	<date>2018-05-25T21:43:42Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
+	<key>StatusBarIcon</key>
+	<true/>
 	<key>StretchTabsToFillBar</key>
 	<true/>
 	<key>URLHandlersByGuid</key>
