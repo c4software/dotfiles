@@ -17,7 +17,8 @@ cmd + lalt + shift - left   :   chunkc tiling::window --swap west
 cmd + shift - f : chunkc tiling::window --toggle parent
 
 ## Pip Mode
-ralt - p : chunkc tiling::window --toggle sticky; chunkc tiling::window --grid-layout 5:5:4:0:1:1
+ralt - p : chunkc tiling::window --toggle sticky; chunkc tiling::window --grid-layout 5:5:4:0:1:1;chunkc set window_float_topmost 1
+ralt + shift - p : chunkc tiling::window --toggle unsticky; chunkc tiling::window --grid-layout 5:5:4:0:1:1;chunkc set window_float_topmost 0
 
 ## Mode
 cmd + shift - v : chunkc tiling::desktop --layout bsp
