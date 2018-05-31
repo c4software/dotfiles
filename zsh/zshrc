@@ -23,6 +23,15 @@ function serve() {
   done
 }
 
+function killp(){
+    if [ "$1" != "" ]
+    then
+			kill $(lsof -ti :$1)
+    else
+    	echo "Please specify a port killp 3000"
+    fi
+}
+
 export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
 export VISUAL=vim
 export EDITOR="$VISUAL"
