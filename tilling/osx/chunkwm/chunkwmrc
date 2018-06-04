@@ -54,8 +54,6 @@ chunkc set window_region_locked          1
 
 chunkc set mouse_modifier                fn
 
-chunkc set window_float_topmost					 0 
-
 chunkc core::load tiling.so
 
 #
