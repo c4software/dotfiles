@@ -26,7 +26,7 @@ function serve() {
 function killp(){
     if [ "$1" != "" ]
     then
-			kill $(lsof -ti :$1) || echo "No process found for port 3000"
+			kill $(lsof -ti :$1 -sTCP:LISTEN) || echo "No process found for port 3000"
     else
     	echo "Please specify a port killp 3000"
     fi
