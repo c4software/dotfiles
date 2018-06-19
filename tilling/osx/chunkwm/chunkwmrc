@@ -83,5 +83,8 @@ chunkc tiling::rule --owner \"iTerm2\" --state float
 # PHPStorm rule
 chunkc tiling::rule --owner \"PhpStorm\" --state float --except \".* - \[.*\"
 
+# PyCharm Rule
+chunkc tiling::rule --owner \"PyCharm\" --state float --except \".* - \[.*\"
+
 # Android Studio
 chunkc tiling::rule --owner \"Android Studio\" --state float --except \".* - \[.*\"
