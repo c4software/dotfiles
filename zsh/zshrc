@@ -32,6 +32,10 @@ function killp(){
     fi
 }
 
+function workon(){
+	source ~/venv/$1/bin/activate
+}
+
 export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
 export VISUAL=vim
 export EDITOR="$VISUAL"
