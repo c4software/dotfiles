@@ -1,5 +1,5 @@
 # Launch Terminal
-cmd - return    :    open -na /Applications/iTerm.app
+cmd - return    :    open -na /Applications/kitty.app
 
 ## Resize
 cmd + shift - left 	: chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge west
