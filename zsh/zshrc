@@ -53,3 +53,7 @@ then
 	export PATH="/usr/local/opt/python@2/bin:$PATH"
 	. /usr/local/etc/profile.d/z.sh
 fi
+
+# Fix alt + {left, right} ENFIN !
+bindkey "^[[1;3C" forward-word
+bindkey "^[[1;3D" backward-word
