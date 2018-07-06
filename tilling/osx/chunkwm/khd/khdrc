@@ -28,3 +28,4 @@ cmd + shift - l : chunkc tiling::window --toggle fullscreen
 cmd + shift - r : chunkc tiling::desktop --rotate 90
 
 lalt - w : khd -w "c4sofware@gmail.com"
+lalt - m : khd -w ".observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io()).subscribe("
