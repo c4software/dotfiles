@@ -4,7 +4,6 @@ filetype off
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'matchit.zip'
 Plugin 'Gundo'
@@ -12,6 +11,10 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'Shougo/neocomplcache'
 Plugin 'Shougo/neosnippet'
 Plugin 'ervandew/supertab'
+Plugin 'moll/vim-node'
+Plugin 'scrooloose/nerdtree'
+Plugin 'leafgarland/typescript-vim'
+call vundle#end()
 
 """""""""""""""""""" GLOBAL
 let mapleader=","
@@ -80,3 +83,5 @@ autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+
+map <silent> <C-n> :NERDTreeToggle<CR>
