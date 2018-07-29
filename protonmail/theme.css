@@ -2300,3 +2300,23 @@ li.sidebarApp-item.navigationItem-container.active {
 .paginator-dropdown-list{
   padding: 0;
 }
+
+.conversation:not(.read) {
+  font-weight: 900 !important;
+}
+
+span.senders.ellipsis {
+  font-weight: inherit !important;
+}
+
+.location.message-summary-folder.folders {
+  background: #ffffff !important;
+}
+
+.listAttachments-container > header{
+  display: none !important;
+}
+
+.listAttachments-list {
+  margin-top: 10px !important;
+}
