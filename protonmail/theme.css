@@ -492,10 +492,6 @@ body.mobileMode #pm_sidebar section.sidebar ul.menu li button {
   background: #ffffff;
 }
 
-#conversation-view .message .summary .summary-right {
-    background: #ffffff;
-}
-
 #conversation-view .message > div.summary .labels,
 #conversation-view .message > div.summary .status,
 #conversation-view .message > div.summary .time {
@@ -2254,4 +2250,25 @@ input[type='range'].pm_range:focus::-ms-fill-upper {
 
 .pm_badge.warning {
   background-color: #fde475;
+}
+
+/**
+* Modification Valentin Brosseau
+*/
+
+body {
+  background-color: #f2f2f2 !important;
+}
+
+header.headerSecured-container {
+  box-shadow: 0 0 4px rgba(0,0,0,.14), 0 4px 8px rgba(0,0,0,.28);
+  margin-bottom: 20px;
+} 
+
+span.senders.ellipsis {
+  font-weight: 300 !important;
+}
+
+#conversation-view .message .summary .summary-right {
+  background: #ffffff;
 }
