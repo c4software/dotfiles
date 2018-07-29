@@ -1583,6 +1583,7 @@ body #conversation-list-rows .conversation .expiration {
 
 body #conversation-list-rows .conversation {
   box-shadow: inset 0 -1px 0 #e0e0e0;
+  padding: 10px 0;
 }
 
 body #conversation-list-rows .conversation .expiration {
@@ -2260,6 +2261,10 @@ body {
   background-color: #f2f2f2 !important;
 }
 
+body #conversation-list-rows .conversation {
+  padding: 10px 0;
+}
+
 header.headerSecured-container {
   box-shadow: 0 0 4px rgba(0,0,0,.14), 0 4px 8px rgba(0,0,0,.28);
   margin-bottom: 20px;
@@ -2271,4 +2276,27 @@ span.senders.ellipsis {
 
 #conversation-view .message .summary .summary-right {
   background: #ffffff;
+}
+
+.conversation.marked::before {
+  width: 2px !important;
+}
+
+li.sidebarApp-item.navigationItem-container.active {
+  background-color: rgba(0,0,0,.05);
+  border-radius: 2px;
+  color: #212121;
+  font-weight: bold;
+}
+
+.conversation-wrapper {
+  padding: 10px 25px 0 25px;
+}
+
+.pm_toolbar {
+  box-shadow: none;
+}
+
+.paginator-dropdown-list{
+  padding: 0;
 }
