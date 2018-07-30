@@ -2289,12 +2289,24 @@ li.sidebarApp-item.navigationItem-container.active {
   font-weight: bold;
 }
 
+li.sidebarApp-item.navigationItem-container {
+  line-height: 40px;
+  height: 40px;
+}
+
+body section.sidebar ul.menu li a i.fa,
+body section.sidebar ul.menu li:hover a i.fa {
+  font-size: 1.3em !important;
+  margin-right: 15px;
+}
+
 .conversation-wrapper {
   padding: 10px 25px 0 25px;
 }
 
 .pm_toolbar {
-  box-shadow: none;
+  padding: 10px 10px 10px 20px !important;
+  box-shadow: none !important;
 }
 
 .paginator-dropdown-list{
