@@ -13,8 +13,6 @@ cmd + lalt + shift - right  :   chunkc tiling::window --swap east
 cmd + lalt + shift - down   :   chunkc tiling::window --swap south
 cmd + lalt + shift - left   :   chunkc tiling::window --swap west
 
-## Toggle Float
-cmd + shift - f : chunkc tiling::window --toggle parent
 
 ## Pip Mode
 # ralt - p : chunkc tiling::window --grid-layout 5:5:4:0:1:1;chunkc set window_float_topmost 1
@@ -22,10 +20,11 @@ cmd + shift - f : chunkc tiling::window --toggle parent
 ## Mode
 cmd + shift - v : chunkc tiling::desktop --layout bsp
 cmd + shift - d : chunkc tiling::desktop --layout monocle
+cmd + shift - f : chunkc tiling::desktop --layout float
 cmd + shift - l : chunkc tiling::window --toggle fullscreen
 
 ## Rotate
 cmd + shift - r : chunkc tiling::desktop --rotate 90
 
 lalt - w : khd -w "c4sofware@gmail.com"
-lalt - c : khd -w ".observeOn(AndroidSchedulers.mainThread())";khd -p "0x24";khd -w ".subscribeOn(Schedulers.io())";khd -p "0x24";khd -w ".subscribe();";khd -p "0x24";khd -w "disposables.add(d);"
+lalt - c : khd -w ".observeOn(AndroidSchedulers.mainThread())";khd -p "0x24";khd -w ".subscribeOn(Schedulers.io())";khd -p "0x24";khd -w ".subscribe(result -> {}, Timber::e);";khd -p "0x24";khd -p "0x24";khd -w "disposables.add(d);"
