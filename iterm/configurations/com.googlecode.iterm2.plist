@@ -253,6 +253,11 @@
 	<false/>
 	<key>NSScrollViewShouldScrollUnderTitlebar</key>
 	<false/>
+	<key>NSSplitView Subview Frames NSColorPanelSplitView</key>
+	<array>
+		<string>0.000000, 0.000000, 224.000000, 263.000000, NO, NO</string>
+		<string>0.000000, 264.000000, 224.000000, 43.000000, NO, NO</string>
+	</array>
 	<key>NSStatusItem Preferred Position Item-0</key>
 	<real>427</real>
 	<key>NSTableView Columns v2 KeyBingingTable</key>
@@ -285,10 +290,12 @@
 	</dict>
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>650 499 620 392 0 0 1920 1058 </string>
+	<key>NSWindow Frame SessionsPreferences</key>
+	<string>424 109 606 469 0 0 1920 1058 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>209 342 796 473 0 0 1440 878 </string>
+	<string>514 186 796 486 0 0 1920 1058 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 570 452 0 0 1440 878 </string>
+	<string>0 605 1920 453 0 0 1920 1058 </string>
 	<key>NeverWarnAboutShortLivedSessions_461B23FC-337C-4C2F-AF8A-C9A853B12D1F</key>
 	<true/>
 	<key>NeverWarnAboutShortLivedSessions_461B23FC-337C-4C2F-AF8A-C9A853B12D1F_selection</key>
@@ -1702,7 +1709,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2018-05-25T21:43:42Z</date>
+	<date>2018-08-13T07:36:19Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>StatusBarIcon</key>
@@ -1716,6 +1723,6 @@
 	<key>WordCharacters</key>
 	<string>/-+\~_.</string>
 	<key>iTerm Version</key>
-	<string>3.1.6</string>
+	<string>3.2.0</string>
 </dict>
 </plist>
