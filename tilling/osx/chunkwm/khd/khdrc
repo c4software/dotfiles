@@ -1,5 +1,5 @@
 # Activity Monitor
-shift + alt - escape : open "/Applications/Utilities/Activity Monitor.app"
+shift + alt - escape : open "/Applications/kitty.app/Contents/MacOS/kitty htop"
 
 # Launch Terminal
 cmd - return    :    open -na /Applications/kitty.app
