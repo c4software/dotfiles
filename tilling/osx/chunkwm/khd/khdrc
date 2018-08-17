@@ -1,3 +1,6 @@
+# Activity Monitor
+shift + alt - escape : open "/Applications/Utilities/Activity Monitor.app"
+
 # Launch Terminal
 cmd - return    :    open -na /Applications/kitty.app
 
