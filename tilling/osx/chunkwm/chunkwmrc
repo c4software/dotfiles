@@ -79,6 +79,7 @@ chunkc tiling::rule --owner \"Activity Monitor\" --state float
 chunkc tiling::rule --owner \"TextEdit\" --state float
 chunkc tiling::rule --owner \"Calculator\" --state float
 chunkc tiling::rule --owner \"iTerm2\" --state float
+chunkc tiling::rule --owner \"Slack\" --state float
 
 # PHPStorm rule
 chunkc tiling::rule --owner \"PhpStorm\" --state float --except \".* - \[.*\"

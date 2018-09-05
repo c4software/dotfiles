@@ -8,6 +8,8 @@ alias tmux="~/Dropbox/Linux/dotfiles/tmux/tools/manage.sh"
 alias passtype="PASSWORD_STORE_ENABLE_EXTENSIONS=true pass type"
 alias apk="adb install -r"
 alias logcat="adb logcat"
+alias todaystory="git log --pretty=format:'- %s' --after='yesterday'"
+alias yesterdaystory="git log --pretty=format:'- %s' --since=yesterday --before=0am"
 
 function serve() {
   echo "Scan open port 8888…8899"
