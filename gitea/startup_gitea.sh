@@ -20,7 +20,7 @@ stop)
 	;;
 start)
 	echo "Start Gitea"
-	su $GITEA_USER -c "cd $GITEA_ROOT && nohup ./gitea web > /dev/null 2>&1 & echo \$! > run.pid"
+	su $GITEA_USER -c "cd $GITEA_ROOT && nohup ./gitea web --pid $GITEA_ROOT/run.pid > /dev/null 2>&1 &"
 	;;
 restart)
 	$0 stop
