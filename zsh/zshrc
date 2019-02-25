@@ -5,7 +5,7 @@ fi
 
 alias irssi='ssh server -t "tmux attach"'
 alias tmux="~/Dropbox/Linux/dotfiles/tmux/tools/manage.sh"
-alias passtype="PASSWORD_STORE_ENABLE_EXTENSIONS=true pass type"
+alias passtype="PASSWORD_STORE_ENABLE_EXTENSIONS=true pass type -a"
 alias apk="adb install -r"
 alias logcat="adb logcat"
 alias todaystory="git log --pretty=format:'- %s' --after='yesterday'"
