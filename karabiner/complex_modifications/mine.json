@@ -1,0 +1,25 @@
+{
+  "title": "Bépo Valentin Brosseau",
+  "rules": [
+    {
+      "description": "Option , => enter",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "g",
+            "modifiers": {
+              "mandatory": ["option"],
+              "optional": []
+            }
+          },
+          "to": [
+            {
+              "key_code": "return_or_enter"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
