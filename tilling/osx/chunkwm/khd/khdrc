@@ -2,7 +2,7 @@
 shift + alt - escape : open "/Applications/kitty.app/Contents/MacOS/kitty htop"
 
 # Launch Terminal
-cmd - return    :    open -na /Applications/kitty.app
+cmd - return    :    open -a /System/Applications/Utilities/Terminal.app
 
 ## Resize
 #cmd + shift - left 	: chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge west
@@ -35,4 +35,4 @@ cmd + shift - l : chunkc tiling::window --toggle fullscreen
 cmd + shift - r : chunkc tiling::desktop --rotate 90
 
 ## lalt - w : khd -w "c4sofware@gmail.com"
-lalt - c : khd -w ".observeOn(AndroidSchedulers.mainThread())";khd -p "0x24";khd -w ".subscribeOn(Schedulers.io())";khd -p "0x24";khd -w ".subscribe(result -> {}, Timber::e);";khd -p "0x24";khd -p "0x24";khd -w "disposables.add(d);"
+lalt - c : khd -p "0x24";khd -w ".observeOn(AndroidSchedulers.mainThread())";khd -p "0x24";khd -w ".subscribeOn(Schedulers.io())";khd -p "0x24";khd -w ".subscribe(result -> {}, Timber::e);";khd -p "0x24";khd -p "0x24";khd -w "disposables.add(d);"
