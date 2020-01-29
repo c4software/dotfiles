@@ -11,6 +11,8 @@ alias apk="adb install -r"
 alias logcat="adb logcat"
 alias todaystory="git log --pretty=format:'- %s' --after='yesterday'"
 alias yesterdaystory="git log --pretty=format:'- %s' --since=yesterday --before=0am"
+alias git-no-sign="git -c commit.gpgsign=false"
+alias git-last-tag="git describe --tags --abbrev=0"
 alias serves="python ~/Dropbox/Linux/dotfiles/https/serves.py"
 
 function serve() {
