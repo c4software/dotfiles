@@ -447,8 +447,8 @@ sudo systemctl enable $daemonname.service
 sudo systemctl start $daemonname.service
 
 if [ -d "/home/pi/Desktop" ]; then
-	sudo wget http://download.argon40.com/ar1config.png -O /usr/share/pixmaps/ar1config.png
-	sudo wget http://download.argon40.com/ar1uninstall.png -O /usr/share/pixmaps/ar1uninstall.png
+	sudo wget https://raw.githubusercontent.com/c4software/dotfiles/master/pi/argon/ar1config.png -O /usr/share/pixmaps/ar1config.png
+	sudo wget https://raw.githubusercontent.com/c4software/dotfiles/master/pi/argon/ar1uninstall.png -O /usr/share/pixmaps/ar1uninstall.png
 	# Create Shortcuts
 	shortcutfile="/home/pi/Desktop/argonone-config.desktop"
 	echo "[Desktop Entry]" > $shortcutfile
