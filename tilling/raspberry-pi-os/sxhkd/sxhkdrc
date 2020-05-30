@@ -1,0 +1,60 @@
+#
+# BSPWM HOTKEYS
+#
+
+# Termine Bspwm
+alt + super + Escape
+	bspc quit
+
+# Ferme la fenetre courante
+super + shift + c
+	bspc node -c
+
+## Mode
+super + {q,g,h}
+	bspc node -t {tiled,fullscreen,floating}
+
+## Précédent bureau
+super + Tab
+	bspc desktop -f last
+
+## Redimensionnement
+alt + {Left,Down,Up,Right}
+	bspc node -z {right -20 0,bottom 0 20,top 0 -20,left 20 0}
+
+## Alt Tab
+alt + Tab
+	bspc node -f next
+
+## Rotation de l’arbre
+super + shift + r
+	bspc desktop -R 90
+
+## Changement de bureau
+super + {Left,Right}
+	bspc desktop -f {prev,next}
+
+## Gestion de la souris
+## Redimensionnement et déplacement en fonction du bouton de la souris
+super + button{1-3}
+	bspc pointer -g {move,resize_side,resize_corner}
+
+## Lancement d’un terminal
+super + Return
+	urxvt
+
+## Vérouillage
+control + alt + l
+	{sh $HOME/.config/bspwm/lock.sh}
+
+## Lancement de dmenu
+super + d
+  j4-dmenu-desktop
+
+## Gestion du volume sonore
+ctrl + {Up,Down}
+  amixer sset Master playback 5%{+,-}
+
+# Rechargement de la configuration de sxhkd
+super + Escape
+	pkill -USR1 -x sxhkd
