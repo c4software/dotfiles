@@ -36,3 +36,4 @@ setxkbmap fr bepo
 feh --randomize --bg-scale /usr/share/rpd-wallpaper/*.jpg &
 xset -b
 sxhkd -m -1 &
+~/.config/lemonbar/panel.sh | lemonbar -p -g 1900x22+10+4
