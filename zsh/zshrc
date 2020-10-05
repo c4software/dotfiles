@@ -43,7 +43,10 @@ function workon(){
 	source ~/venv/$1/bin/activate
 }
 
-export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
+# Unix
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+# OSX
+# export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
