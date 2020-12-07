@@ -16,7 +16,7 @@ case "$1" in
 
 stop)
 	echo "Stop Gitea..."
-	kill $(ps -o pid= --ppid "`$GITEA_PID`")
+	kill $(ps -o pid= "`$GITEA_PID`")
 	;;
 start)
 	echo "Start Gitea"
