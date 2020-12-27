@@ -43,10 +43,6 @@ function workon(){
 	source ~/venv/$1/bin/activate
 }
 
-# Unix
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-# OSX
-# export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
@@ -61,7 +57,17 @@ then
 	export PATH="$PATH:$HOME/.composer/vendor/bin"
 
 	export PATH="/usr/local/opt/python@2/bin:$PATH"
+  export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
 	. /usr/local/etc/profile.d/z.sh
+fi
+
+if [[ `uname` == 'Linux' ]]
+then
+  export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+	
+  alias fastpass="openssl rand -base64 32 | xclip -selection clipboard && echo 'The generated password is in your clipboard'"
+	export PATH=".local/bin:$PATH"
+	. .local/bin/z.sh
 fi
 
 # Fix alt + {left, right} ENFIN !
