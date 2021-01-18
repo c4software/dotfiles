@@ -15,6 +15,7 @@ alias git-no-sign="git -c commit.gpgsign=false"
 alias git-last-tag="git describe --tags --abbrev=0"
 alias serves="python ~/Dropbox/Linux/dotfiles/https/serves.py"
 alias dropbox-ignore-this="xattr -w com.dropbox.ignored 1 ."
+alias serve-php='php -S localhost:9000'
 
 function serve() {
   echo "Scan open port 8888…8899"
