@@ -68,7 +68,7 @@ then
 	
   alias fastpass="openssl rand -base64 32 | xclip -selection clipboard && echo 'The generated password is in your clipboard'"
 	export PATH=".local/bin:$PATH"
-	. .local/bin/z.sh
+	. ~/.local/bin/z.sh
 fi
 
 # Fix alt + {left, right} ENFIN !
