@@ -14,8 +14,11 @@ $ ./setup.sh
 - xtitle
 - ttf-font-awesome
 - ttf-roboto
+- nerd-fonts-sf-mono
 - polybar
-- urxvt
+- kitty
+- scrot
+- i3lock
 
 ## .xinitrc
 
