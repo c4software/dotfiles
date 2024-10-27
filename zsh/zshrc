@@ -1,3 +1,10 @@
+#
+# Executes commands at the start of an interactive session.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
@@ -5,6 +12,7 @@ fi
 
 alias irssi='ssh server -t "tmux attach"'
 alias tmux="~/Dropbox/Linux/dotfiles/tmux/tools/manage.sh"
+alias byobu="BYOBU_PYTHON=/usr/bin/python byobu"
 alias passtype="PASSWORD_STORE_ENABLE_EXTENSIONS=true pass type -a"
 alias pass="PASSWORD_STORE_ENABLE_EXTENSIONS=true pass"
 alias apk="adb install -r"
@@ -14,8 +22,11 @@ alias yesterdaystory="git log --pretty=format:'- %s' --since=yesterday --before=
 alias git-no-sign="git -c commit.gpgsign=false"
 alias git-last-tag="git describe --tags --abbrev=0"
 alias serves="python ~/Dropbox/Linux/dotfiles/https/serves.py"
+alias balena='NODE_EXTRA_CA_CERTS="/Users/valentinbrosseau/bin/balena-cli/ca.crt" balena'
 alias dropbox-ignore-this="xattr -w com.dropbox.ignored 1 ."
 alias serve-php='php -S localhost:9000'
+alias kamal='[ -f .env ] && source .env; docker run -it --rm -e DOCKER_OPTS="--tls-verify=false" -v "${HOME}/.ssh/config:/root/.ssh/config" -v "${PWD}:/workdir" -v "/run/host-services/ssh-auth.sock:/run/host-services/ssh-auth.sock" -e SSH_AUTH_SOCK="/run/host-services/ssh-auth.sock" -v /var/run/docker.sock:/var/run/docker.sock ghcr.io/basecamp/kamal:v2.2.0'
+alias openLinkAndroid='adb shell am start -a android.intent.action.VIEW -d'
 
 function serve() {
   echo "Scan open port 8888…8899"
@@ -25,25 +36,27 @@ function serve() {
     if [ $PDISPO -eq 0 ]
       then
         echo "Open port found : $PORTNUMBER"
-        python3 -m http.server $PORTNUMBER
+        python3 ~/Dropbox/Python/dev/log-server/main.py $PORTNUMBER
         break
     fi
   done
 }
 
 function killp(){
-    if [ "$1" != "" ]
+	if [ "$1" != "" ]
     then
-			kill $(lsof -ti :$1 -sTCP:LISTEN) || echo "No process found for port 3000"
-    else
-    	echo "Please specify a port killp 3000"
-    fi
+			kill $(lsof -ti :$1 -sTCP:LISTEN) || echo "No process found for port $1"
+		else
+			echo "Please specify a port killp 3000"
+	fi
+
 }
 
 function workon(){
 	source ~/venv/$1/bin/activate
 }
 
+#export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
@@ -51,30 +64,57 @@ if [[ `uname` == 'Darwin' ]]
 then
 	alias fastpass="openssl rand -base64 32 | pbcopy - && echo 'The generated password is in your clipboard'"
 	alias ss="netstat"
-	export ANDROID_HOME=$HOME/Library/Android/sdk/
-	export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/JDK/Contents/Home/"
-	export PATH=${PATH}:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/tools
+	#export ANDROID_HOME=$HOME/Library/Android/sdk
+	#export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/JDK/Contents/Home/"
+	#export PATH=$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools
 
 	export PATH="$PATH:$HOME/.composer/vendor/bin"
 
 	export PATH="/usr/local/opt/python@2/bin:$PATH"
 
-  export GPG_TTY=$(tty)
-  export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-  gpg-connect-agent updatestartuptty /bye > /dev/null
+	export PATH="$PATH:$HOME/sdk/flutter/bin"
 
-	. /usr/local/etc/profile.d/z.sh
+	# Remplacé par : https://github.com/agkozak/zsh-z#for-prezto-users
+	# . $HOME/scripts/z.sh
+
+	#source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
+	#source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
+
+	#export GPG_TTY=$(tty)
+	#export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+	#gpg-connect-agent updatestartuptty /bye > /dev/null
 fi
 
-if [[ `uname` == 'Linux' ]]
-then
-  export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-	
-  alias fastpass="openssl rand -base64 32 | xclip -selection clipboard && echo 'The generated password is in your clipboard'"
-	export PATH=".local/bin:$PATH"
-	. ~/.local/bin/z.sh
-fi
-
-# Fix alt + {left, right} ENFIN !
 bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word
+
+#export NVM_DIR="$HOME/.nvm"
+#  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+#  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+  autoload -Uz compinit
+  compinit
+fi
+
+# Customize to your needs...
+export PATH="$HOME/.local/bin/:$PATH"
+export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/"
+
+# pnpm
+export PNPM_HOME="/Users/valentinbrosseau/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+export ZELLIJ_AUTO_ATTACH=true
+#eval "$(zellij setup --generate-auto-start zsh)"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/valentinbrosseau/.cache/lm-studio/bin"
