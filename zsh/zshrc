@@ -127,3 +127,11 @@ fi
 
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/valentinbrosseau/.cache/lm-studio/bin"
+
+# Remplacement du reverse search avec fzf
+if command -v fzf &> /dev/null; then
+  # Activer la complétion Zsh
+  [[ -f /opt/homebrew/opt/fzf/shell/completion.zsh ]] && source /opt/homebrew/opt/fzf/shell/completion.zsh
+  # Activer les raccourcis clavier Zsh
+  [[ -f /opt/homebrew/opt/fzf/shell/key-bindings.zsh ]] && source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
+fi
