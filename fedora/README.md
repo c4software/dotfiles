@@ -29,12 +29,13 @@ The scripts and configurations in this repository are specifically designed for 
 ### Terminal Applications
 
 * **btop**: A resource monitor that shows usage and stats for processors, memory, disks, network, and processes.
-* **exa**: A modern replacement for the `ls` command.
+* **htop**: An interactive process viewer for Unix systems.
 * **fastfetch**: A tool for fetching system information and displaying it in a pretty way.
 * **fd-find**: A simple, fast, and user-friendly alternative to `find`.
 * **fzf**: A command-line fuzzy finder.
 * **ripgrep**: A line-oriented search tool that recursively searches the current directory for a regex pattern.
 * **zoxide**: A smarter `cd` command that learns your habits.
+* **eza**: A modern replacement for `ls` written in Rust.
 * **bat**: A `cat` clone with syntax highlighting and Git integration.
 * **jq**: A lightweight and flexible command-line JSON processor.
 * **xmlstarlet**: A command-line XML toolkit.
@@ -44,6 +45,8 @@ The scripts and configurations in this repository are specifically designed for 
 * **lazygit**: A simple terminal UI for git commands.
 * **lazydocker**: A simple terminal UI for docker and docker-compose.
 * **gum**: A tool for glamorous shell scripts.
+* **ncdu**: A disk usage analyzer with an ncurses interface.
+* **Starship**: A minimal, blazing-fast, and extremely customizable prompt for any shell. [https://starship.rs/](https://starship.rs/)
 
 ### Desktop Applications
 

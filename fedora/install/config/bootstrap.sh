@@ -17,3 +17,9 @@ git config --global init.defaultBranch master
 
 # Install Bash configuration
 mv ./default/bashrc ~/.bashrc
+
+# Installation de Starship
+curl -sS https://starship.rs/install.sh | sh -s -- -b "$HOME/.local/bin"
+if ! grep -q 'eval "$(starship init bash)"' ~/.bashrc; then
+  echo 'eval "$(starship init bash)"' >>~/.bashrc
+fi
