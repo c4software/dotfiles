@@ -1,0 +1,27 @@
+function serve() {
+  echo "Scan open port 8888…8899"
+  for (( PORTNUMBER = 8888; PORTNUMBER < 8899; PORTNUMBER++ )); do
+    # Test si port dispo
+    PDISPO=`ss -an | grep $PORTNUMBER | grep -i listen | wc -l | awk '{print $1}'`
+    if [ $PDISPO -eq 0 ]
+      then
+        echo "Open port found : $PORTNUMBER"
+        python3 ~/Dropbox/Python/dev/log-server/main.py $PORTNUMBER
+        break
+    fi
+  done
+}
+
+function killp(){
+	if [ "$1" != "" ]
+    then
+			kill $(lsof -ti :$1 -sTCP:LISTEN) || echo "No process found for port $1"
+		else
+			echo "Please specify a port killp 3000"
+	fi
+
+}
+
+function workon(){
+	source ~/venv/$1/bin/activate
+}

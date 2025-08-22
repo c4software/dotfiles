@@ -1,0 +1,56 @@
+# File system
+alias ls='eza -lh --group-directories-first --icons=auto'
+alias lsa='ls -a'
+alias lt='eza --tree --level=2 --long --icons --git'
+alias lta='lt -a'
+alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
+alias cd="zd"
+zd() {
+  if [ $# -eq 0 ]; then
+    builtin cd ~ && return
+  elif [ -d "$1" ]; then
+    builtin cd "$1"
+  else
+    z "$@" && printf " \U000F17A9 " && pwd || echo "Error: Directory not found"
+  fi
+}
+open() {
+  xdg-open "$@" >/dev/null 2>&1 &
+}
+
+# Directories
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+# Tools
+alias g='git'
+alias d='docker'
+alias r='rails'
+n() { if [ "$#" -eq 0 ]; then nvim .; else nvim "$@"; fi; }
+
+# Git
+alias gcm='git commit -m'
+alias gcam='git commit -a -m'
+alias gcad='git commit -a --amend'
+
+alias irssi='ssh vbrosseau@lesite.us -p 1036 -t "tmux attach"'
+alias tmux="~/Dropbox/Linux/dotfiles/tmux/tools/manage.sh"
+alias byobu="BYOBU_PYTHON=/usr/bin/python byobu"
+alias passtype="PASSWORD_STORE_ENABLE_EXTENSIONS=true pass type -a"
+alias pass="PASSWORD_STORE_ENABLE_EXTENSIONS=true pass"
+alias apk="adb install -r"
+alias logcat="adb logcat"
+alias todaystory="git log --pretty=format:'- %s' --after='yesterday'"
+alias yesterdaystory="git log --pretty=format:'- %s' --since=yesterday --before=0am"
+alias git-no-sign="git -c commit.gpgsign=false"
+alias git-last-tag="git describe --tags --abbrev=0"
+alias serves="python ~/Dropbox/Linux/dotfiles/https/serves.py"
+alias balena='NODE_EXTRA_CA_CERTS="/Users/valentinbrosseau/bin/balena-cli/ca.crt" balena'
+alias dropbox-ignore-this="xattr -w com.dropbox.ignored 1 ."
+alias serve-php='php -S localhost:9000'
+#alias kamal='[ -f .env ] && source .env; docker run -it --rm -e DOCKER_OPTS="--tls-verify=false" -v "${HOME}/.ssh/config:/root/.ssh/config" -v "${PWD}:/workdir" -v "/run/host-services/ssh-auth.sock:/run/host-services/ssh-auth.sock" -e SSH_AUTH_SOCK="/run/host-services/ssh-auth.sock" -v /var/run/docker.sock:/var/run/docker.sock ghcr.io/basecamp/kamal:v2.2.0'
+alias openLinkAndroid='adb shell am start -a android.intent.action.VIEW -d'
+alias spotdl='docker run --rm -v "$(pwd):/music" spotdl/spotify-downloader --output "{artist}/{album}/{track-number} - {title}.{output-ext}" download'
+alias ytdl='docker run --rm -v .:/downloads -it jauderho/yt-dlp:latest -x --audio-format mp3 --audio-quality 0 --embed-metadata -o "%(uploader)s/%(title)s [%(id)s].%(ext)s"'
+alias repo='open "$(git remote get-url origin | sed -E "s#git@([^:]+):#https://\1/#; s#\.git\$##")"'
