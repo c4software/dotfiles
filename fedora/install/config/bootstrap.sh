@@ -15,3 +15,7 @@ curl -sS https://starship.rs/install.sh | sh -s -- -b "$HOME/.local/bin"
 if ! grep -q 'eval "$(starship init bash)"' ~/.bashrc; then
   echo 'eval "$(starship init bash)"' >>~/.bashrc
 fi
+
+# Installation du layout de clavier Bépo Dev
+echo "Installing Bépo Dev keyboard layout..."
+sudo wget https://raw.githubusercontent.com/c4software/bepo_developpeur/master/linux/bepoDev -O /usr/share/X11/xkb/symbols/bepoDev

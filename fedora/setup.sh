@@ -17,3 +17,9 @@ done
 
 # Installation des WebApps de base
 source ./install/config/webapp.sh
+
+# Asking for user confirmation before enable hyprland
+#read -p "Do you want to install Hyprland and default configuration? (y/n) " enable_hyprland
+# if [[ $enable_hyprland == [yY] ]]; then
+#   source ./install/hyprland/setup.sh
+# fi
