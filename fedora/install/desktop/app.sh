@@ -26,3 +26,7 @@ curl -sL \
         --directory="${HOME}/.local/bin" \
         --wildcards */jetbrains-toolbox \
         --strip-components=1
+
+# Ghostty
+dnf copr enable scottames/ghostty
+dnf install -y ghostty

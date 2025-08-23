@@ -59,6 +59,7 @@ The scripts and configurations in this repository are specifically designed for 
 * **Jetbrains Toolbox**: A control panel for JetBrains tools.
 * **Signal**: A cross-platform centralized encrypted messaging service.
 * **Btrfs-Assistant**: A GUI tool for managing Btrfs filesystems.
+* **Ghostty**: A terminal-based UI.
 
 ### Development Tools
 
