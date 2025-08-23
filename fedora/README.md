@@ -58,6 +58,7 @@ The scripts and configurations in this repository are specifically designed for 
 * **ProtonVPN**: A VPN service.
 * **Jetbrains Toolbox**: A control panel for JetBrains tools.
 * **Signal**: A cross-platform centralized encrypted messaging service.
+* **Btrfs-Assistant**: A GUI tool for managing Btrfs filesystems.
 
 ### Development Tools
 

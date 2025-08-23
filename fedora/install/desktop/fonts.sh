@@ -1,5 +1,4 @@
-#!/bin/bash
-
+echo -e "Installing fonts"
 sudo dnf install -y \
     fontawesome-fonts \
     cascadia-code-fonts \

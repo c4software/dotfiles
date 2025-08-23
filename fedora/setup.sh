@@ -14,3 +14,6 @@ done
 for script in ./install/desktop/*.sh; do
   source "$script"
 done
+
+# Installation des WebApps de base
+source ./install/config/webapp.sh
