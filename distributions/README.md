@@ -38,4 +38,3 @@ This script detects your distribution (`pacman` → Arch, `dnf` → Fedora) and 
 
 - Add your script to the relevant distribution folder.
 - Open a pull request with a clear description of what your script installs and why.
-
