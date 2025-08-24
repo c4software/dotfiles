@@ -1,40 +1,41 @@
 # Dotfiles — Distributions
 
-Ce dossier contient les scripts d'installation et de configuration pour plusieurs distributions Linux (Actuellement : Arch Linux et Fedora). L'objectif est d'automatiser l'installation d'applications, polices, outils de développement et configurations utilisateur.
+This folder contains installation and configuration scripts for multiple Linux distributions (currently: Arch Linux and Fedora). The goal is to automate the setup of applications, fonts, development tools, and user configurations.
 
-## Prérequis
+## Prerequisites
 
-- Accès sudo sur la machine.
-- Connexion Internet.
+- Sudo access on the machine.
+- Internet connection.
 
-## Utilisation
+## Usage
 
-1. Depuis le répertoire `distributions`, exécuter :
+1. From the `distributions` directory, run:
 
-```bash
-./setup.sh
-```
+    ```bash
+    ./setup.sh
+    ```
 
-Ce script détecte la distribution (pacman → Arch, dnf → Fedora) et lance la procédure correspondante.
+This script detects your distribution (`pacman` → Arch, `dnf` → Fedora) and launches the appropriate setup process.
 
-## Structure principale
+## Main Structure
 
-- `setup.sh` : script d'entrée qui charge le bootstrap commun et choisit la distribution.
-- `archlinux/` : scripts et sous-dossiers pour Arch Linux.
-- `fedora/` : scripts et sous-dossiers pour Fedora.
-- `common/` : scripts partagés (ex : installation de webapps, bootstrap de config).
-- Chaque distribution contient un dossier `install/` avec :
-  - `apps/` : installation d'applications CLI et outils.
-  - `desktop/` : applications et polices pour environnement de bureau.
-  - `hyprland/`, `config/`, etc. selon la distribution.
+- `setup.sh`: Entry script that loads the common bootstrap and selects the distribution.
+- `archlinux/`: Scripts and subfolders for Arch Linux.
+- `fedora/`: Scripts and subfolders for Fedora.
+- `common/`: Shared scripts (e.g., webapp installation, config bootstrap).
+- Each distribution contains an `install/` folder with:
+  - `apps/`: CLI applications and tools installation.
+  - `desktop/`: Desktop environment apps and fonts.
+  - `hyprland/`, `config/`, etc. depending on the distribution.
 
-## Personnalisation
+## Customization
 
-- Ajouter/éditer des scripts dans `install/apps/` ou `install/desktop/` pour étendre la configuration.
-- Les fichiers de configuration utilisateur sont copiés depuis `../config/` par le bootstrap — modifier ces sources pour changer les configs déployées.
-- Les binaires/scripts fournis sont copiés dans `~/.local/bin` via `common/install/bootstrap.sh`.
+- Add or edit scripts in `install/apps/` or `install/desktop/` to extend the configuration.
+- User configuration files are copied from `../config/` by the bootstrap — modify these sources to change deployed configs.
+- Provided binaries/scripts are copied to `~/.local/bin` via `common/install/bootstrap.sh`.
 
-## Contribution
+## Contributing
 
-- Ajouter un script dans le dossier correspondant à la distribution.
-- Ouvrir une pull request avec une description claire de ce que le script installe et pourquoi.
+- Add your script to the relevant distribution folder.
+- Open a pull request with a clear description of what your script installs and why.
+
