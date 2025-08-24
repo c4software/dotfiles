@@ -1,0 +1,38 @@
+#!/bin/bash
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+echo -e "Déplacement des fichiers de configuration..."
+
+cp -R "$SCRIPT_DIR/../config/"* ~/.config/
+
+# Ensure local bin exists
+mkdir -p ~/.local/bin
+
+# Ensure application directory exists for update-desktop-database
+mkdir -p ~/.local/share/applications
+
+# Installation des scripts dans ~.local/bin
+mkdir -p ~/.local/bin
+cp "$SCRIPT_DIR/../bin/"* ~/.local/bin/
+
+# Install Bash configuration
+mv "$SCRIPT_DIR/../default/bashrc" ~/.bashrc
+
+# Installation de Starship
+curl -sS https://starship.rs/install.sh | sh -s -- -b "$HOME/.local/bin"
+if ! grep -q 'eval "$(starship init bash)"' ~/.bashrc; then
+  echo 'eval "$(starship init bash)"' >>~/.bashrc
+fi
+
+# Installation du layout de clavier Bépo Dev
+echo "Installing Bépo Dev keyboard layout (Système)..."
+sudo wget https://raw.githubusercontent.com/c4software/bepo_developpeur/master/linux/bepoDev -O /usr/share/X11/xkb/symbols/bepoDev
+
+# Installation bepoDev pour l'utilisateur
+echo "Installing Bépo Dev keyboard layout (Utilisateur)..."
+mkdir -p ~/.config/xkb/symbols ~/.config/xkb/rules
+wget https://raw.githubusercontent.com/c4software/bepo_developpeur/master/linux/bepoDev -O ~/.config/xkb/symbols/bepoDev
+wget https://raw.githubusercontent.com/c4software/bepo_developpeur/master/linux/evdev.lst -O ~/.config/xkb/rules/evdev.lst
+wget https://raw.githubusercontent.com/c4software/bepo_developpeur/master/linux/evdev.xml -O ~/.config/xkb/rules/evdev.xml
+ln -s ~/.config/xkb/rules/evdev.lst ~/.config/xkb/rules/base.lst
+ln -s ~/.config/xkb/rules/evdev.xml ~/.config/xkb/rules/base.xml
