@@ -6,5 +6,5 @@ yay -S --noconfirm fd-find fzf ripgrep zoxide bat jq xmlstarlet zip unzip curl w
 echo -e "Installing Starship (https://starship.rs/)"
 yay -S --noconfirm starship
 if ! grep -q 'eval "$(starship init bash)"' ~/.bashrc; then
-  echo 'eval "$(starship init bash)"' >>~/.bashrc
+  echo -e 'eval "$(starship init bash)"' >>~/.bashrc
 fi
