@@ -16,23 +16,17 @@ mkdir -p ~/.local/bin
 cp "$SCRIPT_DIR/../bin/"* ~/.local/bin/
 
 # Install Bash configuration
-mv "$SCRIPT_DIR/../default/bashrc" ~/.bashrc
-
-# Installation de Starship
-curl -sS https://starship.rs/install.sh | sh -s -- -b "$HOME/.local/bin"
-if ! grep -q 'eval "$(starship init bash)"' ~/.bashrc; then
-  echo 'eval "$(starship init bash)"' >>~/.bashrc
-fi
+cp "$SCRIPT_DIR/../default/bashrc" ~/.bashrc
 
 # Installation du layout de clavier Bépo Dev
 echo "Installing Bépo Dev keyboard layout (Système)..."
-sudo wget https://raw.githubusercontent.com/c4software/bepo_developpeur/master/linux/bepoDev -O /usr/share/X11/xkb/symbols/bepoDev
+sudo wget -nc https://raw.githubusercontent.com/c4software/bepo_developpeur/master/linux/bepoDev -O /usr/share/X11/xkb/symbols/bepoDev
 
 # Installation bepoDev pour l'utilisateur
 echo "Installing Bépo Dev keyboard layout (Utilisateur)..."
 mkdir -p ~/.config/xkb/symbols ~/.config/xkb/rules
-wget https://raw.githubusercontent.com/c4software/bepo_developpeur/master/linux/bepoDev -O ~/.config/xkb/symbols/bepoDev
-wget https://raw.githubusercontent.com/c4software/bepo_developpeur/master/linux/evdev.lst -O ~/.config/xkb/rules/evdev.lst
-wget https://raw.githubusercontent.com/c4software/bepo_developpeur/master/linux/evdev.xml -O ~/.config/xkb/rules/evdev.xml
-ln -s ~/.config/xkb/rules/evdev.lst ~/.config/xkb/rules/base.lst
-ln -s ~/.config/xkb/rules/evdev.xml ~/.config/xkb/rules/base.xml
+wget -nc https://raw.githubusercontent.com/c4software/bepo_developpeur/master/linux/bepoDev -O ~/.config/xkb/symbols/bepoDev
+wget -nc https://raw.githubusercontent.com/c4software/bepo_developpeur/master/linux/evdev.lst -O ~/.config/xkb/rules/evdev.lst
+wget -nc https://raw.githubusercontent.com/c4software/bepo_developpeur/master/linux/evdev.xml -O ~/.config/xkb/rules/evdev.xml
+[ -L ~/.config/xkb/rules/base.lst ] || ln -s ~/.config/xkb/rules/evdev.lst ~/.config/xkb/rules/base.lst
+[ -L ~/.config/xkb/rules/base.xml ] || ln -s ~/.config/xkb/rules/evdev.xml ~/.config/xkb/rules/base.xml
