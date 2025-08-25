@@ -1,0 +1,6 @@
+#!/bin/bash
+
+FOLDER="~/.config/theme/backgrounds"
+IMG=$(find "$FOLDER" -type f | shuf -n 1)
+
+swaybg -i "$IMG" -m fill
