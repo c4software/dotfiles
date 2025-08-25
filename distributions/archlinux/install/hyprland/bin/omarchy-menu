@@ -139,6 +139,7 @@ show_install_menu() {
   *Web*) present_terminal omarchy-webapp-install ;;
   *TUI*) present_terminal omarchy-tui-install ;;
   *Service*) show_install_service_menu ;;
+  *Development*) show_install_development_menu ;;
   *Editor*) show_install_editor_menu ;;
   *AI*) show_install_ai_menu ;;
   *) show_main_menu ;;
