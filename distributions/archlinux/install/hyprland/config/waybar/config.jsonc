@@ -12,7 +12,8 @@
     "network",
     "pulseaudio",
     "cpu",
-    "battery"
+    "battery",
+    "power-profiles-daemon"
   ],
   "hyprland/workspaces": {
     "on-click": "activate",
@@ -117,5 +118,16 @@
   "tray": {
     "icon-size": 12,
     "spacing": 12
+  },
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}nDriver: {driver}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "",
+      "performance": "",
+      "balanced": "",
+      "power-saver": ""
+    }
   }
 }
