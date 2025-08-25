@@ -25,7 +25,7 @@ for script in "$SCRIPT_DIR/install/config/"*.sh; do
 done
 
 # Asking for user confirmation before enable hyprland
-#read -p "Do you want to install Hyprland and default configuration? (y/n) " enable_hyprland
-#if [[ $enable_hyprland == [yY] ]]; then
-#    source "$SCRIPT_DIR/install/hyprland/setup.sh"
-#fi
+read -p "Do you want to install Hyprland and default configuration? (y/n) " enable_hyprland
+if [[ $enable_hyprland == [yY] ]]; then
+    source "$SCRIPT_DIR/install/hyprland/setup.sh"
+fi
