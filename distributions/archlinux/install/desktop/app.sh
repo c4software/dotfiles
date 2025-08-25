@@ -17,3 +17,4 @@ yay -S --noconfirm jetbrains-toolbox
 # Ghosty
 echo -e "Installing Ghosty"
 yay -S --noconfirm ghosty
+
