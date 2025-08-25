@@ -26,7 +26,7 @@ brew install --cask jetbrains-toolbox
 brew install --cask telegram
 brew install --cask signal-desktop
 
-# Font echo "Installing System Extra Fonts"
+# Installation des fonts
 brew tap homebrew/cask-fonts
 brew install --cask \
   font-fontawesome \

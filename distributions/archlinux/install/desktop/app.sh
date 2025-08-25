@@ -18,3 +18,8 @@ yay -S --noconfirm jetbrains-toolbox
 echo -e "Installing Ghosty"
 yay -S --noconfirm ghosty
 
+# Messaging (Telegram, Signal, Slack)
+echo -e "Installing Messaging Apps (Telegram, Signal, Slack)"
+yay -S --noconfirm telegram-desktop-bin
+yay -S --noconfirm signal-desktop
+yay -S --noconfirm slack-desktop
