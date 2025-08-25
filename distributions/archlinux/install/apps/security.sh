@@ -1,1 +1,1 @@
-yay -S --noconfirm fprintd
+yay -S --noconfirm fprintd ufw
