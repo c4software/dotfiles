@@ -23,6 +23,21 @@ brew install --cask google-chrome
 brew install --cask ghostty
 brew install --cask kitty
 brew install --cask jetbrains-toolbox
+brew install --cask telegram
+brew install --cask signal-desktop
+
+# Font echo "Installing System Extra Fonts"
+brew tap homebrew/cask-fonts
+brew install --cask \
+  font-fontawesome \
+  font-cascadia-code-nerd-font \
+  font-ia-writer-duospace \
+  font-noto \
+  font-noto-emoji \
+  font-jetbrains-mono-nerd-font \
+  font-noto-sans-cjk \
+  font-noto-sans \
+  font-noto-serif
 
 # Set bash as default shell
 chsh -s /bin/bash
