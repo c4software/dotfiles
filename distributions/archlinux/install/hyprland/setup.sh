@@ -8,7 +8,8 @@ yay -S --noconfirm --needed \
   xdg-desktop-portal-hyprland xdg-desktop-portal-gtk \
   wiremix pamixer blueberry alacritty
 
-echo -e "Moving configuration files"
+echo -e "Moving configuration files (replace if exists)"
+rm -rf ~/.config/hypr
 cp -r "$SCRIPT_DIR/config/"* ~/.config/
 
 echo -e "Moving extra bin scripts"
