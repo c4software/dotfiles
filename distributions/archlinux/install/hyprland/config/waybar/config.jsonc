@@ -114,7 +114,6 @@
     "orientation": "inherit",
     "modules": [
       "custom/status-dnd",
-      "custom/status-nightlight",
       "custom/status-idle"
     ]
   },

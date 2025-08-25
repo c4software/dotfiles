@@ -79,8 +79,7 @@ show_screenrecord_menu() {
 }
 
 show_toggle_menu() {
-  case $(menu "Toggle" "󰔎  Nightlight\n󱫖  Idle Lock\n󰍜  Top Bar") in
-  *Nightlight*) omarchy-toggle-nightlight ;;
+  case $(menu "Toggle" "󱫖  Idle Lock\n󰍜  Top Bar") in
   *Idle*) omarchy-toggle-idle ;;
   *Bar*) omarchy-toggle-waybar ;;
   *) show_main_menu ;;
