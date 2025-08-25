@@ -7,12 +7,14 @@ if pacman -Qs gnome >/dev/null; then
     yay -S --noconfirm gnome-tweaks
 
     echo -e "Installing Gnome Shell Extensions"
-    yay -S --noconfirm gnome-shell-extensions
+    yay -S --noconfirm gnome-browser-connector
 
     # If installation occurs in a graphical environment, else echo the URL
     if [[ $XDG_CURRENT_DESKTOP == "GNOME" ]]; then
         xdg-open https://extensions.gnome.org/extension/7065/tiling-shell/
+        xdg-open https://extensions.gnome.org/extension/615/appindicator-support/
     else
         echo "Please visit https://extensions.gnome.org/extension/7065/tiling-shell/ to install the Tiling Shell extension."
+        echo "Please visit https://extensions.gnome.org/extension/615/appindicator-support/ to install the AppIndicator Support extension."
     fi
 fi
