@@ -4,14 +4,14 @@
 set -eE
 
 # Init Configuration
-source "$SCRIPT_DIR/../common/install/bootstrap.sh"
+source "./common/install/bootstrap.sh"
 
 if command -v pacman &> /dev/null; then
     source "./archlinux/setup.sh"
-    source "$SCRIPT_DIR/../common/install/webapp.sh"
+    source "./common/install/webapp.sh"
 elif command -v dnf &> /dev/null; then
     source "./fedora/setup.sh"
-    source "$SCRIPT_DIR/../common/install/webapp.sh"
+    source "./common/install/webapp.sh"
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     source "./macos/setup.sh"
 else
