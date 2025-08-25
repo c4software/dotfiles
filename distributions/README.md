@@ -1,6 +1,6 @@
 # Dotfiles — Distributions
 
-This folder contains installation and configuration scripts for multiple Linux distributions (currently: Arch Linux and Fedora). The goal is to automate the setup of applications, fonts, development tools, and user configurations.
+This folder contains installation and configuration scripts for multiple Linux distributions (currently: Arch Linux, Fedora and macOS). The goal is to automate the setup of applications, fonts, development tools, and user configurations.
 
 ## Prerequisites
 
@@ -9,17 +9,24 @@ This folder contains installation and configuration scripts for multiple Linux d
 
 ## Usage
 
-1. From the `distributions` directory, run:
+1. Clone the repository:
 
-    ```bash
-    ./setup.sh
-    ```
+```bash
+clear
+echo -e "\nCloning dotfiles repository..."
+git clone https://github.com/c4software/dotfiles.git /tmp/dotfiles
+cd /tmp/dotfiles
+cd distributions
 
-This script detects your distribution (`pacman` → Arch, `dnf` → Fedora) and launches the appropriate setup process.
+./setup.sh
+```
+
+This script detects your distribution (`pacman` → Arch, `dnf` → Fedora, `$OSTYPE == darwin` → macOS) and launches the appropriate setup process.
 
 ## Main Structure
 
 - `setup.sh`: Entry script that loads the common bootstrap and selects the distribution.
+- `macos/`: Scripts and subfolders for macOS.
 - `archlinux/`: Scripts and subfolders for Arch Linux.
 - `fedora/`: Scripts and subfolders for Fedora.
 - `common/`: Shared scripts (e.g., webapp installation, config bootstrap).
