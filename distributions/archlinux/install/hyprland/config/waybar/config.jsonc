@@ -5,7 +5,7 @@
   "spacing": 0,
   "height": 26,
   "modules-left": ["custom/launcher", "hyprland/workspaces"],
-  "modules-center": ["group/status-cluster", "clock"],
+  "modules-center": ["clock"],
   "modules-right": [
     "group/tray-expander",
     "bluetooth",
@@ -109,25 +109,6 @@
       "children-class": "tray-group-item"
     },
     "modules": ["custom/expand-icon", "tray"]
-  },
-  "group/status-cluster": {
-    "orientation": "inherit",
-    "modules": [
-      "custom/status-dnd",
-      "custom/status-idle"
-    ]
-  },
-  "custom/status-dnd": {
-    "exec": "omarchy-status-daemon dnd",
-    "return-type": "json",
-    "interval": 1,
-    "on-click": "makoctl mode -t do-not-disturb"
-  },
-  "custom/status-idle": {
-    "exec": "omarchy-status-daemon idle",
-    "return-type": "json",
-    "interval": 1,
-    "on-click": "omarchy-toggle-idle"
   },
   "custom/expand-icon": {
     "format": " ",
