@@ -9,7 +9,7 @@ yay -S --noconfirm --needed \
   wiremix pamixer blueberry
 
 echo -e "Moving configuration files"
-cp -r "$SCRIPT_DIR/config/*" ~/.config/
+cp -r "$SCRIPT_DIR/config/"* ~/.config/
 
 echo -e "Moving extra bin scripts"
-cp -r "$SCRIPT_DIR/bin/*" ~/.local/bin/
+cp -r "$SCRIPT_DIR/bin/"* ~/.local/bin/
