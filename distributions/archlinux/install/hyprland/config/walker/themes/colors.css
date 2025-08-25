@@ -27,20 +27,20 @@ slider,
 /* Window */
 #window {
   background: transparent;
-  color: @text;
+  color: #ebfff2;
 }
 
 /* Main box container */
 #box {
-  background: alpha(@base, 0.95);
+  background: alpha(#11221C, 0.95);
   padding: 20px;
-  border: 2px solid @border;
+  border: 2px solid #214237;
   border-radius: 0px;
 }
 
 /* Search container */
 #search {
-  background: @base;
+  background: #11221C;
   padding: 10px;
   margin-bottom: 0;
 }
@@ -61,13 +61,13 @@ slider,
 /* Input field */
 #input {
   background: none;
-  color: @text;
+  color: #ebfff2;
   padding: 0;
 }
 
 #input placeholder {
   opacity: 0.5;
-  color: @text;
+  color: #ebfff2;
 }
 
 /* Hide typeahead */
@@ -109,7 +109,7 @@ child:hover {
 
 /* Text */
 #text {
-  color: @text;
+  color: #ebfff2;
   padding: 14px 0;
 }
 
@@ -122,7 +122,7 @@ child:selected #text,
 child:selected #label,
 child:hover #text,
 child:hover #label {
-  color: @selected-text;
+  color: #e1b55e;
 }
 
 /* Hide sub text */
@@ -165,5 +165,3 @@ scrollbar {
 .barentry {
   opacity: 0;
 }
-
-@import url("file://~/.config/theme/walker.css");
