@@ -21,4 +21,4 @@ cp -r "$SCRIPT_DIR/bin/"* ~/.local/bin/
 
 echo -e "Move Wallpapers from $SCRIPT_DIR/.config/theme/backgrounds/* to ~/wallpapers"
 mkdir -p "$HOME/wallpapers"
-mv "$SCRIPT_DIR/.config/theme/backgrounds/"* ~/wallpapers/
+mv "$SCRIPT_DIR/config/theme/backgrounds/"* ~/wallpapers/
