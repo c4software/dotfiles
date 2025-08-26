@@ -193,13 +193,13 @@ show_install_development_menu() {
 }
 
 show_install_editor_menu() {
-  case $(menu "Install" "  VSCode\n  Cursor [AUR]\n  Zed\n  Sublime Text\n  Helix\n  Jetbrains Toolbox") in
+  case $(menu "Install" "  VSCode\n  Cursor [AUR]\n  Zed\n  Sublime Text\n  Helix\n  Jetbrains [AUR]") in
   *VSCode*) install_and_launch "VSCode" "visual-studio-code-bin" "code" ;;
   *Cursor*) aur_install_and_launch "Cursor" "cursor-bin" "cursor" ;;
   *Zed*) install_and_launch "Zed" "zed" "dev.zed.Zed" ;;
   *Sublime*) install_and_launch "Sublime Text" "sublime-text-4" "sublime_text" ;;
   *Helix*) install "Helix" "helix" ;;
-  *JetBrains Toolbox*) aur_install_and_launch "jetbrains-toolbox" "jetbrains-toolbox" ;;
+  *JetBrains*) aur_install_and_launch "jetbrains-toolbox" "jetbrains-toolbox" ;;
   *) show_install_menu ;;
   esac
 }
