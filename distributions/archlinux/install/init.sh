@@ -31,4 +31,4 @@ if ! command -v yay &>/dev/null; then
 fi
 
 echo "First, we update package list and system"
-yay -Syu
+sudo pacman -Syu
