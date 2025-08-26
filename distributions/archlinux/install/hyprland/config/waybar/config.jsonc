@@ -40,12 +40,12 @@
     }
   },
   "custom/launcher": {
-    "format": "·",
+    "format": "",
     "on-click": "omarchy-menu",
     "tooltip-format": "Omarchy Menu\n\nSuper + Alt + Space"
   },
   "cpu": {
-    "interval": 5,
+    "interval": 10,
     "format": "󰍛",
     "on-click": "alacritty -e btop"
   },
