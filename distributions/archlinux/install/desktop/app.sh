@@ -12,7 +12,7 @@ yay -S --noconfirm --needed jetbrains-toolbox
 
 # Ghostty
 echo -e "Installing Ghostty"
-sudo pacman -S --noconfirm --needed --needed ghostty
+sudo pacman -S --noconfirm --needed ghostty
 
 # Messaging (Telegram, Signal, Slack)
 echo -e "Installing Messaging Apps (Telegram, Signal, Slack)"
