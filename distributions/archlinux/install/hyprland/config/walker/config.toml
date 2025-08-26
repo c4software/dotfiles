@@ -1,5 +1,5 @@
 close_when_open = true
-theme = "default"
+theme = "colors"
 theme_base = []
 theme_location = ["~/.config/walker/themes/"]
 hotreload_theme = true
