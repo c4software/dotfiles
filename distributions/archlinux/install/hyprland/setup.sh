@@ -6,10 +6,11 @@ yay -S --noconfirm --needed \
   hyprland hyprshot hyprpicker hyprlock hypridle polkit-gnome hyprland-qtutils \
   walker-bin libqalculate waybar mako swaybg swayosd \
   xdg-desktop-portal-hyprland xdg-desktop-portal-gtk \
-  wiremix pamixer blueberry alacritty uwsm wl-clip-persist wl-clipboard wl-screenrec iwd impala
+  wiremix pamixer blueberry alacritty uwsm wl-clip-persist \
+  wl-clipboard wl-screenrec iwd impala satty
 
 if lspci | grep -Eqi 'nvidia|intel.*graphics'; then
-  sudo pacman -S --noconfirm --needed --needed wf-recorder
+  sudo pacman -S --noconfirm --needed wf-recorder
 fi
 
 echo -e "Moving configuration files (replace if exists)"
@@ -19,6 +20,6 @@ cp -r "$SCRIPT_DIR/config/"* ~/.config/
 echo -e "Moving extra bin scripts"
 cp -r "$SCRIPT_DIR/bin/"* ~/.local/bin/
 
-echo -e "Move Wallpapers from $SCRIPT_DIR/.config/theme/backgrounds/* to ~/wallpapers"
+echo -e "Move Wallpapers from $SCRIPT_DIR/.config/backgrounds/* to ~/wallpapers"
 mkdir -p "$HOME/wallpapers"
-cp "$SCRIPT_DIR/config/theme/backgrounds/"* ~/wallpapers/
+cp "$SCRIPT_DIR/config/backgrounds/"* ~/wallpapers/
