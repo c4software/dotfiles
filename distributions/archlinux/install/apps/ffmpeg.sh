@@ -1,1 +1,1 @@
-sudo pacman -S --noconfirm ffmpeg
+sudo pacman -S --noconfirm --needed ffmpeg

@@ -1,1 +1,1 @@
-sudo pacman -S --noconfirm fprintd ufw
+sudo pacman -S --noconfirm --needed fprintd ufw

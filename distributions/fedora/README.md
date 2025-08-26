@@ -31,7 +31,6 @@ The scripts and configurations in this repository are specifically designed for 
 * **btop**: A resource monitor that shows usage and stats for processors, memory, disks, network, and processes.
 * **htop**: An interactive process viewer for Unix systems.
 * **fastfetch**: A tool for fetching system information and displaying it in a pretty way.
-* **fd-find**: A simple, fast, and user-friendly alternative to `find`.
 * **fzf**: A command-line fuzzy finder.
 * **ripgrep**: A line-oriented search tool that recursively searches the current directory for a regex pattern.
 * **zoxide**: A smarter `cd` command that learns your habits.

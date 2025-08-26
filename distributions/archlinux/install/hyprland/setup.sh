@@ -9,7 +9,7 @@ yay -S --noconfirm --needed \
   wiremix pamixer blueberry alacritty uwsm wl-clip-persist wl-clipboard wl-screenrec iwd impala
 
 if lspci | grep -Eqi 'nvidia|intel.*graphics'; then
-  sudo pacman -S --noconfirm --needed wf-recorder
+  sudo pacman -S --noconfirm --needed --needed wf-recorder
 fi
 
 echo -e "Moving configuration files (replace if exists)"

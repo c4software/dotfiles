@@ -1,2 +1,2 @@
 echo -e "Installing Snapper"
-sudo pacman -S --noconfirm snapper
+sudo pacman -S --noconfirm --needed snapper
