@@ -10,3 +10,14 @@ source ~/.config/bash/envs
 # Activate mise (https://mise.jdx.dev/getting-started.html#activate-mise)
 eval "$(mise activate bash)"
 
+# Activate zoxide (https://github.com/ajeetdsouza/zoxide)
+eval "$(zoxide init bash)"
+
+if command -v fzf &> /dev/null; then
+  if [[ -f /usr/share/fzf/completion.bash ]]; then
+    source /usr/share/fzf/completion.bash
+  fi
+  if [[ -f /usr/share/fzf/key-bindings.bash ]]; then
+    source /usr/share/fzf/key-bindings.bash
+  fi
+fi
