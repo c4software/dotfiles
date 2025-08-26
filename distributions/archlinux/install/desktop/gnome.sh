@@ -1,13 +1,13 @@
 # Check if the user has Gnome installed, if so install Gnome Specific elements
 if pacman -Qs gnome >/dev/null; then
     echo -e "Installing Gnome Firmware"
-    yay -S --noconfirm gnome-firmware
+    sudo pacman -S --noconfirm gnome-firmware
 
     echo -e "Installing Gnome Tweaks"
-    yay -S --noconfirm gnome-tweaks
+    sudo pacman -S --noconfirm gnome-tweaks
 
     echo -e "Installing Gnome Shell Extensions"
-    yay -S --noconfirm gnome-browser-connector
+    sudo pacman -S --noconfirm gnome-browser-connector
 
     # If installation occurs in a graphical environment, else echo the URL
     if [[ $XDG_CURRENT_DESKTOP == "GNOME" ]]; then

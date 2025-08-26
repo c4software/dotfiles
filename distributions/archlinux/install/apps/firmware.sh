@@ -1,7 +1,7 @@
-yay -S --noconfirm fwupd
+sudo pacman -S --noconfirm fwupd
 
 if lscpu | grep -q "Intel"; then
-    yay -S --noconfirm intel-ucode
+    sudo pacman -S --noconfirm intel-ucode
 elif lscpu | grep -q "AMD"; then
-    yay -S --noconfirm amd-ucode
+    sudo pacman -S --noconfirm amd-ucode
 fi

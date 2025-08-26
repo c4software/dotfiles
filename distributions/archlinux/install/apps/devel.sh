@@ -2,11 +2,11 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # K9s (https://k9scli.io/)
 echo -e "Installing K9s"
-yay -S --noconfirm k9s
+sudo pacman -S --noconfirm k9s
 
 # Install Neovim + LazyVim (https://lazyvim.org/)
 echo -e "Installing Neovim + LazyVim"
-yay -S --noconfirm neovim luarocks tree-sitter-cli
+sudo pacman -S --noconfirm neovim luarocks tree-sitter-cli
 rm -rf ~/.config/nvim
 git clone https://github.com/LazyVim/starter ~/.config/nvim
 cp -R "$SCRIPT_DIR/../../../common/config/nvim/"* ~/.config/nvim/
@@ -14,4 +14,4 @@ rm -rf ~/.config/nvim/.git
 echo "vim.opt.relativenumber = false" >>~/.config/nvim/lua/config/options.lua
 
 # Installation de Mise
-yay -S --noconfirm mise mariadb-libs postgresql-libs
+sudo pacman -S --noconfirm mise mariadb-libs postgresql-libs

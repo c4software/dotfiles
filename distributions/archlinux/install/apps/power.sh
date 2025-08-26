@@ -1,1 +1,1 @@
-yay -S --noconfirm power-profiles-daemon
+sudo pacman -S --noconfirm power-profiles-daemon

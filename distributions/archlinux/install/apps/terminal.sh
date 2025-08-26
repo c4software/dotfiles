@@ -4,7 +4,7 @@ yay -S --noconfirm fd-find fzf ripgrep zoxide bat jq xmlstarlet zip unzip curl w
 
 # Installation de Starship
 echo -e "Installing Starship (https://starship.rs/)"
-yay -S --noconfirm starship
+sudo pacman -S --noconfirm starship
 if ! grep -q 'eval "$(starship init bash)"' ~/.bashrc; then
   echo -e 'eval "$(starship init bash)"' >>~/.bashrc
 fi
