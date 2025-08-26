@@ -12,10 +12,13 @@ if lspci | grep -Eqi 'nvidia|intel.*graphics'; then
   sudo pacman -S --noconfirm --needed wf-recorder
 fi
 
-
 echo -e "Moving configuration files (replace if exists)"
 rm -rf ~/.config/hypr
 cp -r "$SCRIPT_DIR/config/"* ~/.config/
 
 echo -e "Moving extra bin scripts"
 cp -r "$SCRIPT_DIR/bin/"* ~/.local/bin/
+
+echo -e "Move Wallpapers from $SCRIPT_DIR/.config/theme/backgrounds/* to ~/wallpapers"
+mkdir -p "$HOME/wallpapers"
+mv "$SCRIPT_DIR/.config/theme/backgrounds/"* ~/wallpapers/

@@ -2,3 +2,6 @@
 
 # Lock the screen
 pidof hyprlock || hyprlock &
+
+# Turn off the screen
+hyprctl dispatch dpms off
