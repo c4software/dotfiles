@@ -9,6 +9,11 @@ source "$SCRIPT_DIR/install/init.sh"
 # Add local bin to PATH (since we installed binaries there)
 export PATH="$HOME/.local/bin:$PATH"
 
+# Source all script under install/system
+for script in "$SCRIPT_DIR/install/system/"*.sh; do
+  source "$script"
+done
+
 # Source all script under install/apps
 for script in "$SCRIPT_DIR/install/apps/"*.sh; do
   source "$script"
