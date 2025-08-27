@@ -1,1 +1,1 @@
-sudo pacman -S --noconfirm --needed power-profiles-daemon
+sudo pacman -S --noconfirm --needed power-profiles-daemon python-gobject

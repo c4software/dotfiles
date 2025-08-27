@@ -19,3 +19,6 @@ echo -e "Installing Messaging Apps (Telegram, Signal, Slack)"
 yay -S --noconfirm --needed telegram-desktop-bin
 yay -S --noconfirm --needed slack-desktop
 sudo pacman -S --noconfirm --needed signal-desktop
+
+# Spotify
+yay -S --noconfirm spotify
