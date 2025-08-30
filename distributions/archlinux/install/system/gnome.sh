@@ -19,6 +19,13 @@ if pacman -Qs gnome >/dev/null; then
 
     # If installation occurs in a graphical environment, else echo the URL
     if [[ $XDG_CURRENT_DESKTOP == "GNOME" ]]; then
+        # 3193 : https://extensions.gnome.org/extension/3193/blur-my-shell/
+        # 615 : https://extensions.gnome.org/extension/615/appindicator-support/
+        # 517 : https://extensions.gnome.org/extension/517/caffeine/
+        # 3843 : https://extensions.gnome.org/extension/3843/just-perfection/
+        # 5090 : https://extensions.gnome.org/extension/5090/space-bar/
+        # 973 : https://extensions.gnome.org/extension/973/switcher/
+        # 4548 : https://extensions.gnome.org/extension/4548/tactile/
         gext install 3193 615 517 3843 5090 973 4548
     else
         echo "Please visit https://extensions.gnome.org/extension/3193/blur-my-shell/ to install the Blur My Shell extension."
