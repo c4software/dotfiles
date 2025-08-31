@@ -11,9 +11,6 @@ if pacman -Qs gnome >/dev/null; then
     echo -e "Installing Gnome Shell Extensions"
     sudo pacman -S --noconfirm --needed gnome-browser-connector
 
-    echo -e "Installing Gnome extension-manager"
-    yay -S --noconfirm --needed extension-manager
-
     echo -e "Installing Gnome Extensions CLI" # https://github.com/essembeh/gnome-extensions-cli
     yay -S --noconfirm --needed gnome-extensions-cli
 
