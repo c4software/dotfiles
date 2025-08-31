@@ -23,7 +23,7 @@ if pacman -Qs gnome >/dev/null; then
         # 973 : https://extensions.gnome.org/extension/973/switcher/
         # 4548 : https://extensions.gnome.org/extension/4548/tactile/
         xdg-open "gnome-extensions://blur-my-shell%40aunetx?action=install"
-        xdg-open "gnome-extensions://appindicator-support%40rgcjonas.gmail.com?action=install"
+        xdg-open "gnome-extensions://appindicatorsupport%40rgcjonas.gmail.com?action=install"
         xdg-open "gnome-extensions://caffeine%40patapon.info?action=install"
         xdg-open "gnome-extensions://space-bar%40luchrioh?action=install"
         xdg-open "gnome-extensions://switcher%40laundau.fi?action=install"
