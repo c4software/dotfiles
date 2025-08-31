@@ -26,7 +26,7 @@ if pacman -Qs gnome >/dev/null; then
         xdg-open "gnome-extensions://appindicatorsupport%40rgcjonas.gmail.com?action=install"
         xdg-open "gnome-extensions://caffeine%40patapon.info?action=install"
         xdg-open "gnome-extensions://space-bar%40luchrioh?action=install"
-        xdg-open "gnome-extensions://switcher%40laundau.fi?action=install"
+        xdg-open "gnome-extensions://switcher%40landau.fi?action=install"
         xdg-open "gnome-extensions://tactile%40lundal.io?action=install"
     else
         echo "Please visit https://extensions.gnome.org/extension/3193/blur-my-shell/ to install the Blur My Shell extension."
