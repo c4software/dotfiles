@@ -19,16 +19,19 @@ if pacman -Qs gnome >/dev/null; then
         # 3193 : https://extensions.gnome.org/extension/3193/blur-my-shell/
         # 615 : https://extensions.gnome.org/extension/615/appindicator-support/
         # 517 : https://extensions.gnome.org/extension/517/caffeine/
-        # 3843 : https://extensions.gnome.org/extension/3843/just-perfection/
         # 5090 : https://extensions.gnome.org/extension/5090/space-bar/
         # 973 : https://extensions.gnome.org/extension/973/switcher/
         # 4548 : https://extensions.gnome.org/extension/4548/tactile/
-        gext install 3193 615 517 3843 5090 973 4548
+        xdg-open "gnome-extensions://blur-my-shell%40aunetx?action=install"
+        xdg-open "gnome-extensions://appindicator-support%40rgcjonas.gmail.com?action=install"
+        xdg-open "gnome-extensions://caffeine%40patapon.info?action=install"
+        xdg-open "gnome-extensions://space-bar%40luchrioh?action=install"
+        xdg-open "gnome-extensions://switcher%40laundau.fi?action=install"
+        xdg-open "gnome-extensions://tactile%40lundal.io?action=install"
     else
         echo "Please visit https://extensions.gnome.org/extension/3193/blur-my-shell/ to install the Blur My Shell extension."
         echo "Please visit https://extensions.gnome.org/extension/615/appindicator-support/ to install the AppIndicator Support extension."
         echo "Please visit https://extensions.gnome.org/extension/517/caffeine/ to install the Caffeine extension."
-        echo "Please visit https://extensions.gnome.org/extension/3843/just-perfection/ to install the Just Perfection extension."
         echo "Please visit https://extensions.gnome.org/extension/5090/space-bar/ to install the Space Bar extension."
         echo "Please visit https://extensions.gnome.org/extension/973/switcher/ to install the Switcher extension."
         echo "Please visit https://extensions.gnome.org/extension/4548/tactile/ to install the Tactile extension."
