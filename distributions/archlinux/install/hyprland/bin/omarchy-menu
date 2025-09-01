@@ -108,7 +108,7 @@ show_setup_menu() {
     ;;
   *Bluetooth*)
     rfkill unblock bluetooth
-    blueberry
+    alacritty --class=Bluetui -e bluetui
     ;;
   *Power*) show_setup_power_menu ;;
   *Monitors*) edit_in_nvim ~/.config/hypr/monitors.conf ;;
