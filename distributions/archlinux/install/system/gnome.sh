@@ -1,7 +1,7 @@
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# Check if the user has Gnome installed, if so install Gnome Specific elements
-if pacman -Qs gnome >/dev/null; then
+# Check if the user has Gnome-shell on his machine.
+if command -v gnome-shell >/dev/null; then
     echo -e "Installing Gnome Firmware"
     sudo pacman -S --noconfirm --needed gnome-firmware
 
