@@ -14,6 +14,9 @@ if command -v gnome-shell >/dev/null; then
     echo -e "Installing Gnome Extensions CLI" # https://github.com/essembeh/gnome-extensions-cli
     yay -S --noconfirm --needed gnome-extensions-cli
 
+    echo -e "Enable MTP and GVFS"
+    sudo pacman -S --noconfirm --needed gvfs-mtp gvfs-mtp gvfs-smb
+
     # If installation occurs in a graphical environment, else echo the URL
     if [[ $XDG_CURRENT_DESKTOP == "GNOME" ]]; then
         # 3193 : https://extensions.gnome.org/extension/3193/blur-my-shell/
