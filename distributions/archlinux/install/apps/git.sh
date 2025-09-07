@@ -1,6 +1,3 @@
-echo "Installing Git and Lazygit"
-sudo pacman -S --noconfirm --needed git lazygit 
-
 # Définition des alias git par defaut
 git config --global alias.co checkout
 git config --global alias.br branch

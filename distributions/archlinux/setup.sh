@@ -9,25 +9,43 @@ source "$SCRIPT_DIR/install/init.sh"
 # Add local bin to PATH (since we installed binaries there)
 export PATH="$HOME/.local/bin:$PATH"
 
-# Source all script under install/system
-for script in "$SCRIPT_DIR/install/system/"*.sh; do
-  source "$script"
-done
+# Download all packages using pacman for install/**/packages.txt
+find "$SCRIPT_DIR/install/" -name "packages.txt" -exec sudo pacman -S --noconfirm --needed - < {} \;
 
-# Source all script under install/apps
-for script in "$SCRIPT_DIR/install/apps/"*.sh; do
-  source "$script"
-done
+# Download all packages using yay for install/**/packages.aur.txt
+find "$SCRIPT_DIR/install/" -name "packages.aur.txt" -exec yay -S --noconfirm --needed - < {} \;
 
-# Source all scripts under desktop
-for script in "$SCRIPT_DIR/install/desktop/"*.sh; do
-  source "$script"
-done
+# Source all script under install/system with confirmation
+read -p "Do you want to run system setup scripts? (y/n) " confirm_system
+if [[ $confirm_system == [yY] ]]; then
+  for script in "$SCRIPT_DIR/install/system/"*.sh; do
+    source "$script"
+  done
+fi
 
-# Source all scripts under config
-for script in "$SCRIPT_DIR/install/config/"*.sh; do
-  source "$script"
-done
+# Source all script under install/apps with confirmation
+read -p "Do you want to run apps setup scripts? (y/n) " confirm_apps
+if [[ $confirm_apps == [yY] ]]; then
+  for script in "$SCRIPT_DIR/install/apps/"*.sh; do
+    source "$script"
+  done
+fi
+
+# Source all scripts under desktop with confirmation
+read -p "Do you want to run desktop setup scripts? (y/n) " confirm_desktop
+if [[ $confirm_desktop == [yY] ]]; then
+  for script in "$SCRIPT_DIR/install/desktop/"*.sh; do
+    source "$script"
+  done
+fi
+
+# Source all scripts under config with confirmation
+read -p "Do you want to run config setup scripts? (y/n) " confirm_config
+if [[ $confirm_config == [yY] ]]; then
+  for script in "$SCRIPT_DIR/install/config/"*.sh; do
+    source "$script"
+  done
+fi
 
 # Asking for user confirmation before enable hyprland
 read -p "Do you want to install Hyprland and default configuration? (y/n) " enable_hyprland

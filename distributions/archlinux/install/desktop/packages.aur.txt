@@ -1,0 +1,15 @@
+# Applications
+visual-studio-code-bin
+google-chrome
+jetbrains-toolbox
+spotify
+
+# Fonts
+woff2-font-awesome
+ttf-cascadia-mono-nerd
+ttf-ia-writer
+noto-fonts
+noto-fonts-emoji
+ttf-jetbrains-mono
+noto-fonts-cjk
+noto-fonts-extra

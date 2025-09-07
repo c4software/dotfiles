@@ -1,6 +1,5 @@
 #!/bin/bash
-echo "Installing Docker..."
-sudo pacman -S --noconfirm --needed docker docker-compose docker-buildx
+echo "Configuring Docker..."
 
 # Limit log size to avoid running out of disk
 sudo mkdir -p /etc/docker
@@ -21,6 +20,3 @@ DefaultDependencies=no
 EOF
 
 sudo systemctl daemon-reload
-
-# Installation des paquets
-sudo pacman -S --noconfirm --needed lazydocker

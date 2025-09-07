@@ -2,17 +2,6 @@ echo -e "Installing Hyprland"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-yay -S --noconfirm --needed \
-  hyprland hyprshot hyprpicker hyprlock hypridle polkit-gnome hyprland-qtutils \
-  walker-bin libqalculate waybar mako swaybg swayosd \
-  xdg-desktop-portal-hyprland xdg-desktop-portal-gtk \
-  wiremix pamixer bluetui alacritty uwsm wl-clip-persist \
-  wl-clipboard wl-screenrec iwd impala satty
-
-if lspci | grep -Eqi 'nvidia|intel.*graphics'; then
-  sudo pacman -S --noconfirm --needed wf-recorder
-fi
-
 echo -e "Moving configuration files (replace if exists)"
 rm -rf ~/.config/hypr
 cp -r "$SCRIPT_DIR/config/"* ~/.config/

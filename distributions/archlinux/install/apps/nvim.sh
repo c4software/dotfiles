@@ -1,21 +1,14 @@
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# K9s (https://k9scli.io/)
-echo -e "Installing K9s"
-sudo pacman -S --noconfirm --needed k9s
-
 # Install Neovim + LazyVim (https://lazyvim.org/)
-echo -e "Installing Neovim + LazyVim"
-sudo pacman -S --noconfirm --needed neovim luarocks tree-sitter-cli
+echo -e "Configuring Neovim + LazyVim"
 rm -rf ~/.config/nvim
 git clone https://github.com/LazyVim/starter ~/.config/nvim
 cp -R "$SCRIPT_DIR/../../../common/config/nvim/"* ~/.config/nvim/
 rm -rf ~/.config/nvim/.git
 echo "vim.opt.relativenumber = false" >>~/.config/nvim/lua/config/options.lua
 
+echo -e "Adding Neovim keymaps"
 # Ajout des keymaps dans ~/.config/nvim/lua/config/keymaps.lua
 # vim.keymap.set("n", "gb", "<C-^>", { desc = "Go to previous buffer" })
 echo 'vim.keymap.set("n", "gb", "<C-^>", { desc = "Go to previous buffer" })' >>~/.config/nvim/lua/config/keymaps.lua
-
-# Installation de Mise
-sudo pacman -S --noconfirm --needed mise mariadb-libs postgresql-libs

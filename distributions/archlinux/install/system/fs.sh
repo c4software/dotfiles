@@ -1,1 +1,0 @@
-sudo pacman -S --noconfirm --needed exfatprogs ntfs-3g

@@ -1,1 +1,0 @@
-sudo pacman -S --noconfirm --needed ffmpeg  gst-plugins-good gst-plugins-bad gst-plugins-ugly vlc

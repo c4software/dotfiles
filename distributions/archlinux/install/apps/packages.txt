@@ -1,0 +1,51 @@
+# Backup
+timeshift
+
+# Development
+k9s
+neovim 
+luarocks 
+tree-sitter-cli
+mise 
+mariadb-libs 
+postgresql-libs
+
+# Docker
+docker 
+docker-compose 
+docker-buildx
+lazydocker
+
+# Video
+ffmpeg
+gst-plugins-good 
+gst-plugins-bad 
+gst-plugins-ugly 
+vlc
+
+# Git
+git
+lazygit
+
+# Terminal Applications
+tldr
+fzf
+ripgrep
+zoxide
+bat
+jq
+xmlstarlet
+zip
+unzip
+curl
+wget
+unrar
+eza
+ndu
+gum
+bash-completion
+btop
+fastfetch
+zellij
+yazi
+starship
