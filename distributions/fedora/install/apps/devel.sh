@@ -11,6 +11,11 @@ cp -R ./config/nvim/* ~/.config/nvim/
 rm -rf ~/.config/nvim/.git
 echo "vim.opt.relativenumber = false" >>~/.config/nvim/lua/config/options.lua
 
+# Ajout des keymaps dans ~/.config/nvim/lua/config/keymaps.lua
+# vim.keymap.set("n", "gb", "<C-^>", { desc = "Go to previous buffer" })
+echo 'vim.keymap.set("n", "gb", "<C-^>", { desc = "Go to previous buffer" })' >>~/.config/nvim/lua/config/keymaps.lua
+
 # Installation de Mise
 echo "Installing Mise (https://mise.jdx.dev/)"
 curl https://mise.run | sh
+

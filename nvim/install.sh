@@ -3,3 +3,7 @@ git clone https://github.com/LazyVim/starter ~/.config/nvim
 cp -R ./config/* ~/.config/nvim/
 rm -rf ~/.config/nvim/.git
 echo "vim.opt.relativenumber = false" >>~/.config/nvim/lua/config/options.lua
+
+# Ajout des keymaps dans ~/.config/nvim/lua/config/keymaps.lua
+# vim.keymap.set("n", "gb", "<C-^>", { desc = "Go to previous buffer" })
+echo 'vim.keymap.set("n", "gb", "<C-^>", { desc = "Go to previous buffer" })' >>~/.config/nvim/lua/config/keymaps.lua
