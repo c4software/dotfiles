@@ -1,0 +1,82 @@
+/*   _ _ _ _____ _____ _
+    | | | |     |   __|_|
+    | | | |  |  |   __| |
+    |_____|_____|__|  |_|  STYLE
+
+    by Bina
+*/
+
+@define-color foreground #11221C;
+@define-color background #11221C;
+@define-color text #ebfff2;
+@define-color selected-text #e1b55e;
+@define-color border #214237;
+
+* {
+    border: none;
+    box-shadow: none;
+    outline: none;
+}
+
+window {
+    font-size: 14px;
+    font-family: "JetBrains Mono";
+    background-color: @background;
+    border: 1px solid @border;
+}
+
+#outer-box {
+    margin: 10px 10px 20px 10px;
+    background-color: @background;
+}
+
+#inner-box {
+    margin: 10px;
+    background-color: @background;
+}
+
+#entry {
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+#input>image.left {
+    width: 0;
+    margin: 0;
+    padding: 0;
+    height: 0;
+    -gtk-icon-transform: scaleX(0);
+    /* Cache l'icône */
+}
+
+#entry #text {
+    padding: 0px 0px 0px 10px;
+    font-weight: normal;
+    color: @text;
+}
+
+#entry:selected {
+    background-color: @foreground;
+}
+
+#entry:selected #text {
+    padding: 0px 0px 0px 10px;
+    font-weight: normal;
+    color: @selected-text;
+}
+
+#input {
+    background: transparent;
+    margin: 0px 5px 0px 20px;
+    color: @text;
+    padding: 5px;
+}
+
+#image {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#scroll {
+    margin: 0px;
+}
