@@ -14,11 +14,12 @@ selected=$(echo "$monitors" | fzf --prompt="Select a monitor: " --with-nth=1,2 -
 [[ -z "$selected" ]] && exit 0
 
 monitor_name=$(echo "$selected" | cut -f1)
-echo "Selected monitor: $monitor_name"
+native_width=$(echo "$selected" | cut -f2 | cut -d'x' -f1)
+
+echo "Selected monitor: $monitor_name (native width: $native_width)"
 
 # Step 2: list available resolutions for this monitor
-modes=$(hyprctl monitors -j | jq -r --arg MON "$monitor_name" \
-  '.[] | select(.name == $MON) | .availableModes[]')
+modes=$(hyprctl monitors -j | jq -r --arg MON "$monitor_name" '.[] | select(.name == $MON) | .availableModes[]')
 
 if [[ -z "$modes" ]]; then
   echo "No available modes found for $monitor_name"
@@ -28,16 +29,18 @@ fi
 chosen_mode=$(echo "$modes" | fzf --prompt="Select a resolution: ")
 [[ -z "$chosen_mode" ]] && exit 0
 
-# Step 3: get current position and scale for this monitor
-position=$(hyprctl monitors -j | jq -r --arg MON "$monitor_name" \
-  '.[] | select(.name == $MON) | "\(.x)x\(.y)"')
+# Step 3: extract chosen width
+chosen_width=$(echo "$chosen_mode" | cut -d'x' -f1)
 
-scale=$(hyprctl monitors -j | jq -r --arg MON "$monitor_name" \
-  '.[] | select(.name == $MON) | .scale')
+# Step 4: calculate scale (as ratio of chosen width to native width, rounded to 2 decimals)
+scale=$(awk "BEGIN { printf \"%.2f\", $chosen_width / $native_width }")
 
-# Step 4: apply new configuration
+# Step 5: get current position for this monitor
+position=$(hyprctl monitors -j | jq -r --arg MON "$monitor_name" '.[] | select(.name == $MON) | "\(.x)x\(.y)"')
+
+# Step 6: apply new configuration
 cmd="hyprctl keyword monitor \"$monitor_name,$chosen_mode,$position,$scale\""
 echo "Applying: $cmd"
 eval $cmd
 
-echo "✅ Resolution applied."
+echo "✅ Resolution applied with scale $scale."
