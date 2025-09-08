@@ -39,7 +39,7 @@ main() {
   # Display only; do not pre-filter the list
   focused_monitor=$(echo "$monitors_json" | jq -r '.[] | select(.focused) | .name')
 
-  selected_monitor_line=$(echo -e "$monitor_list" | fzf --ansi --prompt="📺 Which monitor to configure? " --height="25%" --border=rounded --with-nth=1,2)
+  selected_monitor_line=$(echo -e "$monitor_list" | fzf --ansi --prompt="📺 Which monitor to configure? " --border=rounded --with-nth=1,2)
 
   # Exit if user presses Esc
   if [[ -z "$selected_monitor_line" ]]; then
@@ -99,7 +99,7 @@ main() {
     done
   )
 
-  chosen_scale=$(echo "$scale_list" | fzf --ansi --prompt="🔎 Which scale to apply? " --height="25%" --border=rounded)
+  chosen_scale=$(echo "$scale_list" | fzf --ansi --prompt="🔎 Which scale to apply? " --border=rounded)
   if [[ -z "$chosen_scale" ]]; then
     echo "No selection. Operation cancelled."
     exit 0
