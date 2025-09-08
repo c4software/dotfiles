@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-# List monitors with their current resolution
+# Step 1: list monitors with their current resolution
 monitors=$(hyprctl monitors -j | jq -r '.[] | "\(.name)\t\(.width)x\(.height)@\(.refreshRate/1000 | floor)"')
 
 if [[ -z "$monitors" ]]; then
@@ -10,27 +10,25 @@ if [[ -z "$monitors" ]]; then
   exit 1
 fi
 
-# Step 1: Select a monitor
 selected=$(echo "$monitors" | fzf --prompt="Select a monitor: " --with-nth=1,2 --delimiter='\t')
 [[ -z "$selected" ]] && exit 0
 
 monitor_name=$(echo "$selected" | cut -f1)
-
 echo "Selected monitor: $monitor_name"
 
-# Step 2: List available modes for this monitor
+# Step 2: list available resolutions for this monitor
 modes=$(hyprctl monitors -j | jq -r --arg MON "$monitor_name" \
-  '.[] | select(.name == $MON) | .modes[] | "\(.width)x\(.height)@\(.refreshRate/1000 | floor)"')
+  '.[] | select(.name == $MON) | .availableModes[] | "\(.width)x\(.height)@\(.refreshRate/1000 | floor)"')
 
 if [[ -z "$modes" ]]; then
-  echo "No modes found for $monitor_name"
+  echo "No available modes found for $monitor_name"
   exit 1
 fi
 
 chosen_mode=$(echo "$modes" | fzf --prompt="Select a resolution: ")
 [[ -z "$chosen_mode" ]] && exit 0
 
-# Step 3: Apply the resolution
+# Step 3: apply resolution
 echo "Applying: hyprctl dispatch setres $monitor_name $chosen_mode"
 hyprctl dispatch setres "$monitor_name" "$chosen_mode"
 
