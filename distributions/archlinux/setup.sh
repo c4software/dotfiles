@@ -4,16 +4,20 @@ clear
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+# Download all packages using pacman for install/**/packages.txt
+find "$SCRIPT_DIR/install/" -name "packages.txt" -exec sh -c 'sudo pacman -S --noconfirm --needed - < "$1"' _ {} \;
+
+# Download all packages using yay for install/**/packages.aur.txt
+find "$SCRIPT_DIR/install/" -name "packages.aur.txt" -exec sh -c 'yay -S --noconfirm --needed - < "$1"' _ {} \;
+
+# Install de base
 source "$SCRIPT_DIR/install/init.sh"
+
+# Force the script to be executed from its directory (since init.sh move us to /tmp during yay installation)
+cd "$SCRIPT_DIR" || exit
 
 # Add local bin to PATH (since we installed binaries there)
 export PATH="$HOME/.local/bin:$PATH"
-
-# Download all packages using pacman for install/**/packages.txt
-find "$SCRIPT_DIR/install/" -name "packages.txt" -exec sudo pacman -S --noconfirm --needed - < {} \;
-
-# Download all packages using yay for install/**/packages.aur.txt
-find "$SCRIPT_DIR/install/" -name "packages.aur.txt" -exec yay -S --noconfirm --needed - < {} \;
 
 # Source all script under install/system with confirmation
 read -p "Do you want to run system setup scripts? (y/n) " confirm_system
