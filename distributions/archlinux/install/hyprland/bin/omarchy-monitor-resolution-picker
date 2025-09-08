@@ -2,13 +2,19 @@
 
 set -euo pipefail
 
-# Step 1: list monitors with their current resolution
-monitors=$(hyprctl monitors -j | jq -r '.[] | "\(.name)\t\(.width)x\(.height)@\(.refreshRate)"')
+# Step 1: list monitors with their current resolution and scale
+monitors=$(hyprctl monitors -j | jq -r '.[] | "\(.name)\t\(.width)x\(.height)@\(.refreshRate) (Scale: \(.scale))"')
 
 if [[ -z "$monitors" ]]; then
   echo "No monitors detected via hyprctl"
   exit 1
 fi
+
+echo "📺 Current monitors configuration:"
+echo "$monitors" | while IFS=$'\t' read -r name config; do
+  echo "  • $name: $config"
+done
+echo ""
 
 selected=$(echo "$monitors" | fzf --prompt="Select a monitor: " --with-nth=1,2 --delimiter=$'\t')
 [[ -z "$selected" ]] && exit 0
@@ -16,7 +22,13 @@ selected=$(echo "$monitors" | fzf --prompt="Select a monitor: " --with-nth=1,2 -
 monitor_name=$(echo "$selected" | cut -f1)
 echo "Selected monitor: $monitor_name"
 
-# Step 2: list available resolutions for this monitor
+# Get current configuration for this monitor
+current_config=$(hyprctl monitors -j | jq -r --arg MON "$monitor_name" '.[] | select(.name == $MON) | "\(.width)x\(.height)@\(.refreshRate) at \(.x)x\(.y) (Scale: \(.scale))"')
+echo "📋 Current configuration: $current_config"
+echo ""
+
+# Step 2: list available resolutions for this monitor with current one highlighted
+current_mode=$(hyprctl monitors -j | jq -r --arg MON "$monitor_name" '.[] | select(.name == $MON) | "\(.width)x\(.height)@\(.refreshRate)"')
 modes=$(hyprctl monitors -j | jq -r --arg MON "$monitor_name" '.[] | select(.name == $MON) | .availableModes[]')
 
 if [[ -z "$modes" ]]; then
@@ -24,32 +36,62 @@ if [[ -z "$modes" ]]; then
   exit 1
 fi
 
-chosen_mode=$(echo "$modes" | fzf --prompt="Select a resolution: ")
+# Add marker for current mode
+modes_with_current=$(echo "$modes" | while read -r mode; do
+  if [[ "$mode" == "$current_mode" ]]; then
+    echo "$mode ← CURRENT"
+  else
+    echo "$mode"
+  fi
+done)
+
+echo "🔧 Available resolutions (current marked with ←):"
+echo "$modes_with_current" | sed 's/^/  • /'
+echo ""
+
+chosen_mode=$(echo "$modes_with_current" | fzf --prompt="Select a resolution: " | sed 's/ ← CURRENT//')
 [[ -z "$chosen_mode" ]] && exit 0
 
-# Step 3: get current scale
+# Step 3: ask user for scale among common values with current one highlighted
 current_scale=$(hyprctl monitors -j | jq -r --arg MON "$monitor_name" '.[] | select(.name == $MON) | .scale')
-
-# Step 4: list common scales with current scale marked
 scale_options=("1" "1.25" "1.5" "1.75" "2")
-scale_list=()
-for s in "${scale_options[@]}"; do
-  if [[ "$s" == "$current_scale" ]]; then
-    scale_list+=("→ $s (current)")
+
+# Add marker for current scale
+scale_options_with_current=()
+for scale in "${scale_options[@]}"; do
+  if [[ "$scale" == "$current_scale" ]]; then
+    scale_options_with_current+=("$scale ← CURRENT")
   else
-    scale_list+=("  $s")
+    scale_options_with_current+=("$scale")
   fi
 done
 
-chosen_scale=$(printf "%s\n" "${scale_list[@]}" | fzf --prompt="Select scale: " | awk '{print $2}')
+echo "📏 Current scale: $current_scale"
+chosen_scale=$(printf "%s\n" "${scale_options_with_current[@]}" | fzf --prompt="Select scale: " | sed 's/ ← CURRENT//')
 [[ -z "$chosen_scale" ]] && exit 0
 
-# Step 5: get current position for this monitor
+# Step 4: get current position for this monitor
 position=$(hyprctl monitors -j | jq -r --arg MON "$monitor_name" '.[] | select(.name == $MON) | "\(.x)x\(.y)"')
+echo "📍 Current position: $position"
+
+# Step 5: show what will be applied
+echo ""
+echo "🔄 Configuration to apply:"
+echo "  Monitor: $monitor_name"
+echo "  Resolution: $chosen_mode"
+echo "  Position: $position"
+echo "  Scale: $chosen_scale"
+echo ""
+
+# Ask for confirmation
+if ! gum confirm "Apply this configuration?"; then
+    echo "❌ Configuration cancelled."
+    exit 0
+fi
 
 # Step 6: apply new configuration
 cmd="hyprctl keyword monitor \"$monitor_name,$chosen_mode,$position,$chosen_scale\""
 echo "Applying: $cmd"
 eval $cmd
 
-notify-send "Monitor $monitor_name set to $chosen_mode at scale $chosen_scale"
+echo "✅ Resolution applied with scale $chosen_scale."
