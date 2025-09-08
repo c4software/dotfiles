@@ -49,7 +49,7 @@ aur_install_and_launch() {
 }
 
 show_ai_web_menu() {
-  case $(menu "" "󱚤  Claude\n󱚤  LeChat\n󱚤  Gemini\n󱚤  ChatGPT") in
+  case $(menu "" "Gemini\n󱚤  ChatGPT\n󱚤  Claude\n󱚤  LeChat\n󱚤  Grok") in
   *Gemini*) omarchy-launch-webapp "https://gemini.google.com/" ;;
   *ChatGPT*) omarchy-launch-webapp "https://chat.openai.com/" ;;
   *Claude*) omarchy-launch-webapp "https://claude.ai/" ;;
