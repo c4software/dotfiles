@@ -25,3 +25,4 @@ iwd
 impala
 satty
 wf-recorder
+hyprmon-bin
