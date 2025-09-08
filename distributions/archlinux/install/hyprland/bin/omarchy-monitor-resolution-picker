@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-# Get available monitors in format "name (current WxH@Hz)"
+# List monitors with their current resolution
 monitors=$(hyprctl monitors -j | jq -r '.[] | "\(.name)\t\(.width)x\(.height)@\(.refreshRate/1000 | floor)"')
 
 if [[ -z "$monitors" ]]; then
@@ -10,32 +10,28 @@ if [[ -z "$monitors" ]]; then
   exit 1
 fi
 
-# Pick a monitor with fzf
-selected=$(echo "$monitors" | fzf \
-  --prompt="Select a monitor: " \
-  --preview 'echo -e "Name: {1}\nCurrent resolution: {2}"' \
-  --with-nth=1,2 \
-  --delimiter='\t' \
-  --bind 'alt-p:toggle-preview' \
-  --color 'pointer:green,marker:green')
-
+# Step 1: Select a monitor
+selected=$(echo "$monitors" | fzf --prompt="Select a monitor: " --with-nth=1,2 --delimiter='\t')
 [[ -z "$selected" ]] && exit 0
 
 monitor_name=$(echo "$selected" | cut -f1)
-current_res=$(echo "$selected" | cut -f2)
 
-echo "Selected monitor: $monitor_name (current resolution $current_res)"
+echo "Selected monitor: $monitor_name"
 
-# Ask for new resolution
-read -rp "New resolution (e.g. 1920x1080@60): " new_res
+# Step 2: List available modes for this monitor
+modes=$(hyprctl monitors -j | jq -r --arg MON "$monitor_name" \
+  '.[] | select(.name == $MON) | .modes[] | "\(.width)x\(.height)@\(.refreshRate/1000 | floor)"')
 
-if [[ -z "$new_res" ]]; then
-  echo "No resolution entered, aborting."
+if [[ -z "$modes" ]]; then
+  echo "No modes found for $monitor_name"
   exit 1
 fi
 
-# Apply the resolution
-echo "Applying: hyprctl dispatch setres $monitor_name $new_res"
-hyprctl dispatch setres "$monitor_name" "$new_res"
+chosen_mode=$(echo "$modes" | fzf --prompt="Select a resolution: ")
+[[ -z "$chosen_mode" ]] && exit 0
+
+# Step 3: Apply the resolution
+echo "Applying: hyprctl dispatch setres $monitor_name $chosen_mode"
+hyprctl dispatch setres "$monitor_name" "$chosen_mode"
 
 echo "✅ Resolution applied."
