@@ -127,7 +127,7 @@ main() {
     # Show the exact line to add to Hyprland config to persist this setting
     echo "To make this setting persistent, add the following line to your Hyprland config (e.g. ~/.config/hypr/monitors.conf):"
     echo
-    echo "monitor $monitor_name,$chosen_mode,$position,$chosen_scale"
+    echo "monitor=$monitor_name,$chosen_mode,$position,$chosen_scale"
 fi
 }
 
