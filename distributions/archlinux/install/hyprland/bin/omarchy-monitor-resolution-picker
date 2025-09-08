@@ -16,7 +16,7 @@ selected=$(echo "$monitors" | fzf --prompt="Select a monitor: " --with-nth=1,2 -
 monitor_name=$(echo "$selected" | cut -f1)
 echo "Selected monitor: $monitor_name"
 
-# Step 2: list available resolutions for this monitor (already strings like 1920x1080@120.00Hz)
+# Step 2: list available resolutions for this monitor
 modes=$(hyprctl monitors -j | jq -r --arg MON "$monitor_name" \
   '.[] | select(.name == $MON) | .availableModes[]')
 
@@ -28,8 +28,16 @@ fi
 chosen_mode=$(echo "$modes" | fzf --prompt="Select a resolution: ")
 [[ -z "$chosen_mode" ]] && exit 0
 
-# Step 3: apply resolution
-echo "Applying: hyprctl dispatch setres $monitor_name $chosen_mode"
-hyprctl dispatch setres "$monitor_name" "$chosen_mode"
+# Step 3: get current position and scale for this monitor
+position=$(hyprctl monitors -j | jq -r --arg MON "$monitor_name" \
+  '.[] | select(.name == $MON) | "\(.x)x\(.y)"')
+
+scale=$(hyprctl monitors -j | jq -r --arg MON "$monitor_name" \
+  '.[] | select(.name == $MON) | .scale')
+
+# Step 4: apply new configuration
+cmd="hyprctl keyword monitor \"$monitor_name,$chosen_mode,$position,$scale\""
+echo "Applying: $cmd"
+eval $cmd
 
 echo "✅ Resolution applied."
