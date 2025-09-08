@@ -27,17 +27,29 @@ fi
 chosen_mode=$(echo "$modes" | fzf --prompt="Select a resolution: ")
 [[ -z "$chosen_mode" ]] && exit 0
 
-# Step 3: ask user for scale among common values
+# Step 3: get current scale
+current_scale=$(hyprctl monitors -j | jq -r --arg MON "$monitor_name" '.[] | select(.name == $MON) | .scale')
+
+# Step 4: list common scales with current scale marked
 scale_options=("1" "1.25" "1.5" "1.75" "2")
-chosen_scale=$(printf "%s\n" "${scale_options[@]}" | fzf --prompt="Select scale: ")
+scale_list=()
+for s in "${scale_options[@]}"; do
+  if [[ "$s" == "$current_scale" ]]; then
+    scale_list+=("→ $s (current)")
+  else
+    scale_list+=("  $s")
+  fi
+done
+
+chosen_scale=$(printf "%s\n" "${scale_list[@]}" | fzf --prompt="Select scale: " | awk '{print $2}')
 [[ -z "$chosen_scale" ]] && exit 0
 
-# Step 4: get current position for this monitor
+# Step 5: get current position for this monitor
 position=$(hyprctl monitors -j | jq -r --arg MON "$monitor_name" '.[] | select(.name == $MON) | "\(.x)x\(.y)"')
 
-# Step 5: apply new configuration
+# Step 6: apply new configuration
 cmd="hyprctl keyword monitor \"$monitor_name,$chosen_mode,$position,$chosen_scale\""
 echo "Applying: $cmd"
 eval $cmd
 
-echo "✅ Resolution applied with scale $chosen_scale."
+notify-send "Monitor $monitor_name set to $chosen_mode at scale $chosen_scale"
