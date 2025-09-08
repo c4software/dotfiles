@@ -72,7 +72,7 @@ main() {
     done <<< "$available_modes"
   )
 
-  chosen_mode_raw=$(echo "$available_modes_ansi" | fzf --ansi --prompt="📏 Which resolution? " --height="40%" --border=rounded)
+  chosen_mode_raw=$(echo "$available_modes_ansi" | fzf --ansi --prompt="📏 Which resolution? " --border=rounded)
   if [[ -z "$chosen_mode_raw" ]]; then
     echo "No selection. Operation cancelled."
     exit 0
