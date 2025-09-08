@@ -49,9 +49,9 @@ aur_install_and_launch() {
 }
 
 show_ai_web_menu() {
-  case $(menu "" "Gemini\n󱚤  ChatGPT\n󱚤  Claude\n󱚤  LeChat\n󱚤  Grok") in
-  *Gemini*) omarchy-launch-webapp "https://gemini.google.com/" ;;
+  case $(menu "" "󱚤  ChatGPT\n󱚤  Gemini\n󱚤  Claude\n󱚤  LeChat\n󱚤  Grok") in
   *ChatGPT*) omarchy-launch-webapp "https://chat.openai.com/" ;;
+  *Gemini*) omarchy-launch-webapp "https://gemini.google.com/" ;;
   *Claude*) omarchy-launch-webapp "https://claude.ai/" ;;
   *LeChat*) omarchy-launch-webapp "https://chat.mistral.ai/chat" ;;
   *Grok*) omarchy-launch-webapp "https://grok.com/" ;;
