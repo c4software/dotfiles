@@ -1,66 +1,65 @@
 #!/bin/bash
 
-# Script amélioré pour changer la résolution et l'échelle d'un écran sous Hyprland.
-# Utilise fzf pour la sélection interactive et gum pour la confirmation.
+# Improved script to change a monitor's resolution and scale under Hyprland.
+# Uses fzf for interactive selection and gum only for final confirmation.
 
-# Stoppe le script en cas d'erreur
 set -euo pipefail
 
-# -- Vérification des dépendances --
+# -- Dependency check --
 check_deps() {
   for cmd in hyprctl jq fzf gum; do
     if ! command -v "$cmd" &> /dev/null; then
-      echo "Erreur : La commande '$cmd' est introuvable." >&2
-      echo "Veuillez l'installer pour utiliser ce script." >&2
+      echo "Error: command '$cmd' not found." >&2
+      echo "Please install it to use this script." >&2
       exit 1
     fi
   done
 }
 
-# Fonction principale
+# Main function
 main() {
-  # -- Étape 1 : Récupérer les informations de tous les moniteurs (un seul appel) --
+  # -- Step 1: get all monitors info (single call) --
   monitors_json=$(hyprctl monitors -j)
 
   if [[ -z "$monitors_json" || "$monitors_json" == "[]" ]]; then
-    echo "Aucun moniteur détecté par Hyprland." >&2
+    echo "No monitors detected by Hyprland." >&2
     exit 1
   fi
 
-  # -- Étape 2 : Sélectionner un moniteur --
-  # Formatage de la liste pour fzf: Nom  Résolution@Rafraîchissement  (actuel, en italique si focus)
+  # -- Step 2: select a monitor --
+  # Format for fzf: Name<TAB>Resolution@Refresh<TAB>(current in italic if focused)
   monitor_list=$(echo "$monitors_json" | jq -r '.[] |
     (.name) + "\t" +
     (if .focused
       then "\u001b[3m\(.width)x\(.height)@\(.refreshRate | floor)Hz\u001b[0m"
       else        "\(.width)x\(.height)@\(.refreshRate | floor)Hz"
      end) + "\t" +
-    (if .focused then "\u001b[3m(actuel)\u001b[0m" else "" end)')
+    (if .focused then "\u001b[3m(current)\u001b[0m" else "" end)')
 
-  # Pré-sélectionne le moniteur qui a le focus (affichage uniquement, plus de --query)
+  # Display only; do not pre-filter the list
   focused_monitor=$(echo "$monitors_json" | jq -r '.[] | select(.focused) | .name')
 
-  selected_monitor_line=$(echo -e "$monitor_list" | fzf --ansi --prompt="📺 Quel moniteur configurer ? " --height="25%" --border=rounded --with-nth=1,2)
-  
-  # Quitte si l'utilisateur appuie sur Echap
+  selected_monitor_line=$(echo -e "$monitor_list" | fzf --ansi --prompt="📺 Which monitor to configure? " --height="25%" --border=rounded --with-nth=1,2)
+
+  # Exit if user presses Esc
   if [[ -z "$selected_monitor_line" ]]; then
-    echo "Aucune sélection. Opération annulée."
+    echo "No selection. Operation cancelled."
     exit 0
   fi
 
   monitor_name=$(echo "$selected_monitor_line" | cut -f1)
-  
-  # Isoler les détails du moniteur sélectionné pour les étapes suivantes
+
+  # isolate selected monitor details
   monitor_details=$(echo "$monitors_json" | jq --arg MON "$monitor_name" '.[] | select(.name == $MON)')
 
-  echo "Moniteur sélectionné : $monitor_name"
+  echo "Selected monitor: $monitor_name"
   echo
 
-  # -- Étape 3 : Sélectionner une résolution --
+  # -- Step 3: select a resolution --
   available_modes=$(echo "$monitor_details" | jq -r '.availableModes[]')
   current_mode=$(echo "$monitor_details" | jq -r '"\(.width)x\(.height)@\(.refreshRate | floor)Hz"')
-  
-  # Liste avec la résolution actuelle en italique
+
+  # mark current mode in italic
   available_modes_ansi=$(
     while IFS= read -r line; do
       token="${line%% *}"
@@ -73,24 +72,23 @@ main() {
     done <<< "$available_modes"
   )
 
-  chosen_mode_raw=$(echo "$available_modes_ansi" | fzf --ansi --prompt="📏 Quelle résolution choisir ? " --height="40%" --border=rounded)
+  chosen_mode_raw=$(echo "$available_modes_ansi" | fzf --ansi --prompt="📏 Which resolution? " --height="40%" --border=rounded)
   if [[ -z "$chosen_mode_raw" ]]; then
-    echo "Aucune sélection. Opération annulée."
+    echo "No selection. Operation cancelled."
     exit 0
   fi
 
-  # Nettoyer les codes ANSI éventuels
+  # strip ANSI sequences
   chosen_mode_raw=$(printf "%s" "$chosen_mode_raw" | sed -r 's/\x1B\[[0-9;]*[mK]//g')
 
-  # Garder uniquement la partie "largeurxhauteur@refreshRate"
+  # keep only "WIDTHxHEIGHT@REFRESH"
   chosen_mode=$(echo "$chosen_mode_raw" | sed -E 's/@([0-9]+)\.[0-9]+Hz/@\1Hz/' | cut -d' ' -f1)
 
-
-  # -- Étape 4 : Sélectionner l'échelle (scale) --
-  scale_options=("1" "1.25" "1.5" "1.75" "2")
+  # -- Step 4: select scale --
+  scale_options=("1.00" "1.25" "1.5" "1.75" "2.00")
   current_scale=$(echo "$monitor_details" | jq -r '.scale')
 
-  # Liste avec l'échelle actuelle en italique
+  # mark current scale in italic
   scale_list=$(
     for s in "${scale_options[@]}"; do
       if [[ "$s" == "$current_scale" ]]; then
@@ -101,35 +99,38 @@ main() {
     done
   )
 
-  chosen_scale=$(echo "$scale_list" | fzf --ansi --prompt="🔎 Quelle échelle appliquer ? " --height="25%" --border=rounded)
+  chosen_scale=$(echo "$scale_list" | fzf --ansi --prompt="🔎 Which scale to apply? " --height="25%" --border=rounded)
   if [[ -z "$chosen_scale" ]]; then
-    echo "Aucune sélection. Opération annulée."
+    echo "No selection. Operation cancelled."
     exit 0
   fi
 
-  # Nettoyer les codes ANSI éventuels
+  # strip ANSI sequences
   chosen_scale=$(printf "%s" "$chosen_scale" | sed -r 's/\x1B\[[0-9;]*[mK]//g')
 
-  # -- Étape 5 : Préparer et confirmer la commande --
+  # -- Step 5: prepare and confirm the command --
   position=$(echo "$monitor_details" | jq -r '"\(.x)x\(.y)"')
-  
+
   cmd="hyprctl keyword monitor \"$monitor_name,${chosen_mode},$position,$chosen_scale\""
 
-  echo "Configuration à appliquer :"
-  echo "  Moniteur  : $monitor_name"
-  echo "  Résolution: $chosen_mode"
+  echo "Configuration to apply:"
+  echo "  Monitor   : $monitor_name"
+  echo "  Resolution: $chosen_mode"
   echo "  Position  : $position"
-  echo "  Échelle   : $chosen_scale"
+  echo "  Scale     : $chosen_scale"
   echo
 
-  if gum confirm "Voulez-vous exécuter cette commande ?" --affirmative="✅ Oui" --negative="❌ Non"; then
+  if gum confirm "Do you want to execute this command?" --affirmative="✅ Yes" --negative="❌ No"; then
     eval "$cmd"
-    echo "✅ Configuration appliquée avec succès !"
-  else
-    echo "❌ Opération annulée par l'utilisateur."
-  fi
+    echo "✅ Configuration applied successfully!"
+    echo
+    # Show the exact line to add to Hyprland config to persist this setting
+    echo "To make this setting persistent, add the following line to your Hyprland config (e.g. ~/.config/hypr/monitors.conf):"
+    echo
+    echo "monitor $monitor_name,$chosen_mode,$position,$chosen_scale"
+fi
 }
 
-# --- Lancement du script ---
+# --- Run ---
 check_deps
 main
