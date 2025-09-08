@@ -4,14 +4,14 @@ clear
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+# Install de base
+source "$SCRIPT_DIR/install/init.sh"
+
 # Download all packages using pacman for install/**/packages.txt
 find "$SCRIPT_DIR/install/" -name "packages.txt" -exec sh -c 'grep -v "^#" "$1" | sudo pacman -S --noconfirm --needed -' _ {} \;
 
 # Download all packages using yay for install/**/packages.aur.txt
 find "$SCRIPT_DIR/install/" -name "packages.aur.txt" -exec sh -c 'grep -v "^#" "$1" | yay -S --noconfirm --needed -' _ {} \;
-
-# Install de base
-source "$SCRIPT_DIR/install/init.sh"
 
 # Force the script to be executed from its directory (since init.sh move us to /tmp during yay installation)
 cd "$SCRIPT_DIR" || exit
