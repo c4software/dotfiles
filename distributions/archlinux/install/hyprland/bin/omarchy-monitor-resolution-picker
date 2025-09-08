@@ -3,7 +3,7 @@
 set -euo pipefail
 
 # Step 1: list monitors with their current resolution
-monitors=$(hyprctl monitors -j | jq -r '.[] | "\(.name)\t\(.width)x\(.height)@\(.refreshRate/1000 | floor)"')
+monitors=$(hyprctl monitors -j | jq -r '.[] | "\(.name)\t\(.width)x\(.height)@\(.refreshRate)"')
 
 if [[ -z "$monitors" ]]; then
   echo "No monitors detected via hyprctl"
@@ -16,9 +16,9 @@ selected=$(echo "$monitors" | fzf --prompt="Select a monitor: " --with-nth=1,2 -
 monitor_name=$(echo "$selected" | cut -f1)
 echo "Selected monitor: $monitor_name"
 
-# Step 2: list available resolutions for this monitor
+# Step 2: list available resolutions for this monitor (already strings like 1920x1080@120.00Hz)
 modes=$(hyprctl monitors -j | jq -r --arg MON "$monitor_name" \
-  '.[] | select(.name == $MON) | .availableModes[] | "\(.width)x\(.height)@\(.refreshRate/1000 | floor)"')
+  '.[] | select(.name == $MON) | .availableModes[]')
 
 if [[ -z "$modes" ]]; then
   echo "No available modes found for $monitor_name"
