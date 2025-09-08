@@ -28,13 +28,19 @@ main() {
   fi
 
   # -- Étape 2 : Sélectionner un moniteur --
-  # Formatage de la liste pour fzf: Nom  Résolution@Rafraîchissement  (actuel)
-  monitor_list=$(echo "$monitors_json" | jq -r '.[] | "\(.name)\t\(.width)x\(.height)@\(.refreshRate | floor)Hz\t\(if .focused then "(actuel)" else "" end)"')
-  
-  # Pré-sélectionne le moniteur qui a le focus
+  # Formatage de la liste pour fzf: Nom  Résolution@Rafraîchissement  (actuel, en italique si focus)
+  monitor_list=$(echo "$monitors_json" | jq -r '.[] |
+    (.name) + "\t" +
+    (if .focused
+      then "\u001b[3m\(.width)x\(.height)@\(.refreshRate | floor)Hz\u001b[0m"
+      else        "\(.width)x\(.height)@\(.refreshRate | floor)Hz"
+     end) + "\t" +
+    (if .focused then "\u001b[3m(actuel)\u001b[0m" else "" end)')
+
+  # Pré-sélectionne le moniteur qui a le focus (affichage uniquement, plus de --query)
   focused_monitor=$(echo "$monitors_json" | jq -r '.[] | select(.focused) | .name')
 
-  selected_monitor_line=$(echo -e "$monitor_list" | fzf --prompt="📺 Quel moniteur configurer ? " --height="25%" --border=rounded --query="$focused_monitor" --with-nth=1,2)
+  selected_monitor_line=$(echo -e "$monitor_list" | fzf --ansi --prompt="📺 Quel moniteur configurer ? " --height="25%" --border=rounded --with-nth=1,2)
   
   # Quitte si l'utilisateur appuie sur Echap
   if [[ -z "$selected_monitor_line" ]]; then
@@ -54,13 +60,28 @@ main() {
   available_modes=$(echo "$monitor_details" | jq -r '.availableModes[]')
   current_mode=$(echo "$monitor_details" | jq -r '"\(.width)x\(.height)@\(.refreshRate | floor)Hz"')
   
-  # fzf recherche la résolution actuelle dans la liste
-  chosen_mode_raw=$(echo "$available_modes" | fzf --prompt="📏 Quelle résolution choisir ? " --height="40%" --border=rounded --query="$current_mode")
+  # Liste avec la résolution actuelle en italique
+  available_modes_ansi=$(
+    while IFS= read -r line; do
+      token="${line%% *}"
+      token_int=$(echo "$token" | sed -E 's/@([0-9]+)\.[0-9]+Hz/@\1Hz/')
+      if [[ "$token_int" == "$current_mode" ]]; then
+        printf "\e[3m%s\e[0m\n" "$line"
+      else
+        printf "%s\n" "$line"
+      fi
+    done <<< "$available_modes"
+  )
+
+  chosen_mode_raw=$(echo "$available_modes_ansi" | fzf --ansi --prompt="📏 Quelle résolution choisir ? " --height="40%" --border=rounded)
   if [[ -z "$chosen_mode_raw" ]]; then
     echo "Aucune sélection. Opération annulée."
     exit 0
   fi
-  
+
+  # Nettoyer les codes ANSI éventuels
+  chosen_mode_raw=$(printf "%s" "$chosen_mode_raw" | sed -r 's/\x1B\[[0-9;]*[mK]//g')
+
   # Garder uniquement la partie "largeurxhauteur@refreshRate"
   chosen_mode=$(echo "$chosen_mode_raw" | sed -E 's/@([0-9]+)\.[0-9]+Hz/@\1Hz/' | cut -d' ' -f1)
 
@@ -69,11 +90,25 @@ main() {
   scale_options=("1" "1.25" "1.5" "1.75" "2")
   current_scale=$(echo "$monitor_details" | jq -r '.scale')
 
-  chosen_scale=$(printf "%s\n" "${scale_options[@]}" | fzf --prompt="🔎 Quelle échelle appliquer ? " --height="25%" --border=rounded --query="$current_scale")
+  # Liste avec l'échelle actuelle en italique
+  scale_list=$(
+    for s in "${scale_options[@]}"; do
+      if [[ "$s" == "$current_scale" ]]; then
+        printf "\e[3m%s\e[0m\n" "$s"
+      else
+        printf "%s\n" "$s"
+      fi
+    done
+  )
+
+  chosen_scale=$(echo "$scale_list" | fzf --ansi --prompt="🔎 Quelle échelle appliquer ? " --height="25%" --border=rounded)
   if [[ -z "$chosen_scale" ]]; then
     echo "Aucune sélection. Opération annulée."
     exit 0
   fi
+
+  # Nettoyer les codes ANSI éventuels
+  chosen_scale=$(printf "%s" "$chosen_scale" | sed -r 's/\x1B\[[0-9;]*[mK]//g')
 
   # -- Étape 5 : Préparer et confirmer la commande --
   position=$(echo "$monitor_details" | jq -r '"\(.x)x\(.y)"')
