@@ -1,0 +1,41 @@
+#!/bin/bash
+
+set -euo pipefail
+
+# Get available monitors in format "name (current WxH@Hz)"
+monitors=$(hyprctl monitors -j | jq -r '.[] | "\(.name)\t\(.width)x\(.height)@\(.refreshRate/1000 | floor)"')
+
+if [[ -z "$monitors" ]]; then
+  echo "No monitors detected via hyprctl"
+  exit 1
+fi
+
+# Pick a monitor with fzf
+selected=$(echo "$monitors" | fzf \
+  --prompt="Select a monitor: " \
+  --preview 'echo -e "Name: {1}\nCurrent resolution: {2}"' \
+  --with-nth=1,2 \
+  --delimiter='\t' \
+  --bind 'alt-p:toggle-preview' \
+  --color 'pointer:green,marker:green')
+
+[[ -z "$selected" ]] && exit 0
+
+monitor_name=$(echo "$selected" | cut -f1)
+current_res=$(echo "$selected" | cut -f2)
+
+echo "Selected monitor: $monitor_name (current resolution $current_res)"
+
+# Ask for new resolution
+read -rp "New resolution (e.g. 1920x1080@60): " new_res
+
+if [[ -z "$new_res" ]]; then
+  echo "No resolution entered, aborting."
+  exit 1
+fi
+
+# Apply the resolution
+echo "Applying: hyprctl dispatch setres $monitor_name $new_res"
+hyprctl dispatch setres "$monitor_name" "$new_res"
+
+echo "✅ Resolution applied."
