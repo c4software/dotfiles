@@ -19,7 +19,7 @@ menu() {
   echo -e "$options" | walker --dmenu --theme dmenu_250 -p "$prompt…" "${args[@]}"
 }
 
-case $(menu "LLM>" "󱚤  ChatGPT\n󱚤  Gemini\n󱚤  Claude\n󱚤  LeChat\n󱚤  Grok\n󱚤  Meta") in
+case $(menu "LLM" "󱚤  ChatGPT\n󱚤  Gemini\n󱚤  Claude\n󱚤  LeChat\n󱚤  Grok\n󱚤  Meta") in
 *ChatGPT*) omarchy-launch-webapp "https://chat.openai.com/" ;;
 *Gemini*) omarchy-launch-webapp "https://gemini.google.com/" ;;
 *Claude*) omarchy-launch-webapp "https://claude.ai/" ;;
