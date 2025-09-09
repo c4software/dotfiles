@@ -45,8 +45,7 @@
     "on-click": "alacritty -e btop"
   },
   "clock": {
-    "format": "{%H:%M}",
-    "format-alt": "{:L%d %B W%V %Y}",
+    "format": "%H:%M",
     "tooltip": true,
     "on-click": "omarchy-launch-webapp 'https://calendar.google.com/'",
     "tooltip-format": ":L%A :L%d %B W%V %Y"
