@@ -28,3 +28,6 @@ nss-mdns
 # Security
 fprintd
 ufw
+
+# Thunderbolt
+bolt
