@@ -48,7 +48,7 @@
     "format": "{:%H:%M}",
     "tooltip": true,
     "on-click": "omarchy-launch-webapp 'https://calendar.google.com/'",
-    "tooltip-format": "{:L%A L%d %B W%V %Y}"
+    "tooltip-format": "{:L%A %d %B W%V %Y}"
   },
   "network": {
     "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
