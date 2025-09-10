@@ -1,10 +1,13 @@
 #!/bin/bash
 
+# Script to change a monitor's resolution and scale under Hyprland.
+# Uses walker for interactive selection and present_terminal for final execution.
+
 set -euo pipefail
 
 # -- Dependency check --
 check_deps() {
-  for cmd in hyprctl jq walker gum; do
+  for cmd in hyprctl jq walker alacritty; do
     if ! command -v "$cmd" &> /dev/null; then
       echo "Error: command '$cmd' not found." >&2
       echo "Please install it to use this script." >&2
@@ -31,6 +34,11 @@ menu() {
   fi
 
   echo -e "$options" | walker --dmenu --theme dmenu_250 -p "$prompt…" "${args[@]}"
+}
+
+# Run in terminal
+present_terminal() {
+  alacritty --class Omarchy -e bash -c "eval \"$1\"; omarchy-show-done;"
 }
 
 # Main function
@@ -87,7 +95,7 @@ main() {
     exit 0
   fi
 
-  # -- Step 5: confirm and apply --
+  # -- Step 5: prepare and run in terminal --
   position=$(echo "$monitor_details" | jq -r '"\(.x)x\(.y)"')
 
   cmd="hyprctl keyword monitor \"$monitor_name,${chosen_mode},$position,$chosen_scale\""
@@ -98,15 +106,13 @@ main() {
   echo "  Position  : $position"
   echo "  Scale     : $chosen_scale"
   echo
+  echo "This will be executed in a terminal window."
+  echo "To persist this configuration, add the following line to your Hyprland config (e.g. ~/.config/hypr/monitors.conf):"
+  echo
+  echo "monitor=$monitor_name,$chosen_mode,$position,$chosen_scale"
+  echo
 
-  if gum confirm "Do you want to execute this command?" --affirmative="Yes" --negative="No"; then
-    eval "$cmd"
-    echo "Configuration applied successfully!"
-    echo
-    echo "To make this setting persistent, add the following line to your Hyprland config (e.g. ~/.config/hypr/monitors.conf):"
-    echo
-    echo "monitor=$monitor_name,$chosen_mode,$position,$chosen_scale"
-  fi
+  present_terminal "$cmd"
 }
 
 # --- Run ---
