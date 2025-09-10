@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Script to change a monitor's resolution and scale under Hyprland.
-# Uses walker for interactive selection and present_terminal for final execution.
+# Uses walker for interactive selection and present_terminal for final confirmation/execution.
 
 set -euo pipefail
 
@@ -38,7 +38,7 @@ menu() {
 
 # Run in terminal
 present_terminal() {
-  alacritty --class Omarchy -e bash -c "eval \"$1\"; omarchy-show-done;"
+  alacritty --class Omarchy -e bash -c "$1"
 }
 
 # Main function
@@ -67,11 +67,7 @@ main() {
   fi
 
   monitor_name=$(echo "$selected_monitor_line" | cut -f1)
-
   monitor_details=$(echo "$monitors_json" | jq --arg MON "$monitor_name" '.[] | select(.name == $MON)')
-
-  echo "Selected monitor: $monitor_name"
-  echo
 
   # -- Step 3: select a resolution --
   available_modes=$(echo "$monitor_details" | jq -r '.availableModes[]')
@@ -95,24 +91,34 @@ main() {
     exit 0
   fi
 
-  # -- Step 5: prepare and run in terminal --
+  # -- Step 5: prepare the terminal script --
   position=$(echo "$monitor_details" | jq -r '"\(.x)x\(.y)"')
-
   cmd="hyprctl keyword monitor \"$monitor_name,${chosen_mode},$position,$chosen_scale\""
 
-  echo "Configuration to apply:"
-  echo "  Monitor   : $monitor_name"
-  echo "  Resolution: $chosen_mode"
-  echo "  Position  : $position"
-  echo "  Scale     : $chosen_scale"
+  terminal_script=$(cat <<EOF
+echo "Configuration to apply:"
+echo "  Monitor   : $monitor_name"
+echo "  Resolution: $chosen_mode"
+echo "  Position  : $position"
+echo "  Scale     : $chosen_scale"
+echo
+read -rp "Apply this configuration? [y/N] " ans
+if [[ \$ans =~ ^[Yy]$ ]]; then
+  $cmd
   echo
-  echo "This will be executed in a terminal window."
-  echo "To persist this configuration, add the following line to your Hyprland config (e.g. ~/.config/hypr/monitors.conf):"
+  echo "✅ Configuration applied successfully!"
   echo
+  echo "To make this setting persistent, add the following line to your Hyprland config:"
   echo "monitor=$monitor_name,$chosen_mode,$position,$chosen_scale"
-  echo
+else
+  echo "Operation cancelled."
+fi
+echo
+omarchy-show-done
+EOF
+)
 
-  present_terminal "$cmd"
+  present_terminal "$terminal_script"
 }
 
 # --- Run ---
