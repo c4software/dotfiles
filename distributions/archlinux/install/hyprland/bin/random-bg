@@ -1,6 +1,8 @@
 #!/bin/bash
 
-FOLDER="$HOME/wallpapers"
+FOLDER="$HOME/.config/theme/backgrounds"
 IMG=$(find "$FOLDER" -type f | shuf -n 1)
 
-swaybg -i "$IMG" -m fill
+# Relaunch swaybg
+pkill -x swaybg
+setsid uwsm app -- swaybg -i "$IMG" -m fill >/dev/null 2>&1 &
