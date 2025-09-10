@@ -37,9 +37,30 @@ persist_configuration(){
   local monitors_json
   monitors_json=$(hyprctl monitors all -j | jq --arg NAME "$new_configuration_name" 'map(select(.name != $NAME))')
 
-  # Generate the new monitors configuration, for each ("monitor=$monitor_name,$chosen_mode,$position,$chosen_scale")
-  local new_monitors_config
-  new_monitors_config=$(echo "$monitors_json" | jq --arg VALUE "$new_configuration_value" 'map("monitor=\(.name),\(.mode),\(.position),\(.scale),$VALUE") | .[]')
+  # For each monitor, extract its current configuration to construct the new config line (format monitor=$monitor_name,$chosen_mode,$position,$chosen_scale)
+  local new_monitors_config=""
+  local monitor
+  for (( i=0; i<$(echo "$monitors_json" | jq 'length'); i++ )); do
+    monitor=$(echo "$monitors_json" | jq -r ".[$i]")
+    local name
+    name=$(echo "$monitor" | jq -r '.name')
+    local mode
+    mode=$(echo "$monitor" | jq -r '"\(.width)x\(.height)@\(.refreshRate | floor).00Hz"')
+    local position
+    position=$(echo "$monitor" | jq -r '"\(.x)x\(.y)"')
+    local scale
+    scale=$(echo "$monitor" | jq -r '.scale')
+    local disabled
+    disabled=$(echo "$monitor" | jq -r '.disabled')
+
+    # Format monitor=$monitor_name,$chosen_mode,$position,$chosen_scale
+    local config_line
+    config_line="monitor=$name,$mode,$position,$scale,$disabled"
+    new_monitors_config+=$'\n'"$config_line"
+  done
+
+  # Append the new monitor configuration at the end
+  new_monitors_config+=$'\n'"monitor=$new_configuration_name,$new_configuration_values"
 
   echo $new_monitors_config
 }
