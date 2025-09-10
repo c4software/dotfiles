@@ -19,5 +19,6 @@ cp "$SCRIPT_DIR/config/backgrounds/"* ~/wallpapers/
 
 # Set the dark theme for GTK apps
 echo -e "Setting dark theme for GTK applications"
-gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
 gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
+gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
+gsettings set org.gnome.desktop.interface icon-theme "Yaru-blue"

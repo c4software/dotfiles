@@ -1,5 +1,4 @@
 @import "../theme/waybar.css";
-
 * {
   background-color: @background;
   color: @foreground;
@@ -36,7 +35,8 @@
 #network,
 #bluetooth,
 #pulseaudio,
-#custom-launcher,
+#custom-omarchy,
+#custom-screenrecording-indicator,
 #custom-update {
   min-width: 12px;
   margin: 0 7.5px;
@@ -58,22 +58,16 @@ tooltip {
   margin-left: 8.75px;
 }
 
-#group-status-cluster {
-  margin-right: 8.75px;
+.hidden {
+  opacity: 0;
 }
 
-#custom-status-dnd,
-#custom-status-idle {
+#custom-screenrecording-indicator {
   min-width: 12px;
-  margin: 0 2px;
+  margin-left: 8.75px;
   font-size: 10px;
 }
 
-#custom-status-dnd.status-dnd,
-#custom-status-idle.status-idle {
-  opacity: 1;
-}
-
-.hidden {
-  opacity: 0;
+#custom-screenrecording-indicator.active {
+  color: #a55555;
 }
