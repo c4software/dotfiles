@@ -26,7 +26,7 @@ present_terminal() {
 }
 
 main() {
-  monitors_json=$(hyprctl monitors all -j)
+  monitors_json=$(hyprctl monitors all-j)
 
   if [[ -z "$monitors_json" || "$monitors_json" == "[]" ]]; then
     echo "No monitors detected by Hyprland." >&2
@@ -42,10 +42,9 @@ main() {
   else
     # Multiple monitors → prompt
     monitor_list=$(echo "$monitors_json" | jq -r '.[] |
-      .name + "\t" +
-      (.width|tostring) + "x" + (.height|tostring) + "@" + ((.refreshRate|floor)|tostring) + "Hz" +
-      (if .focused then " (current)" else "" end) +
-      (if .disabled then " (disabled)" else "" end)')
+      (.name + (if .disabled then " (disabled)" else "" end)) + "\t" +
+      (.width|tostring) + "x" + (.height|tostring) + "@" + ((.refreshRate|floor)|tostring) + "Hz"
+    ')
 
     focused_monitor=$(echo "$monitors_json" | jq -r '.[] | select(.focused) | .name')
 
