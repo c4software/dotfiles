@@ -123,7 +123,7 @@ main() {
   current_mode=$(echo "$monitor_details" | jq -r '"\(.width)x\(.height)@\(.refreshRate | floor).00Hz"')
 
   if (( monitor_count > 1 )); then
-    available_modes="Disable monitor\n$available_modes"
+    available_modes="$available_modes\nDisable monitor"
   fi
 
   chosen_mode_raw=$(menu "Resolution" "$available_modes" "" "$current_mode")
