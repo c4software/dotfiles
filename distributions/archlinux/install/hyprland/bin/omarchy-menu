@@ -1,5 +1,20 @@
 #!/bin/bash
 
+# Set to true when going directly to a submenu, so we can exit directly
+BACK_TO_EXIT=false
+
+back_to() {
+  local parent_menu="$1"
+
+  if [[ "$BACK_TO_EXIT" == "true" ]]; then
+    exit 0
+  elif [[ -n "$parent_menu" ]]; then
+    "$parent_menu"
+  else
+    show_main_menu
+  fi
+}
+
 menu() {
   local prompt="$1"
   local options="$2"
@@ -124,7 +139,7 @@ show_setup_power_menu() {
   profile=$(menu "Power Profile" "$(omarchy-powerprofiles-list)" "" "$(powerprofilesctl get)")
 
   if [[ "$profile" == "CNCLD" || -z "$profile" ]]; then
-    show_main_menu
+      back_to show_main_menu
   else
     powerprofilesctl set "$profile"
   fi
@@ -229,12 +244,21 @@ show_system_menu() {
   *Relaunch*) uwsm stop ;;
   *Restart*) systemctl reboot ;;
   *Shutdown*) systemctl poweroff ;;
-  *) show_main_menu ;;
+  *) back_to show_main_menu ;;
   esac
 }
 
+show_theme_menu() {
+  theme=$(menu "Theme" "$(omarchy-theme-list)" "" "$(omarchy-theme-current)")
+  if [[ "$theme" == "CNCLD" || -z "$theme" ]]; then
+    show_main_menu
+  else
+    omarchy-theme-set "$theme"
+  fi
+}
+
 show_main_menu() {
-  go_to_menu "$(menu "Go" "󰀻  Apps\n󰧑  Learn\n  Capture\n󰔎  Toggle\n  Setup\n󰉉  Install\n󰭌  Remove\n  About\n  System")"
+  go_to_menu "$(menu "Go" "󰀻  Apps\n󰧑  Learn\n  Capture\n󰔎  Toggle\n󰸌  Theme\n  Setup\n󰉉  Install\n󰭌  Remove\n  About\n  System")"
 }
 
 go_to_menu() {
@@ -245,6 +269,7 @@ go_to_menu() {
   *screenshot*) show_screenshot_menu ;;
   *screenrecord*) show_screenrecord_menu ;;
   *toggle*) show_toggle_menu ;;
+  *Theme*) show_theme_menu ;;
   *setup*) show_setup_menu ;;
   *install*) show_install_menu ;;
   *remove*) show_remove_menu ;;
@@ -255,6 +280,7 @@ go_to_menu() {
 }
 
 if [[ -n "$1" ]]; then
+  BACK_TO_EXIT=true
   go_to_menu "$1"
 else
   show_main_menu
