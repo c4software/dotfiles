@@ -157,7 +157,7 @@ main() {
     persist_configuration "$monitor_name" "disable"
   elif [[ "$chosen_mode_raw" == "prefered" ]]; then
     # monitor = name, prefered, auto, auto
-    persist_configuration "$monitor_name" "prefered, auto, $chosen_scale"
+    persist_configuration "$monitor_name" "prefered,auto,$chosen_scale"
   else
     # Step 5: terminal script
     position=$(echo "$monitor_details" | jq -r '"\(.x)x\(.y)"')
