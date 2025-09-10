@@ -1,13 +1,10 @@
 #!/bin/bash
 
-# Script to change a monitor's resolution and scale under Hyprland.
-# Uses walker for interactive selection and present_terminal for final confirmation/execution.
-
 set -euo pipefail
 
 # -- Dependency check --
 check_deps() {
-  for cmd in hyprctl jq walker alacritty; do
+  for cmd in hyprctl jq walker alacritty gum; do
     if ! command -v "$cmd" &> /dev/null; then
       echo "Error: command '$cmd' not found." >&2
       echo "Please install it to use this script." >&2
@@ -102,8 +99,8 @@ echo "  Resolution: $chosen_mode"
 echo "  Position  : $position"
 echo "  Scale     : $chosen_scale"
 echo
-read -rp "Apply this configuration? [y/N] " ans
-if [[ \$ans =~ ^[Yy]$ ]]; then
+
+if gum confirm "Do you want to execute this command?" --affirmative="✅ Yes" --negative="❌ No"; then
   $cmd
   echo
   echo "✅ Configuration applied successfully!"
@@ -111,8 +108,9 @@ if [[ \$ans =~ ^[Yy]$ ]]; then
   echo "To make this setting persistent, add the following line to your Hyprland config:"
   echo "monitor=$monitor_name,$chosen_mode,$position,$chosen_scale"
 else
-  echo "Operation cancelled."
+  echo "❌ Operation cancelled."
 fi
+
 echo
 omarchy-show-done
 EOF
