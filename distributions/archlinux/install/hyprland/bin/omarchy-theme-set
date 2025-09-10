@@ -8,7 +8,7 @@ if [[ -z "$1" && "$1" != "CNCLD" ]]; then
   exit 1
 fi
 
-THEMES_DIR="$HOME/.config/omarchy/themes/"
+THEMES_DIR="$HOME/.config/themes/"
 CURRENT_THEME_DIR="$HOME/.config/theme"
 
 THEME_NAME=$(echo "$1" | sed -E 's/<[^>]+>//g' | tr '[:upper:]' '[:lower:]' | tr ' ' '-')
@@ -24,7 +24,7 @@ fi
 ln -nsf "$THEME_PATH" "$CURRENT_THEME_DIR"
 
 # Change gnome modes
-if [[ -f ~/.config/omarchy/current/theme/light.mode ]]; then
+if [[ -f ~/.config/theme/light.mode ]]; then
   gsettings set org.gnome.desktop.interface color-scheme "prefer-light"
   gsettings set org.gnome.desktop.interface gtk-theme "Adwaita"
 else
@@ -33,8 +33,8 @@ else
 fi
 
 # Change gnome icon theme color
-if [[ -f ~/.config/omarchy/current/theme/icons.theme ]]; then
-  gsettings set org.gnome.desktop.interface icon-theme "$(<~/.config/omarchy/current/theme/icons.theme)"
+if [[ -f ~/.config/theme/icons.theme ]]; then
+  gsettings set org.gnome.desktop.interface icon-theme "$(<~/.config/theme/icons.theme)"
 else
   gsettings set org.gnome.desktop.interface icon-theme "Yaru-blue"
 fi
