@@ -44,7 +44,8 @@ main() {
     monitor_list=$(echo "$monitors_json" | jq -r '.[] |
       .name + "\t" +
       (.width|tostring) + "x" + (.height|tostring) + "@" + ((.refreshRate|floor)|tostring) + "Hz" +
-      (if .focused then " (current)" else "" end)')
+      (if .focused then " (current)" else "") +
+      (if .disabled then " (disabled)" else "" end)')
 
     focused_monitor=$(echo "$monitors_json" | jq -r '.[] | select(.focused) | .name')
 
