@@ -2,18 +2,6 @@
 
 set -euo pipefail
 
-# -- Dependency check --
-check_deps() {
-  for cmd in hyprctl jq walker alacritty gum; do
-    if ! command -v "$cmd" &> /dev/null; then
-      echo "Error: command '$cmd' not found." >&2
-      echo "Please install it to use this script." >&2
-      exit 1
-    fi
-  done
-}
-
-# Generic menu wrapper
 menu() {
   local prompt="$1"
   local options="$2"
@@ -33,7 +21,6 @@ menu() {
   echo -e "$options" | walker --dmenu --theme dmenu_250 -p "$prompt…" "${args[@]}"
 }
 
-# Run in terminal
 present_terminal() {
   alacritty --class Omarchy -e bash -c "$1"
 }
@@ -119,6 +106,4 @@ EOF
   present_terminal "$terminal_script"
 }
 
-# --- Run ---
-check_deps
 main
