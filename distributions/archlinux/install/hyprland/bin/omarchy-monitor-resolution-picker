@@ -122,6 +122,13 @@ main() {
   available_modes=$(echo "$monitor_details" | jq -r '.availableModes[]')
   current_mode=$(echo "$monitor_details" | jq -r '"\(.width)x\(.height)@\(.refreshRate | floor).00Hz"')
 
+  # Get if the target monitor is currently disabled
+  is_disabled=$(echo "$monitor_details" | jq -r '.disabled')
+  if [[ "$is_disabled" == "true" ]]; then
+    current_mode="Disable monitor"
+  fi
+
+
   if (( monitor_count > 1 )); then
     available_modes="$available_modes\nDisable monitor"
   fi
