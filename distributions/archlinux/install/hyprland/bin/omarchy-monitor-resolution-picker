@@ -26,7 +26,7 @@ present_terminal() {
 }
 
 main() {
-  monitors_json=$(hyprctl monitors -j)
+  monitors_json=$(hyprctl monitors all -j)
 
   if [[ -z "$monitors_json" || "$monitors_json" == "[]" ]]; then
     echo "No monitors detected by Hyprland." >&2
