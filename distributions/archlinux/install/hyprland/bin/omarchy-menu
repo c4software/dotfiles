@@ -111,8 +111,8 @@ show_setup_menu() {
     alacritty --class=Bluetui -e bluetui
     ;;
   *Power*) show_setup_power_menu ;;
-  *Resolution*) terminal "omarchy-monitor-resolution-picker" ;;
-  *Monitors*) terminalhyprmon ;;
+  *Resolution*) omarchy-monitor-resolution-picker ;;
+  *Monitors*) hyprmon ;;
   *Keybindings*) edit_in_nvim ~/.config/hypr/bindings.conf ;;
   *Input*) edit_in_nvim ~/.config/hypr/input.conf ;;
   *Config*) show_setup_config_menu ;;
