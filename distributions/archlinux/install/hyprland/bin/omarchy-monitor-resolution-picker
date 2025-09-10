@@ -43,8 +43,7 @@ main() {
     # Multiple monitors → prompt
     monitor_list=$(echo "$monitors_json" | jq -r '.[] |
       (.name + (if .disabled then " (disabled)" else "" end)) + "\t" +
-      (.width|tostring) + "x" + (.height|tostring) + "@" + ((.refreshRate|floor)|tostring) + "Hz" +
-      (if .focused then " (current)" else "" end)')
+      (.width|tostring) + "x" + (.height|tostring) + "@" + ((.refreshRate|floor)|tostring) + ".00Hz"')
 
     focused_monitor=$(echo "$monitors_json" | jq -r '.[] | select(.focused) | .name')
 
