@@ -179,6 +179,11 @@ if [[ "$HIDE_REQUESTED" -eq 1 ]]; then
         HEIGHT_CHANGE=$(( TARGET_HEIGHT - WINDOW_HEIGHT ))
 
         hyprctl --batch "dispatch resizewindowpixel $WIDTH_CHANGE $HEIGHT_CHANGE,address:$WINDOW_ADDRESS; dispatch movewindowpixel $PIXELS_TO_MOVE_X $PIXELS_TO_MOVE_Y,address:$WINDOW_ADDRESS"
+        
+        # Give the focus back to the previous window (alt tab)
+        hyprctl dispatch cyclenext prev
+
+        
         echo "Operation completed."
     else
         echo "Window is already hidden."
