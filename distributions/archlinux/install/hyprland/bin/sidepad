@@ -79,39 +79,6 @@ kill_sidepad() {
     exit 0
 }
 
-# --- Get scale-adjusted dimensions ---
-get_scaled_dimensions() {
-    local monitor_info="$1"
-    local scale width height
-    
-    scale=$(echo "$monitor_info" | jq -r '.scale')
-    width=$(echo "$monitor_info" | jq -r '.width')
-    height=$(echo "$monitor_info" | jq -r '.height')
-    
-    # Si le scale est différent de 1, les dimensions sont déjà ajustées dans hyprctl
-    # mais nous devons nous assurer que nos gaps sont aussi ajustés
-    if (( $(echo "$scale != 1" | bc -l) )); then
-        # Les coordonnées retournées par hyprctl sont déjà dans l'espace logique
-        # Nos gaps doivent être dans le même espace
-        SCALED_TOP_GAP=$(echo "scale=0; $TOP_GAP / $scale" | bc)
-        SCALED_BOTTOM_GAP=$(echo "scale=0; $BOTTOM_GAP / $scale" | bc)
-        SCALED_HIDDEN_LEFT_GAP=$(echo "scale=0; $HIDDEN_LEFT_GAP / $scale" | bc)
-        SCALED_VISIBLE_LEFT_GAP=$(echo "scale=0; $VISIBLE_LEFT_GAP / $scale" | bc)
-        SCALED_TARGET_WIDTH=$(echo "scale=0; $TARGET_WIDTH / $scale" | bc)
-        SCALED_TARGET_WIDTH_MAX=$(echo "scale=0; $TARGET_WIDTH_MAX / $scale" | bc)
-    else
-        SCALED_TOP_GAP=$TOP_GAP
-        SCALED_BOTTOM_GAP=$BOTTOM_GAP
-        SCALED_HIDDEN_LEFT_GAP=$HIDDEN_LEFT_GAP
-        SCALED_VISIBLE_LEFT_GAP=$VISIBLE_LEFT_GAP
-        SCALED_TARGET_WIDTH=$TARGET_WIDTH
-        SCALED_TARGET_WIDTH_MAX=$TARGET_WIDTH_MAX
-    fi
-    
-    # Utiliser les dimensions logiques (déjà ajustées par hyprctl)
-    LOGICAL_HEIGHT=$height
-}
-
 # --- Parse Command-line Options ---
 while [[ $# -gt 0 ]]; do
     key="$1"
@@ -192,14 +159,12 @@ if [ -z "$WINDOW_INFO" ]; then
     exit 1
 fi
 
-# Get scaled dimensions
-get_scaled_dimensions "$MONITOR_INFO"
-
 WINDOW_ADDRESS=$(echo "$WINDOW_INFO" | jq -r '.address')
 WINDOW_WIDTH=$(echo "$WINDOW_INFO" | jq -r '.size[0]')
 WINDOW_HEIGHT=$(echo "$WINDOW_INFO" | jq -r '.size[1]')
 WINDOW_X=$(echo "$WINDOW_INFO" | jq -r '.at[0]')
 WINDOW_Y=$(echo "$WINDOW_INFO" | jq -r '.at[1]')
+MONITOR_HEIGHT=$(echo "$MONITOR_INFO" | jq -r '.height')
 
 # --- Main Logic ---
 
@@ -207,10 +172,10 @@ WINDOW_Y=$(echo "$WINDOW_INFO" | jq -r '.at[1]')
 if [[ "$HIDE_REQUESTED" -eq 1 ]]; then
     if (( WINDOW_X >= 0 )); then # Only act if it is not already hidden
         echo "--- Hiding window (--hide) ---"
-        PIXELS_TO_MOVE_X=$(( (WINDOW_X * -1) - SCALED_TARGET_WIDTH + SCALED_HIDDEN_LEFT_GAP ))
-        WIDTH_CHANGE=$(( SCALED_TARGET_WIDTH - WINDOW_WIDTH ))
-        PIXELS_TO_MOVE_Y=$(( SCALED_TOP_GAP - WINDOW_Y ))
-        TARGET_HEIGHT=$(( LOGICAL_HEIGHT - SCALED_TOP_GAP - SCALED_BOTTOM_GAP ))
+        PIXELS_TO_MOVE_X=$(( (WINDOW_X * -1) - TARGET_WIDTH + HIDDEN_LEFT_GAP ))
+        WIDTH_CHANGE=$(( TARGET_WIDTH - WINDOW_WIDTH ))
+        PIXELS_TO_MOVE_Y=$(( TOP_GAP - WINDOW_Y ))
+        TARGET_HEIGHT=$(( MONITOR_HEIGHT - TOP_GAP - BOTTOM_GAP ))
         HEIGHT_CHANGE=$(( TARGET_HEIGHT - WINDOW_HEIGHT ))
 
         hyprctl --batch "dispatch resizewindowpixel $WIDTH_CHANGE $HEIGHT_CHANGE,address:$WINDOW_ADDRESS; dispatch movewindowpixel $PIXELS_TO_MOVE_X $PIXELS_TO_MOVE_Y,address:$WINDOW_ADDRESS"
@@ -229,10 +194,10 @@ fi
 # Case 2: Window is hidden, so show it.
 if (( WINDOW_X < 0 )); then
     echo "--- Showing window ---"
-    PIXELS_TO_MOVE_X=$(( SCALED_VISIBLE_LEFT_GAP - WINDOW_X ))
-    WIDTH_CHANGE=$(( SCALED_TARGET_WIDTH - WINDOW_WIDTH ))
-    PIXELS_TO_MOVE_Y=$(( SCALED_TOP_GAP - WINDOW_Y ))
-    TARGET_HEIGHT=$(( LOGICAL_HEIGHT - SCALED_TOP_GAP - SCALED_BOTTOM_GAP ))
+    PIXELS_TO_MOVE_X=$(( VISIBLE_LEFT_GAP - WINDOW_X ))
+    WIDTH_CHANGE=$(( TARGET_WIDTH - WINDOW_WIDTH ))
+    PIXELS_TO_MOVE_Y=$(( TOP_GAP - WINDOW_Y ))
+    TARGET_HEIGHT=$(( MONITOR_HEIGHT - TOP_GAP - BOTTOM_GAP ))
     HEIGHT_CHANGE=$(( TARGET_HEIGHT - WINDOW_HEIGHT ))
 
     hyprctl --batch "dispatch resizewindowpixel $WIDTH_CHANGE $HEIGHT_CHANGE,address:$WINDOW_ADDRESS; dispatch movewindowpixel $PIXELS_TO_MOVE_X $PIXELS_TO_MOVE_Y,address:$WINDOW_ADDRESS"
@@ -245,20 +210,20 @@ if (( WINDOW_X < 0 )); then
 # Case 3: Window is visible, so toggle its width and correct its position.
 else
     # Ensure vertical position and height are correct
-    PIXELS_TO_MOVE_Y=$(( SCALED_TOP_GAP - WINDOW_Y ))
-    TARGET_HEIGHT=$(( LOGICAL_HEIGHT - SCALED_TOP_GAP - SCALED_BOTTOM_GAP ))
+    PIXELS_TO_MOVE_Y=$(( TOP_GAP - WINDOW_Y ))
+    TARGET_HEIGHT=$(( MONITOR_HEIGHT - TOP_GAP - BOTTOM_GAP ))
     HEIGHT_CHANGE=$(( TARGET_HEIGHT - WINDOW_HEIGHT ))
     
     # Don't move horizontally
     PIXELS_TO_MOVE_X=0
 
     # Calculate width change
-    if (( WINDOW_WIDTH == SCALED_TARGET_WIDTH )); then
+    if (( WINDOW_WIDTH == TARGET_WIDTH )); then
         echo "--- Expanding width to max ---"
-        WIDTH_CHANGE=$(( SCALED_TARGET_WIDTH_MAX - WINDOW_WIDTH ))
+        WIDTH_CHANGE=$(( TARGET_WIDTH_MAX - WINDOW_WIDTH ))
     else
         echo "--- Shrinking width to default ---"
-        WIDTH_CHANGE=$(( SCALED_TARGET_WIDTH - WINDOW_WIDTH ))
+        WIDTH_CHANGE=$(( TARGET_WIDTH - WINDOW_WIDTH ))
     fi
 
     hyprctl --batch "dispatch resizewindowpixel $WIDTH_CHANGE $HEIGHT_CHANGE,address:$WINDOW_ADDRESS; dispatch movewindowpixel $PIXELS_TO_MOVE_X $PIXELS_TO_MOVE_Y,address:$WINDOW_ADDRESS"
