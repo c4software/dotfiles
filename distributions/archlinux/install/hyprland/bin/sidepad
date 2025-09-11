@@ -174,7 +174,7 @@ if [[ "$HIDE_REQUESTED" -eq 1 ]]; then
         echo "--- Hiding window (--hide) ---"
         PIXELS_TO_MOVE_X=$(( (WINDOW_X * -1) - TARGET_WIDTH + HIDDEN_LEFT_GAP ))
         WIDTH_CHANGE=$(( TARGET_WIDTH - WINDOW_WIDTH ))
-        PIXELS_TO_MOVE_Y=$(( TOP_GAP - WINDOW_Y ))
+        PIXELS_TO_MOVE_Y=$(( (TOP_GAP + BOTTOM_GAP) - WINDOW_Y ))
         TARGET_HEIGHT=$(( MONITOR_HEIGHT - TOP_GAP - BOTTOM_GAP ))
         HEIGHT_CHANGE=$(( TARGET_HEIGHT - WINDOW_HEIGHT ))
 
@@ -196,7 +196,7 @@ if (( WINDOW_X < 0 )); then
     echo "--- Showing window ---"
     PIXELS_TO_MOVE_X=$(( VISIBLE_LEFT_GAP - WINDOW_X ))
     WIDTH_CHANGE=$(( TARGET_WIDTH - WINDOW_WIDTH ))
-    PIXELS_TO_MOVE_Y=$(( TOP_GAP - WINDOW_Y ))
+    PIXELS_TO_MOVE_Y=$(( (TOP_GAP + BOTTOM_GAP) - WINDOW_Y ))
     TARGET_HEIGHT=$(( MONITOR_HEIGHT - TOP_GAP - BOTTOM_GAP ))
     HEIGHT_CHANGE=$(( TARGET_HEIGHT - WINDOW_HEIGHT ))
 
