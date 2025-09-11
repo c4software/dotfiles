@@ -52,7 +52,7 @@ test_sidepad() {
 init_sidepad() {
     # Check if the window already exists, if not launch it
     if ! hyprctl clients -j | jq -e --arg class "$WINDOW_CLASS" '.[] | select(.class == $class)' > /dev/null; then
-        if [[ "$WINDOW_CLASS" == "dotfiles-sidepad" ]]; then
+        if [[ "$WINDOW_CLASS" == "sidepad" ]]; then
             eval "$1 --class $WINDOW_CLASS" &
         else
             eval "$1" &
