@@ -165,6 +165,7 @@ main() {
     else
       position=$(echo "$monitor_details" | jq -r '"\(.x)x\(.y)"')
       hyprctl keyword monitor "$monitor_name,${chosen_mode},$position,$chosen_scale"
+    fi
   else
     if [[ "$chosen_mode_raw" == "Disable monitor" ]]; then
       # monitor = name, disable
