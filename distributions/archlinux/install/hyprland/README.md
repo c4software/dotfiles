@@ -19,8 +19,7 @@
 | `ALT + SHIFT + Tab` | Fenêtre précédente dans l'espace de travail |
 | `SUPER + -/=` | Redimensionner la fenêtre horizontalement |
 | `SUPER + SHIFT + -/=` | Redimensionner la fenêtre verticalement |
-| `ALT + ←/→` | Redimensionner la fenêtre horizontalement |
-| `ALT + SHIFT + ↑/↓` | Redimensionner la fenêtre verticalement |
+| `ALT + ←/→/↑/↓` | Redimensionner la fenêtre horizontalement/verticalement |
 | `SUPER + Molette souris` | Faire défiler les espaces de travail |
 | `SUPER + Clic gauche` | Déplacer la fenêtre |
 | `SUPER + Clic droit` | Redimensionner la fenêtre |
