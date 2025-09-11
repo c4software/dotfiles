@@ -12,8 +12,6 @@ HIDDEN_LEFT_GAP=10
 VISIBLE_LEFT_GAP=10
 TARGET_WIDTH=700
 TARGET_WIDTH_MAX=1000
-TOP_GAP=20
-BOTTOM_GAP=20
 
 # --- Script Variables ---
 HIDE_REQUESTED=0
@@ -30,8 +28,6 @@ show_help() {
     echo "  --visible-gap <px>     Override the visible left gap (Default: $VISIBLE_LEFT_GAP)"
     echo "  --width <px>           Override the target width (Default: $TARGET_WIDTH)"
     echo "  --width-max <px>       Override the maximum target width (Default: $TARGET_WIDTH_MAX)"
-    echo "  --top-gap <px>         Override the top gap (Default: $TOP_GAP)"
-    echo "  --bottom-gap <px>      Override the bottom gap (Default: $BOTTOM_GAP)"
     echo "  --hide                 Force the window to the hidden state."
     echo "  --kill                 Kills the running app with WINDOW_CLASS."
     echo "  --test                 Test for running app with WINDOW_CLASS."
@@ -108,16 +104,6 @@ while [[ $# -gt 0 ]]; do
             shift; shift
         ;;
 
-        --top-gap)
-            TOP_GAP="$2"
-            shift; shift
-        ;;
-
-        --bottom-gap)
-            BOTTOM_GAP="$2"
-            shift; shift
-        ;;
-
         --hide)
             HIDE_REQUESTED=1
             shift
@@ -152,7 +138,6 @@ done
 
 # --- Get Window and Monitor Info ---
 WINDOW_INFO=$(hyprctl clients -j | jq --arg class "$WINDOW_CLASS" '.[] | select(.class == $class)')
-MONITOR_INFO=$(hyprctl monitors -j | jq -r '.[] | select(.focused == true)')
 
 if [ -z "$WINDOW_INFO" ]; then
     echo "Error: Window with class '$WINDOW_CLASS' not found. Is the window open?"
@@ -161,10 +146,7 @@ fi
 
 WINDOW_ADDRESS=$(echo "$WINDOW_INFO" | jq -r '.address')
 WINDOW_WIDTH=$(echo "$WINDOW_INFO" | jq -r '.size[0]')
-WINDOW_HEIGHT=$(echo "$WINDOW_INFO" | jq -r '.size[1]')
 WINDOW_X=$(echo "$WINDOW_INFO" | jq -r '.at[0]')
-WINDOW_Y=$(echo "$WINDOW_INFO" | jq -r '.at[1]')
-MONITOR_HEIGHT=$(echo "$MONITOR_INFO" | jq -r '.height')
 
 # --- Main Logic ---
 
@@ -174,11 +156,8 @@ if [[ "$HIDE_REQUESTED" -eq 1 ]]; then
         echo "--- Hiding window (--hide) ---"
         PIXELS_TO_MOVE_X=$(( (WINDOW_X * -1) - TARGET_WIDTH + HIDDEN_LEFT_GAP ))
         WIDTH_CHANGE=$(( TARGET_WIDTH - WINDOW_WIDTH ))
-        PIXELS_TO_MOVE_Y=$(( TOP_GAP - WINDOW_Y ))
-        TARGET_HEIGHT=$(( MONITOR_HEIGHT - TOP_GAP - BOTTOM_GAP ))
-        HEIGHT_CHANGE=$(( TARGET_HEIGHT - WINDOW_HEIGHT ))
 
-        hyprctl --batch "dispatch resizewindowpixel $WIDTH_CHANGE $HEIGHT_CHANGE,address:$WINDOW_ADDRESS; dispatch movewindowpixel $PIXELS_TO_MOVE_X $PIXELS_TO_MOVE_Y,address:$WINDOW_ADDRESS"
+        hyprctl --batch "dispatch resizewindowpixel $WIDTH_CHANGE 0,address:$WINDOW_ADDRESS; dispatch movewindowpixel $PIXELS_TO_MOVE_X 0,address:$WINDOW_ADDRESS"
         echo "Operation completed."
     else
         echo "Window is already hidden."
@@ -191,24 +170,13 @@ if (( WINDOW_X < 0 )); then
     echo "--- Showing window ---"
     PIXELS_TO_MOVE_X=$(( VISIBLE_LEFT_GAP - WINDOW_X ))
     WIDTH_CHANGE=$(( TARGET_WIDTH - WINDOW_WIDTH ))
-    PIXELS_TO_MOVE_Y=$(( TOP_GAP - WINDOW_Y ))
-    TARGET_HEIGHT=$(( MONITOR_HEIGHT - TOP_GAP - BOTTOM_GAP ))
-    HEIGHT_CHANGE=$(( TARGET_HEIGHT - WINDOW_HEIGHT ))
 
-    hyprctl --batch "dispatch resizewindowpixel $WIDTH_CHANGE $HEIGHT_CHANGE,address:$WINDOW_ADDRESS; dispatch movewindowpixel $PIXELS_TO_MOVE_X $PIXELS_TO_MOVE_Y,address:$WINDOW_ADDRESS"
+    hyprctl --batch "dispatch resizewindowpixel $WIDTH_CHANGE 0,address:$WINDOW_ADDRESS; dispatch movewindowpixel $PIXELS_TO_MOVE_X 0,address:$WINDOW_ADDRESS"
     echo "Operation completed."
 
-# Case 3: Window is visible, so toggle its width and correct its position.
+# Case 3: Window is visible, so toggle its width.
 else
-    # Ensure vertical position and height are correct
-    TARGET_HEIGHT=$(( MONITOR_HEIGHT - TOP_GAP - BOTTOM_GAP ))
-    PIXELS_TO_MOVE_Y=$(( TOP_GAP - WINDOW_Y ))
-    HEIGHT_CHANGE=$(( TARGET_HEIGHT - WINDOW_HEIGHT ))
-    
-    # Don't move horizontally
-    PIXELS_TO_MOVE_X=0
-
-    # Calculate width change
+    # Calculate width change only
     if (( WINDOW_WIDTH == TARGET_WIDTH )); then
         echo "--- Expanding width to max ---"
         WIDTH_CHANGE=$(( TARGET_WIDTH_MAX - WINDOW_WIDTH ))
@@ -217,6 +185,6 @@ else
         WIDTH_CHANGE=$(( TARGET_WIDTH - WINDOW_WIDTH ))
     fi
 
-    hyprctl --batch "dispatch resizewindowpixel $WIDTH_CHANGE $HEIGHT_CHANGE,address:$WINDOW_ADDRESS; dispatch movewindowpixel $PIXELS_TO_MOVE_X $PIXELS_TO_MOVE_Y,address:$WINDOW_ADDRESS"
+    hyprctl dispatch resizewindowpixel "$WIDTH_CHANGE 0,address:$WINDOW_ADDRESS"
     echo "Operation completed."
 fi
