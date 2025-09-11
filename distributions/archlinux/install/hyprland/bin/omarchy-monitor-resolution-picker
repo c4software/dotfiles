@@ -161,10 +161,10 @@ main() {
   if [[ "$action" == "Apply once" ]]; then
     if [[ "$chosen_mode_raw" == "Disable monitor" ]]; then
       # monitor = name, disable
-      hyprctl keyword monitor \"$monitor_name,disable\"
+      hyprctl keyword monitor "$monitor_name,disable"
     else
       position=$(echo "$monitor_details" | jq -r '"\(.x)x\(.y)"')
-      hyprctl keyword monitor \"$monitor_name,${chosen_mode},$position,$chosen_scale\"
+      hyprctl keyword monitor "$monitor_name,${chosen_mode},$position,$chosen_scale"
   else
     if [[ "$chosen_mode_raw" == "Disable monitor" ]]; then
       # monitor = name, disable
