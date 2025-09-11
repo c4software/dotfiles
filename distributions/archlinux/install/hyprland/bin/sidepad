@@ -174,20 +174,9 @@ if [[ "$HIDE_REQUESTED" -eq 1 ]]; then
         echo "--- Hiding window (--hide) ---"
         PIXELS_TO_MOVE_X=$(( (WINDOW_X * -1) - TARGET_WIDTH + HIDDEN_LEFT_GAP ))
         WIDTH_CHANGE=$(( TARGET_WIDTH - WINDOW_WIDTH ))
-        PIXELS_TO_MOVE_Y=$(( TOP_GAP - WINDOW_Y ))
+        PIXELS_TO_MOVE_Y=$(( TOP_GAP - WINDOW_Y * 100 ))
         TARGET_HEIGHT=$(( MONITOR_HEIGHT - TOP_GAP - BOTTOM_GAP ))
         HEIGHT_CHANGE=$(( TARGET_HEIGHT - WINDOW_HEIGHT ))
-
-        # Debug all variables
-        echo "WINDOW_X: $WINDOW_X"
-        echo "WINDOW_Y: $WINDOW_Y"
-        echo "WINDOW_WIDTH: $WINDOW_WIDTH"
-        echo "WINDOW_HEIGHT: $WINDOW_HEIGHT"
-        echo "MONITOR_HEIGHT: $MONITOR_HEIGHT"
-        echo "PIXELS_TO_MOVE_X: $PIXELS_TO_MOVE_X"
-        echo "PIXELS_TO_MOVE_Y: $PIXELS_TO_MOVE_Y"
-        echo "WIDTH_CHANGE: $WIDTH_CHANGE"
-        echo "HEIGHT_CHANGE: $HEIGHT_CHANGE"
 
         hyprctl --batch "dispatch resizewindowpixel $WIDTH_CHANGE $HEIGHT_CHANGE,address:$WINDOW_ADDRESS; dispatch movewindowpixel $PIXELS_TO_MOVE_X $PIXELS_TO_MOVE_Y,address:$WINDOW_ADDRESS"
         
@@ -207,20 +196,9 @@ if (( WINDOW_X < 0 )); then
     echo "--- Showing window ---"
     PIXELS_TO_MOVE_X=$(( VISIBLE_LEFT_GAP - WINDOW_X ))
     WIDTH_CHANGE=$(( TARGET_WIDTH - WINDOW_WIDTH ))
-    PIXELS_TO_MOVE_Y=$(( TOP_GAP - WINDOW_Y ))
+    PIXELS_TO_MOVE_Y=$(( TOP_GAP - WINDOW_Y * 100 ))
     TARGET_HEIGHT=$(( MONITOR_HEIGHT - TOP_GAP - BOTTOM_GAP ))
     HEIGHT_CHANGE=$(( TARGET_HEIGHT - WINDOW_HEIGHT ))
-
-    # Debug all variables
-        echo "WINDOW_X: $WINDOW_X"
-        echo "WINDOW_Y: $WINDOW_Y"
-        echo "WINDOW_WIDTH: $WINDOW_WIDTH"
-        echo "WINDOW_HEIGHT: $WINDOW_HEIGHT"
-        echo "MONITOR_HEIGHT: $MONITOR_HEIGHT"
-        echo "PIXELS_TO_MOVE_X: $PIXELS_TO_MOVE_X"
-        echo "PIXELS_TO_MOVE_Y: $PIXELS_TO_MOVE_Y"
-        echo "WIDTH_CHANGE: $WIDTH_CHANGE"
-        echo "HEIGHT_CHANGE: $HEIGHT_CHANGE"
 
     hyprctl --batch "dispatch resizewindowpixel $WIDTH_CHANGE $HEIGHT_CHANGE,address:$WINDOW_ADDRESS; dispatch movewindowpixel $PIXELS_TO_MOVE_X $PIXELS_TO_MOVE_Y,address:$WINDOW_ADDRESS"
 
@@ -247,17 +225,6 @@ else
         echo "--- Shrinking width to default ---"
         WIDTH_CHANGE=$(( TARGET_WIDTH - WINDOW_WIDTH ))
     fi
-
-    # Debug all variables
-        echo "WINDOW_X: $WINDOW_X"
-        echo "WINDOW_Y: $WINDOW_Y"
-        echo "WINDOW_WIDTH: $WINDOW_WIDTH"
-        echo "WINDOW_HEIGHT: $WINDOW_HEIGHT"
-        echo "MONITOR_HEIGHT: $MONITOR_HEIGHT"
-        echo "PIXELS_TO_MOVE_X: $PIXELS_TO_MOVE_X"
-        echo "PIXELS_TO_MOVE_Y: $PIXELS_TO_MOVE_Y"
-        echo "WIDTH_CHANGE: $WIDTH_CHANGE"
-        echo "HEIGHT_CHANGE: $HEIGHT_CHANGE"
 
     hyprctl --batch "dispatch resizewindowpixel $WIDTH_CHANGE $HEIGHT_CHANGE,address:$WINDOW_ADDRESS; dispatch movewindowpixel $PIXELS_TO_MOVE_X $PIXELS_TO_MOVE_Y,address:$WINDOW_ADDRESS"
     
