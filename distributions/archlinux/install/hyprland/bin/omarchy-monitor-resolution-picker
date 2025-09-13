@@ -136,7 +136,8 @@ load_profile() {
   done < "$config_file"
 
   # Ask the user if we want to make this as default configuration (persist in monitors.conf)
-  if (menu "Make default configuration?" "Yes\nNo" "" "No") == "Yes"; then
+  action=$(menu "Make this configuration permanent?" "Yes\nNo" "" "")
+  if [[ "$action" == "Yes" ]]; then
     persist_configuration
   fi
 
