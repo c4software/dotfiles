@@ -30,8 +30,8 @@ menu() {
 #   $1: monitor name (optionnal)
 #   $2: new configuration values (mode,position,scale) (optionnal)
 persist_configuration(){
-  local new_configuration_name="$1" # (optionnal) monitor name
-  local new_configuration_values="$2" # (optionnal) mode,position,scale
+  local new_configuration_name="${1:-}"   # (optionnel) monitor name
+  local new_configuration_values="${2:-}" # (optionnel) mode,position,scale
 
   # Get all monitors configuration from hyprctl ignoring the new one
   local monitors_json
@@ -118,6 +118,13 @@ save_profile() {
   done
 
   echo "$profile_config" > "$PROFILES_DIR/$profile_name.conf"
+
+  # Ask the user if we want to make this as default configuration (persist in monitors.conf)
+  action=$(menu "Make this configuration permanent?" "Yes\nNo" "" "")
+  if [[ "$action" == "Yes" ]]; then
+    persist_configuration
+  fi
+
   notify-send "Profile saved" "Profile '$profile_name' saved."
 }
 
