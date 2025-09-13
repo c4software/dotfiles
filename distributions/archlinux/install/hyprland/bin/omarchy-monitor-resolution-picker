@@ -82,7 +82,7 @@ manage_profiles() {
 
   if [[ "$action" == "Save" ]]; then
     local profile_name
-    profile_name=$(menu "Profile name" "" "" "")
+    profile_name=$(menu "Profile name" "" "--forceprint" "")
     [[ -z "$profile_name" ]] && return
     save_profile "$profile_name"
 
