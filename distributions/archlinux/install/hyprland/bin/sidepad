@@ -183,6 +183,11 @@ if [[ "$HIDE_REQUESTED" -eq 1 ]]; then
         # Give the focus back to the previous window (alt tab)
         hyprctl dispatch cyclenext prev
 
+        # movecursor to the active window
+        # movecursor	moves the cursor to a specified position	x y
+        ACTIVE_WINDOW_X=$(hyprctl activewindow -j | jq -r '.at[0]')
+        ACTIVE_WINDOW_Y=$(hyprctl activewindow -j | jq -r '.at[1]')
+        hyprctl dispatch movecursor $ACTIVE_WINDOW_X $ACTIVE_WINDOW_Y
         
         echo "Operation completed."
     else
@@ -230,6 +235,9 @@ else
     
     # Give focus to the window
     hyprctl dispatch focuswindow address:$WINDOW_ADDRESS
+
+    # Put the cursor on the window
+    hyprctl dispatch mousemove address:$WINDOW_ADDRESS
 
     echo "Operation completed."
 fi
