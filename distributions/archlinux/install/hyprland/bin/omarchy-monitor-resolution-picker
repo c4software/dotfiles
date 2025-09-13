@@ -27,8 +27,6 @@ menu() {
 
 save_profile() {
   local profile_name="$1"
-
-  # Retrieve current configuration
   local monitors_json
   monitors_json=$(hyprctl monitors all -j)
 
@@ -37,21 +35,18 @@ save_profile() {
   monitor_count=$(echo "$monitors_json" | jq 'length')
 
   for (( i=0; i<monitor_count; i++ )); do
-    local mon
+    local mon name disabled mode position scale
     mon=$(echo "$monitors_json" | jq -r ".[$i]")
-    local name
     name=$(echo "$mon" | jq -r '.name')
-    local disabled
     disabled=$(echo "$mon" | jq -r '.disabled')
 
     if [[ "$disabled" == "true" ]]; then
-      profile_config+=$'\n'"monitor=$name,disable"
+      profile_config+=$'\n'"$name,disable"
     else
-      local mode position scale
       mode=$(echo "$mon" | jq -r '"\(.width)x\(.height)@\(.refreshRate | floor).00Hz"')
       position=$(echo "$mon" | jq -r '"\(.x)x\(.y)"')
       scale=$(echo "$mon" | jq -r '.scale')
-      profile_config+=$'\n'"monitor=$name,$mode,$position,$scale"
+      profile_config+=$'\n'"$name,$mode,$position,$scale"
     fi
   done
 
@@ -70,7 +65,7 @@ load_profile() {
 
   while IFS= read -r line; do
     [[ -z "$line" || "$line" =~ ^# ]] && continue
-    hyprctl keyword "$line"
+    hyprctl keyword monitor "$line"
   done < "$config_file"
 
   notify-send "Profile loaded" "Profile '$profile_name' applied."
