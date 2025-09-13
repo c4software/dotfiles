@@ -227,8 +227,10 @@ main() {
   is_disabled=$(echo "$monitor_details" | jq -r '.disabled')
   [[ "$is_disabled" == "true" ]] && current_mode="Disable monitor"
 
+  available_modes="preferred\n$available_modes"
+
   if (( monitor_count > 1 )); then
-    available_modes="preferred\n$available_modes\nDisable monitor"
+    available_modes="$available_modes\nDisable monitor"
   fi
 
   chosen_mode_raw=$(menu "Resolution" "$available_modes" "" "$current_mode")
