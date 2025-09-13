@@ -173,18 +173,15 @@ if [[ "$HIDE_REQUESTED" -eq 1 ]]; then
     if (( WINDOW_X >= 0 )); then # Only act if it is not already hidden
         echo "--- Hiding window (--hide) ---"
         PIXELS_TO_MOVE_X=$(( (WINDOW_X * -1) - TARGET_WIDTH + HIDDEN_LEFT_GAP ))
-        WIDTH_CHANGE=$(( TARGET_WIDTH - WINDOW_WIDTH ))
         PIXELS_TO_MOVE_Y=$(( TOP_GAP - WINDOW_Y ))
         TARGET_HEIGHT=$(( MONITOR_HEIGHT - TOP_GAP - BOTTOM_GAP ))
-        HEIGHT_CHANGE=$(( TARGET_HEIGHT - WINDOW_HEIGHT ))
 
-        hyprctl --batch "dispatch resizewindowpixel $WIDTH_CHANGE $HEIGHT_CHANGE,address:$WINDOW_ADDRESS; dispatch movewindowpixel $PIXELS_TO_MOVE_X $PIXELS_TO_MOVE_Y,address:$WINDOW_ADDRESS"
+        hyprctl --batch "dispatch resizewindowpixel exact $TARGET_WIDTH $TARGET_HEIGHT,address:$WINDOW_ADDRESS; dispatch movewindowpixel $PIXELS_TO_MOVE_X $PIXELS_TO_MOVE_Y,address:$WINDOW_ADDRESS"
         
         # Give the focus back to the previous window (alt tab)
         hyprctl dispatch cyclenext prev
 
         # movecursor to the active window
-        # movecursor	moves the cursor to a specified position	x y
         ACTIVE_WINDOW_X=$(hyprctl activewindow -j | jq -r '.at[0]')
         ACTIVE_WINDOW_Y=$(hyprctl activewindow -j | jq -r '.at[1]')
         hyprctl dispatch movecursor $ACTIVE_WINDOW_X $ACTIVE_WINDOW_Y
@@ -200,12 +197,10 @@ fi
 if (( WINDOW_X < 0 )); then
     echo "--- Showing window ---"
     PIXELS_TO_MOVE_X=$(( VISIBLE_LEFT_GAP - WINDOW_X ))
-    WIDTH_CHANGE=$(( TARGET_WIDTH - WINDOW_WIDTH ))
     PIXELS_TO_MOVE_Y=$(( TOP_GAP - WINDOW_Y ))
     TARGET_HEIGHT=$(( MONITOR_HEIGHT - TOP_GAP - BOTTOM_GAP ))
-    HEIGHT_CHANGE=$(( TARGET_HEIGHT - WINDOW_HEIGHT ))
 
-    hyprctl --batch "dispatch resizewindowpixel $WIDTH_CHANGE $HEIGHT_CHANGE,address:$WINDOW_ADDRESS; dispatch movewindowpixel $PIXELS_TO_MOVE_X $PIXELS_TO_MOVE_Y,address:$WINDOW_ADDRESS"
+    hyprctl --batch "dispatch resizewindowpixel exact $TARGET_WIDTH $TARGET_HEIGHT,address:$WINDOW_ADDRESS; dispatch movewindowpixel $PIXELS_TO_MOVE_X $PIXELS_TO_MOVE_Y,address:$WINDOW_ADDRESS"
 
     # Give focus to the window
     hyprctl dispatch focuswindow address:$WINDOW_ADDRESS
@@ -217,21 +212,20 @@ else
     # Ensure vertical position and height are correct
     PIXELS_TO_MOVE_Y=$(( TOP_GAP - WINDOW_Y ))
     TARGET_HEIGHT=$(( MONITOR_HEIGHT - TOP_GAP - BOTTOM_GAP ))
-    HEIGHT_CHANGE=$(( TARGET_HEIGHT - WINDOW_HEIGHT ))
     
     # Don't move horizontally
     PIXELS_TO_MOVE_X=0
 
-    # Calculate width change
+    # Calculate target width
     if (( WINDOW_WIDTH == TARGET_WIDTH )); then
         echo "--- Expanding width to max ---"
-        WIDTH_CHANGE=$(( TARGET_WIDTH_MAX - WINDOW_WIDTH ))
+        TARGET_WIDTH_FINAL=$TARGET_WIDTH_MAX
     else
         echo "--- Shrinking width to default ---"
-        WIDTH_CHANGE=$(( TARGET_WIDTH - WINDOW_WIDTH ))
+        TARGET_WIDTH_FINAL=$TARGET_WIDTH
     fi
 
-    hyprctl --batch "dispatch resizewindowpixel $WIDTH_CHANGE $HEIGHT_CHANGE,address:$WINDOW_ADDRESS; dispatch movewindowpixel $PIXELS_TO_MOVE_X $PIXELS_TO_MOVE_Y,address:$WINDOW_ADDRESS"
+    hyprctl --batch "dispatch resizewindowpixel exact $TARGET_WIDTH_FINAL $TARGET_HEIGHT,address:$WINDOW_ADDRESS; dispatch movewindowpixel $PIXELS_TO_MOVE_X $PIXELS_TO_MOVE_Y,address:$WINDOW_ADDRESS"
     
     # Give focus to the window
     hyprctl dispatch focuswindow address:$WINDOW_ADDRESS
