@@ -2,8 +2,11 @@ echo -e "Installing Hyprland"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# Install with yay the packages.aur.txt
-yay -S --noconfirm --needed - <"$SCRIPT_DIR/packages.aur.txt"
+# Check for --skip-packages flag
+if [ "$1" != "--skip-packages" ]; then
+    # Install with yay the packages.aur.txt
+    yay -S --noconfirm --needed - <"$SCRIPT_DIR/packages.aur.txt"
+fi
 
 echo -e "Moving configuration files (replace if exists)"
 rm -rf ~/.config/hypr

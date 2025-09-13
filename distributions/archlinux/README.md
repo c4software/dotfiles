@@ -24,6 +24,24 @@ The scripts and configurations in this repository are specifically designed for 
 
 -----
 
+## Hyprland Setup
+
+To setup only Hyprland and its related packages, you can run the dedicated setup script:
+
+```bash
+./install/hyprland/setup.sh
+```
+
+### Update configuration files only
+
+To update only the configuration files without installing packages, you can run the Hyprland setup script with the `--skip-packages` flag:
+
+```bash
+./install/hyprland/setup.sh --skip-packages
+```
+
+-----
+
 ## Installed Software
 
 ### Terminal Applications
