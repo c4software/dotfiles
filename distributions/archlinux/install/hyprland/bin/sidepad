@@ -1,12 +1,6 @@
 #!/usr/bin/env bash
-#    _____    __                 __
-#   / __(_)__/ /__ ___  ___ ____/ /
-#  _\ \/ / _  / -_) _ \/ _ `/ _  / 
-# /___/_/\_,_/\__/ .__/\_,_/\_,_/  
-#               /_/                
-# Main Script with scale support
+# Sidepad script — gestion du scale (float) pour Hyprland
 
-# --- Configuration ---
 WINDOW_CLASS="sidepad"
 HIDDEN_LEFT_GAP=10
 VISIBLE_LEFT_GAP=10
@@ -15,14 +9,10 @@ TARGET_WIDTH_MAX=1000
 TOP_GAP=100
 BOTTOM_GAP=100
 
-# --- Script Variables ---
 HIDE_REQUESTED=0
 
-# --- Help Function ---
 show_help() {
     echo "Usage: $0 [options]"
-    echo "Please make sure that you're using the class only once."
-    echo "The window must be in floating mode."
     echo ""
     echo "Options:"
     echo "  --class <name>         Override the window class (Default: $WINDOW_CLASS)"
@@ -41,24 +31,20 @@ show_help() {
 
 test_sidepad() {
     if ! hyprctl clients -j | jq -e --arg class "$WINDOW_CLASS" '.[] | select(.class == $class)' > /dev/null; then
-        echo "1"
-        return 1
+        echo "1"; return 1
     else
-        echo "0"
-        return 0
+        echo "0"; return 0
     fi
 }
 
 init_sidepad() {
-    # Check if the window already exists, if not launch it
     if ! hyprctl clients -j | jq -e --arg class "$WINDOW_CLASS" '.[] | select(.class == $class)' > /dev/null; then
         if [[ "$WINDOW_CLASS" == "sidepad" ]]; then
             eval "$1 --class $WINDOW_CLASS" &
         else
             eval "$1" &
         fi
-        # Wait for the window to appear, with a timeout
-        for i in {1..50}; do # ~2 seconds timeout
+        for i in {1..50}; do
             if hyprctl clients -j | jq -e --arg class "$WINDOW_CLASS" '.[] | select(.class == $class)' > /dev/null; then
                 break
             fi
@@ -79,78 +65,27 @@ kill_sidepad() {
     exit 0
 }
 
-# --- Parse Command-line Options ---
+# Parse args
 while [[ $# -gt 0 ]]; do
     key="$1"
     case $key in
-        --class)
-            WINDOW_CLASS="$2"
-            shift; shift
-        ;;
-
-        --hidden-gap)
-            HIDDEN_LEFT_GAP="$2"
-            shift; shift
-        ;;
-
-        --visible-gap)
-            VISIBLE_LEFT_GAP="$2"
-            shift; shift
-        ;;
-
-        --width)
-            TARGET_WIDTH="$2"
-            shift; shift
-        ;;
-
-        --width-max)
-            TARGET_WIDTH_MAX="$2"
-            shift; shift
-        ;;
-
-        --top-gap)
-            TOP_GAP="$2"
-            shift; shift
-        ;;
-
-        --bottom-gap)
-            BOTTOM_GAP="$2"
-            shift; shift
-        ;;
-
-        --hide)
-            HIDE_REQUESTED=1
-            shift
-        ;;
-
-        --test)
-            test_sidepad
-            exit 0
-        ;;
-
-        --kill)
-            kill_sidepad
-        ;;
-
-        --init)
-            SIDEPAD_APP="$2"
-            init_sidepad "$SIDEPAD_APP"
-            HIDE_REQUESTED=1
-            shift 2
-        ;;
-
-        -h|--help)
-            show_help
-        ;;
-
-        *)
-            # unknown option
-            shift
-        ;;
+        --class) WINDOW_CLASS="$2"; shift 2 ;;
+        --hidden-gap) HIDDEN_LEFT_GAP="$2"; shift 2 ;;
+        --visible-gap) VISIBLE_LEFT_GAP="$2"; shift 2 ;;
+        --width) TARGET_WIDTH="$2"; shift 2 ;;
+        --width-max) TARGET_WIDTH_MAX="$2"; shift 2 ;;
+        --top-gap) TOP_GAP="$2"; shift 2 ;;
+        --bottom-gap) BOTTOM_GAP="$2"; shift 2 ;;
+        --hide) HIDE_REQUESTED=1; shift ;;
+        --test) test_sidepad; exit 0 ;;
+        --kill) kill_sidepad ;;
+        --init) SIDEPAD_APP="$2"; init_sidepad "$SIDEPAD_APP"; HIDE_REQUESTED=1; shift 2 ;;
+        -h|--help) show_help ;;
+        *) shift ;;
     esac
 done
 
-# --- Get Window, Monitor Info, AND Scale ---
+# --- récupération infos fenetre / moniteur ---
 WINDOW_INFO=$(hyprctl clients -j | jq --arg class "$WINDOW_CLASS" '.[] | select(.class == $class)')
 MONITOR_INFO=$(hyprctl monitors -j | jq -r '.[] | select(.focused == true)')
 
@@ -159,55 +94,69 @@ if [ -z "$WINDOW_INFO" ]; then
     exit 1
 fi
 
-# Récupérer le facteur de scale
-MONITOR_SCALE=$(echo "$MONITOR_INFO" | jq -r '.scale')
-if [ -z "$MONITOR_SCALE" ] || [ "$MONITOR_SCALE" == "null" ]; then
-    MONITOR_SCALE=1
+# Récupérer scale (peut être "2.00" ou "1.25")
+MONITOR_SCALE_RAW=$(echo "$MONITOR_INFO" | jq -r '.scale')
+if [ -z "$MONITOR_SCALE_RAW" ] || [ "$MONITOR_SCALE_RAW" = "null" ]; then
+    MONITOR_SCALE="1"
+else
+    # normalize decimal comma -> dot and keep value
+    MONITOR_SCALE=$(printf "%s" "$MONITOR_SCALE_RAW" | tr ',' '.')
 fi
 
-# Récupérer fenêtre info
+# helpers pour convertir / multiplier (float -> int arrondi)
+to_int() {
+    awk -v v="$1" 'BEGIN{printf "%.0f", v}'
+}
+scale_mul() {
+    # usage : scale_mul value -> retourne int arrondi de value * MONITOR_SCALE
+    awk -v v="$1" -v s="$MONITOR_SCALE" 'BEGIN{printf "%.0f", v * s}'
+}
+scale_div() {
+    # usage : scale_div value -> retourne int arrondi de value / MONITOR_SCALE
+    awk -v v="$1" -v s="$MONITOR_SCALE" 'BEGIN{printf "%.0f", v / s}'
+}
+
 WINDOW_ADDRESS=$(echo "$WINDOW_INFO" | jq -r '.address')
-# On suppose que size & at sont dans l’espace logique (non-scalé),
-# sinon il faudra diviser par scale si c’est des valeurs physiques
 WINDOW_WIDTH=$(echo "$WINDOW_INFO" | jq -r '.size[0]')
 WINDOW_HEIGHT=$(echo "$WINDOW_INFO" | jq -r '.size[1]')
 WINDOW_X=$(echo "$WINDOW_INFO" | jq -r '.at[0]')
 WINDOW_Y=$(echo "$WINDOW_INFO" | jq -r '.at[1]')
+MONITOR_HEIGHT=$(echo "$MONITOR_INFO" | jq -r '.height')
 
-# Ajustement pour le scale
-# Si les valeurs actuelles sont *en pixels physiques*, les transformer en logiques
-# en divisant par scale. Sinon, sauter cette étape.
-# Supposons ici que size et at sont *en pixels logiques*, donc les gaps/width doivent être multipliés par scale lors du dispatch.
+# for safe integer arithmetic, convert values to ints
+WINDOW_WIDTH_I=$(to_int "$WINDOW_WIDTH")
+WINDOW_HEIGHT_I=$(to_int "$WINDOW_HEIGHT")
+WINDOW_X_I=$(to_int "$WINDOW_X")
+WINDOW_Y_I=$(to_int "$WINDOW_Y")
+MONITOR_HEIGHT_I=$(to_int "$MONITOR_HEIGHT")
 
 # --- Main Logic ---
 
-# Case 1: --hide flag is used, unconditionally hide the window.
+# Case 1: hide requested
 if [[ "$HIDE_REQUESTED" -eq 1 ]]; then
-    if (( WINDOW_X >= 0 )); then # Only act if it is not already hidden
+    if (( WINDOW_X_I >= 0 )); then
         echo "--- Hiding window (--hide) ---"
-        # Calculs avec scale
-        # On ajuste la TARGET_WIDTH en pixels logiques * scale
-        SCALED_TARGET_WIDTH=$(( TARGET_WIDTH * MONITOR_SCALE ))
-        SCALED_HIDDEN_LEFT_GAP=$(( HIDDEN_LEFT_GAP * MONITOR_SCALE ))
-        SCALED_TOP_GAP=$(( TOP_GAP * MONITOR_SCALE ))
-        SCALED_BOTTOM_GAP=$(( BOTTOM_GAP * MONITOR_SCALE ))
+        SCALED_TARGET_WIDTH=$(scale_mul "$TARGET_WIDTH")
+        SCALED_HIDDEN_LEFT_GAP=$(scale_mul "$HIDDEN_LEFT_GAP")
+        SCALED_TOP_GAP=$(scale_mul "$TOP_GAP")
+        SCALED_BOTTOM_GAP=$(scale_mul "$BOTTOM_GAP")
+        SCALED_MONITOR_HEIGHT=$(scale_mul "$MONITOR_HEIGHT_I")
 
-        PIXELS_TO_MOVE_X=$(( (WINDOW_X * -1) - SCALED_TARGET_WIDTH + SCALED_HIDDEN_LEFT_GAP ))
-        PIXELS_TO_MOVE_Y=$(( SCALED_TOP_GAP - WINDOW_Y ))
-        SCALED_MONITOR_HEIGHT=$(( ($(echo "$MONITOR_INFO" | jq -r '.height') ) * MONITOR_SCALE ))
+        PIXELS_TO_MOVE_X=$(( (WINDOW_X_I * -1) - SCALED_TARGET_WIDTH + SCALED_HIDDEN_LEFT_GAP ))
+        PIXELS_TO_MOVE_Y=$(( SCALED_TOP_GAP - WINDOW_Y_I ))
         TARGET_HEIGHT=$(( SCALED_MONITOR_HEIGHT - SCALED_TOP_GAP - SCALED_BOTTOM_GAP ))
 
         hyprctl --batch "dispatch resizewindowpixel exact $SCALED_TARGET_WIDTH $TARGET_HEIGHT,address:$WINDOW_ADDRESS; dispatch movewindowpixel $PIXELS_TO_MOVE_X $PIXELS_TO_MOVE_Y,address:$WINDOW_ADDRESS"
-        
-        # Give the focus back to the previous window (alt tab)
+
         hyprctl dispatch cyclenext prev
 
-        # movecursor to the active window
         ACTIVE_WINDOW_INFO=$(hyprctl activewindow -j)
         ACTIVE_WINDOW_X=$(echo "$ACTIVE_WINDOW_INFO" | jq -r '.at[0]')
         ACTIVE_WINDOW_Y=$(echo "$ACTIVE_WINDOW_INFO" | jq -r '.at[1]')
-        hyprctl dispatch movecursor $ACTIVE_WINDOW_X $ACTIVE_WINDOW_Y
-        
+        ACTIVE_WINDOW_X_I=$(to_int "$ACTIVE_WINDOW_X")
+        ACTIVE_WINDOW_Y_I=$(to_int "$ACTIVE_WINDOW_Y")
+        hyprctl dispatch movecursor "$ACTIVE_WINDOW_X_I" "$ACTIVE_WINDOW_Y_I"
+
         echo "Operation completed."
     else
         echo "Window is already hidden."
@@ -215,47 +164,39 @@ if [[ "$HIDE_REQUESTED" -eq 1 ]]; then
     exit 0
 fi
 
-# Case 2: Window is hidden, so show it.
-if (( WINDOW_X < 0 )); then
+# Case 2: window hidden -> show
+if (( WINDOW_X_I < 0 )); then
     echo "--- Showing window ---"
-    # Calculs avec scale
-    SCALED_TARGET_WIDTH=$(( TARGET_WIDTH * MONITOR_SCALE ))
-    SCALED_VISIBLE_LEFT_GAP=$(( VISIBLE_LEFT_GAP * MONITOR_SCALE ))
-    SCALED_TOP_GAP=$(( TOP_GAP * MONITOR_SCALE ))
-    SCALED_BOTTOM_GAP=$(( BOTTOM_GAP * MONITOR_SCALE ))
+    SCALED_TARGET_WIDTH=$(scale_mul "$TARGET_WIDTH")
+    SCALED_VISIBLE_LEFT_GAP=$(scale_mul "$VISIBLE_LEFT_GAP")
+    SCALED_TOP_GAP=$(scale_mul "$TOP_GAP")
+    SCALED_BOTTOM_GAP=$(scale_mul "$BOTTOM_GAP")
+    SCALED_MONITOR_HEIGHT=$(scale_mul "$MONITOR_HEIGHT_I")
 
-    PIXELS_TO_MOVE_X=$(( SCALED_VISIBLE_LEFT_GAP - WINDOW_X ))
-    PIXELS_TO_MOVE_Y=$(( SCALED_TOP_GAP - WINDOW_Y ))
-    SCALED_MONITOR_HEIGHT=$(( ($(echo "$MONITOR_INFO" | jq -r '.height') ) * MONITOR_SCALE ))
-    TARGET_HEIGHT=$(( SCALED_MONITOR_height - SCALED_TOP_GAP - SCALED_BOTTOM_GAP ))
+    PIXELS_TO_MOVE_X=$(( SCALED_VISIBLE_LEFT_GAP - WINDOW_X_I ))
+    PIXELS_TO_MOVE_Y=$(( SCALED_TOP_GAP - WINDOW_Y_I ))
+    TARGET_HEIGHT=$(( SCALED_MONITOR_HEIGHT - SCALED_TOP_GAP - SCALED_BOTTOM_GAP ))
 
     hyprctl --batch "dispatch resizewindowpixel exact $SCALED_TARGET_WIDTH $TARGET_HEIGHT,address:$WINDOW_ADDRESS; dispatch movewindowpixel $PIXELS_TO_MOVE_X $PIXELS_TO_MOVE_Y,address:$WINDOW_ADDRESS"
 
-    # Give focus to the window
     hyprctl dispatch focuswindow address:$WINDOW_ADDRESS
 
     echo "Operation completed."
 
-# Case 3: Window is visible, so toggle its width and correct its position.
+# Case 3: visible -> toggle width
 else
-    echo "--- Toggling visibility/width ---"
-    # Ajustements
-    SCALED_TOP_GAP=$(( TOP_GAP * MONITOR_SCALE ))
-    SCALED_BOTTOM_GAP=$(( BOTTOM_GAP * MONITOR_SCALE ))
-    SCALED_MONITOR_HEIGHT=$(( ($(echo "$MONITOR_INFO" | jq -r '.height') ) * MONITOR_SCALE ))
+    echo "--- Toggling width/position ---"
+    SCALED_TOP_GAP=$(scale_mul "$TOP_GAP")
+    SCALED_BOTTOM_GAP=$(scale_mul "$BOTTOM_GAP")
+    SCALED_MONITOR_HEIGHT=$(scale_mul "$MONITOR_HEIGHT_I")
 
-    PIXELS_TO_MOVE_Y=$(( SCALED_TOP_GAP - WINDOW_Y ))
+    PIXELS_TO_MOVE_Y=$(( SCALED_TOP_GAP - WINDOW_Y_I ))
     TARGET_HEIGHT=$(( SCALED_MONITOR_HEIGHT - SCALED_TOP_GAP - SCALED_BOTTOM_GAP ))
-    
-    # Horizontal reste
     PIXELS_TO_MOVE_X=0
 
-    # Calculer target width
-    # comparer WINDOW_WIDTH * scale avec TARGET_WIDTH_scaled ?
-    SCALED_TARGET_WIDTH=$(( TARGET_WIDTH * MONITOR_SCALE ))
-    SCALED_TARGET_WIDTH_MAX=$(( TARGET_WIDTH_MAX * MONITOR_SCALE ))
-
-    WIDTH_COMPARE=$(( WINDOW_WIDTH * MONITOR_SCALE ))
+    SCALED_TARGET_WIDTH=$(scale_mul "$TARGET_WIDTH")
+    SCALED_TARGET_WIDTH_MAX=$(scale_mul "$TARGET_WIDTH_MAX")
+    WIDTH_COMPARE=$(scale_mul "$WINDOW_WIDTH_I")
 
     if (( WIDTH_COMPARE == SCALED_TARGET_WIDTH )); then
         echo "--- Expanding width to max ---"
@@ -266,11 +207,8 @@ else
     fi
 
     hyprctl --batch "dispatch resizewindowpixel exact $TARGET_WIDTH_FINAL $TARGET_HEIGHT,address:$WINDOW_ADDRESS; dispatch movewindowpixel $PIXELS_TO_MOVE_X $PIXELS_TO_MOVE_Y,address:$WINDOW_ADDRESS"
-    
-    # Give focus to the window
-    hyprctl dispatch focuswindow address:$WINDOW_ADDRESS
 
-    # Put the cursor on the window
+    hyprctl dispatch focuswindow address:$WINDOW_ADDRESS
     hyprctl dispatch mousemove address:$WINDOW_ADDRESS
 
     echo "Operation completed."
