@@ -153,18 +153,6 @@ done
 # --- Get Window and Monitor Info ---
 WINDOW_INFO=$(hyprctl clients -j | jq --arg class "$WINDOW_CLASS" '.[] | select(.class == $class)')
 MONITOR_INFO=$(hyprctl monitors -j | jq -r '.[] | select(.focused == true)')
-MONITOR_SCALE=$(echo "$MONITOR_INFO" | jq -r '.scale')
-if [ -z "$MONITOR_SCALE" ] || [ "$MONITOR_SCALE" == "null" ]; then
-    MONITOR_SCALE=1
-fi
-
-# Multiply the gaps by the monitor scale using awk
-HIDDEN_LEFT_GAP=$(awk -v gap="$HIDDEN_LEFT_GAP" -v scale="$MONITOR_SCALE" 'BEGIN { printf "%.0f", gap * scale }')
-VISIBLE_LEFT_GAP=$(awk -v gap="$VISIBLE_LEFT_GAP" -v scale="$MONITOR_SCALE" 'BEGIN { printf "%.0f", gap * scale }')
-TARGET_WIDTH=$(awk -v width="$TARGET_WIDTH" -v scale="$MONITOR_SCALE" 'BEGIN { printf "%.0f", width * scale }')
-TARGET_WIDTH_MAX=$(awk -v width="$TARGET_WIDTH_MAX" -v scale="$MONITOR_SCALE" 'BEGIN { printf "%.0f", width * scale }')
-TOP_GAP=$(awk -v gap="$TOP_GAP" -v scale="$MONITOR_SCALE" 'BEGIN { printf "%.0f", gap * scale }')
-BOTTOM_GAP=$(awk -v gap="$BOTTOM_GAP" -v scale="$MONITOR_SCALE" 'BEGIN { printf "%.0f", gap * scale }')
 
 if [ -z "$WINDOW_INFO" ]; then
     echo "Error: Window with class '$WINDOW_CLASS' not found. Is the window open?"
