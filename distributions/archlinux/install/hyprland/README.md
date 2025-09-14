@@ -9,6 +9,7 @@
 | `SUPER + P` | Fenêtre "pseudo" |
 | `SUPER + V` | Basculer en mode flottant |
 | `SHIFT + F11` | Forcer le plein écran |
+| `SUPER + ↑/↓` | Basculer en mode monocle (plein écran avec gestion des fenêtres en arrière-plan) |
 | `SUPER + ←/→/↑/↓` | Déplacer le focus |
 | `SUPER + [0-9]` | Changer d'espace de travail |
 | `SUPER + SHIFT + [0-9]` | Déplacer la fenêtre vers un espace de travail |
