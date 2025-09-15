@@ -1,7 +1,0 @@
-# Applications
-ghostty
-signal-desktop
-
-# VPN
-wireguard-tools
-proton-vpn-gtk-app

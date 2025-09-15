@@ -1,4 +1,0 @@
-#!/bin/bash
-
-# Lock the screen
-pidof hyprlock || hyprlock &
