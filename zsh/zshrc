@@ -31,6 +31,7 @@ alias spotdl='docker run --rm -v "$(pwd):/music" spotdl/spotify-downloader --aud
 alias ytdl='docker run --rm -v .:/downloads -it jauderho/yt-dlp:latest -x --audio-format mp3 --audio-quality 0 --embed-metadata -o "%(uploader)s/%(title)s [%(id)s].%(ext)s"'
 alias repo='open "$(git remote get-url origin | sed -E "s#git@([^:]+):#https://\1/#; s#\.git\$##")"'
 alias vim='nvim'
+alias n='nvim .'
 
 function serve() {
   echo "Scan open port 8888…8899"
